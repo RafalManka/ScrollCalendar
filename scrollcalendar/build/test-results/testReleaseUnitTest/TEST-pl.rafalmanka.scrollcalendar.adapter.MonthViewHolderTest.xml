@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pl.rafalmanka.scrollcalendar.adapter.MonthViewHolderTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-09-15T16:10:31" hostname="dub0053.local" time="0.218">
+<testsuite name="pl.rafalmanka.scrollcalendar.adapter.MonthViewHolderTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-09-15T16:56:48" hostname="dub0053.local" time="0.248">
   <properties/>
-  <testcase name="shouldNovemberWeeksHave4_7_4Days" classname="pl.rafalmanka.scrollcalendar.adapter.MonthViewHolderTest" time="0.216"/>
+  <testcase name="shouldNovemberWeeksHave4_7_4Days" classname="pl.rafalmanka.scrollcalendar.adapter.MonthViewHolderTest" time="0.246"/>
   <testcase name="shouldHave31DaysDays" classname="pl.rafalmanka.scrollcalendar.adapter.MonthViewHolderTest" time="0.0"/>
   <testcase name="should1BeJanuary" classname="pl.rafalmanka.scrollcalendar.adapter.MonthViewHolderTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
