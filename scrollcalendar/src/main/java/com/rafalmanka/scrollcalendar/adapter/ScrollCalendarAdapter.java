@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.rafalmanka.scrollcalendar.contract.ClickCallback;
 import com.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
+import com.rafalmanka.scrollcalendar.contract.State;
 import com.rafalmanka.scrollcalendar.data.CalendarDay;
 import com.rafalmanka.scrollcalendar.data.CalendarMonth;
 
@@ -72,9 +73,20 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     private void prepare(CalendarMonth month) {
-        if (calendarCallback != null) {
-            calendarCallback.onBeforeMonthDisplayed(month);
+        for (CalendarDay calendarDay : month.getDays()) {
+            calendarDay.setState(makeState(month, calendarDay));
         }
+    }
+
+    @State
+    private int makeState(CalendarMonth month, CalendarDay calendarDay) {
+        if (calendarCallback == null) {
+            return CalendarDay.DEFAULT;
+        }
+        int year = month.getYear();
+        int monthInt = month.getMonth();
+        int day = calendarDay.getDay();
+        return calendarCallback.getStateForDate(year, monthInt, day);
     }
 
     private void appendCalendarMonth() {
@@ -106,7 +118,10 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     @Override
     public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
         if (calendarCallback != null) {
-            calendarCallback.onCalendarDayClicked(calendarMonth, calendarDay);
+            int year = calendarMonth.getYear();
+            int month = calendarMonth.getMonth();
+            int day = calendarDay.getDay();
+            calendarCallback.onCalendarDayClicked(year, month, day);
             notifyDataSetChanged();
         }
     }

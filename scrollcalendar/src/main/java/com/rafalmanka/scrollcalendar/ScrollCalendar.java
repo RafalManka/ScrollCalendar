@@ -152,10 +152,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         post(new Runnable() {
             @Override
             public void run() {
-                if (calendarCallback != null) {
-                    calendarCallback.onBeforeLegendDisplayed(legend);
-                }
-
                 ScrollCalendarAdapter a = getAdapter();
                 a.setCalendarCallback(calendarCallback);
                 a.notifyDataSetChanged();

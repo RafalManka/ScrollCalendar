@@ -27,21 +27,16 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         scrollCalendar.setCallback(new ScrollCalendarCallback() {
+
             @Override
-            public void onBeforeMonthDisplayed(@NonNull CalendarMonth month) {
-                super.onBeforeMonthDisplayed(month);
-                doOnBeforeMonthDisplayed(month);
+            public int getStateForDate(int year, int month, int day) {
+                return doGetStateForDate(year, month, day);
             }
 
             @Override
-            public void onBeforeLegendDisplayed(@NonNull LegendItem[] legend) {
-                super.onBeforeLegendDisplayed(legend);
-            }
-
-            @Override
-            public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
-                super.onCalendarDayClicked(calendarMonth, calendarDay);
-                doOnCalendarDayClicked(calendarMonth, calendarDay);
+            public void onCalendarDayClicked(int year, int month, int day) {
+                super.onCalendarDayClicked(year, month, day);
+                doOnCalendarDayClicked(year, month, day);
             }
 
             @Override
@@ -52,25 +47,47 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void doOnCalendarDayClicked(@NonNull CalendarMonth month, @NonNull CalendarDay day) {
+    private int doGetStateForDate(int year, int month, int day) {
+
+        if (isSelected(selected, year, month, day)) {
+            return CalendarDay.SELECTED;
+        }
+        if (isUnavailable(year, month, day)) {
+            return CalendarDay.UNAVAILABLE;
+        }
+        if (isInThePast(year, month, day)) {
+            return CalendarDay.DISABLED;
+        }
+
+        Calendar now = Calendar.getInstance();
+        if (isWeekend(now, year, month, day)) {
+            return CalendarDay.DISABLED;
+        }
+        if (isToday(now, year, month, day)) {
+            return CalendarDay.TODAY;
+        }
+        return CalendarDay.DEFAULT;
+    }
+
+    private void doOnCalendarDayClicked(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.YEAR, month.getYear());
-        calendar.set(Calendar.MONTH, month.getMonth());
-        calendar.set(Calendar.DAY_OF_MONTH, day.getDay());
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
 
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        if (isInThePast(month.getYear(), month.getMonth(), day.getDay())) {
+        if (isInThePast(year, month, day)) {
             return;
         }
-        if (isWeekend(calendar, month.getYear(), month.getMonth(), day.getDay())) {
+        if (isWeekend(calendar, year, month, day)) {
             return;
         }
-        if (isUnavailable(month.getYear(), month.getMonth(), day.getDay())) {
+        if (isUnavailable(year, month, day)) {
             return;
         }
 
@@ -110,29 +127,6 @@ public class MainActivity extends AppCompatActivity {
         return calendar.getTimeInMillis() < target;
     }
 
-    private void doOnBeforeMonthDisplayed(@NonNull CalendarMonth month) {
-        for (CalendarDay day : month.getDays()) {
-            day.setState(CalendarDay.DEFAULT);
-            maybeSetupPast(month, day);
-            maybeSetupToday(month, day);
-            maybeSetupDisabled(month, day);
-            maybeSetupUnavailable(month, day);
-            maybeSetupSelected(month, day);
-        }
-    }
-
-    private void maybeSetupPast(CalendarMonth month, CalendarDay day) {
-        if (isInThePast(month.getYear(), month.getMonth(), day.getDay())) {
-            day.setState(CalendarDay.DISABLED);
-        }
-    }
-
-    private void maybeSetupSelected(CalendarMonth month, CalendarDay day) {
-        if (isSelected(selected, month.getYear(), month.getMonth(), day.getDay())) {
-            day.setState(CalendarDay.SELECTED);
-        }
-    }
-
     private boolean isSelected(Calendar selected, int year, int month, int day) {
         if (selected == null) {
             return false;
@@ -154,12 +148,6 @@ public class MainActivity extends AppCompatActivity {
         long millis2 = calendar.getTimeInMillis();
 
         return millis == millis2;
-    }
-
-    private void maybeSetupUnavailable(CalendarMonth month, CalendarDay day) {
-        if (isUnavailable(month.getYear(), month.getMonth(), day.getDay())) {
-            day.setState(CalendarDay.UNAVAILABLE);
-        }
     }
 
     private boolean isUnavailable(int year, int month, int day) {
@@ -189,13 +177,6 @@ public class MainActivity extends AppCompatActivity {
         return millis == millis2 || millis == millis3 || millis == millis4;
     }
 
-    private void maybeSetupDisabled(CalendarMonth month, CalendarDay day) {
-        Calendar now = Calendar.getInstance();
-        if (isWeekend(now, month.getYear(), month.getMonth(), day.getDay())) {
-            day.setState(CalendarDay.DISABLED);
-        }
-    }
-
     private boolean isWeekend(@Nullable Calendar now, int year, int month, int day) {
         if (now == null) {
             return false;
@@ -220,14 +201,10 @@ public class MainActivity extends AppCompatActivity {
         return dayOfWeek == 1 || dayOfWeek == 7;
     }
 
-    private void maybeSetupToday(@NonNull CalendarMonth month, @NonNull CalendarDay day) {
-        Calendar now = Calendar.getInstance();
-        if (isToday(now, month.getYear(), month.getMonth(), day.getDay())) {
-            day.setState(CalendarDay.TODAY);
+    private boolean isToday(@Nullable Calendar now, int year, int month, int day) {
+        if (now == null) {
+            return false;
         }
-    }
-
-    private boolean isToday(Calendar now, int year, int month, int day) {
         //noinspection UnnecessaryLocalVariable
         Calendar calendar = now;
 

@@ -1,1 +1,1 @@
-include ':app', ':scrollcalendar'
+include ':example', ':scrollcalendar'

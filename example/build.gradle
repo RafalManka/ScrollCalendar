@@ -26,8 +26,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
     testCompile 'junit:junit:4.12'
-    compile 'ScrollCalendar:scroll-calendar:+'
-//    compile project(':library')
+    //    compile 'pl.rafalmanka:scrollcalendar:1.0.6'
+    compile 'com.github.RafalManka:ScrollCalendar:1.0.0'
+//    compile project(':scrollcalendar')
 }

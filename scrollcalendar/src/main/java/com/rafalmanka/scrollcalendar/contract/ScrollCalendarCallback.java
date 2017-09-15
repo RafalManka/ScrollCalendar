@@ -12,16 +12,16 @@ import com.rafalmanka.scrollcalendar.data.CalendarMonth;
 
 public abstract class ScrollCalendarCallback {
 
-    public void onBeforeMonthDisplayed(@NonNull CalendarMonth month) {
-    }
-
-    public void onBeforeLegendDisplayed(@NonNull LegendItem[] legend) {
-    }
-
-    public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
+    @State
+    public int getStateForDate(int year, int month, int day) {
+        return CalendarDay.DEFAULT;
     }
 
     public boolean shouldAddNextMonth(@NonNull CalendarMonth lastMonth) {
         return true;
+    }
+
+    public void onCalendarDayClicked(int year, int month, int day) {
+        // Do nothing by default
     }
 }
