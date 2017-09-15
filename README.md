@@ -11,7 +11,10 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-compile 'pl.rafalmanka:scroll-calendar:1.3.0'
+compile 'pl.rafalmanka:scroll-calendar:1.3.0', {
+    exclude group: 'com.android.support', module: 'recyclerview-v7'
+    exclude group: 'com.android.support', module: 'appcompat-v7'
+}
 ```
 
 ### Getting Started
@@ -43,27 +46,27 @@ Reference the widget in your Activity/Fragment and set callback
 ScrollCalendar scrollCalendar = (ScrollCalendar) findViewById(R.id.scrollCalendar);
 scrollCalendar.setCallback(new ScrollCalendarCallback() {
 
-            @State
-            @Override
-            public int getStateForDate(int year, int month, int day) {
-                //    CalendarDay.DEFAULT,
-                //    CalendarDay.DISABLED,
-                //    CalendarDay.TODAY,
-                //    CalendarDay.UNAVAILABLE,
-                //    CalendarDay.SELECTED,
-                return CalendarDay.DEFAULT;
-            }
+    @State
+    @Override
+    public int getStateForDate(int year, int month, int day) {
+        //    CalendarDay.DEFAULT,
+        //    CalendarDay.DISABLED,
+        //    CalendarDay.TODAY,
+        //    CalendarDay.UNAVAILABLE,
+        //    CalendarDay.SELECTED,
+        return CalendarDay.DEFAULT;
+    }
 
-            @Override
-            public void onCalendarDayClicked(int year, int month, int day) {
-                // user clicked on a specific date on the calendar
-            }
+    @Override
+    public void onCalendarDayClicked(int year, int month, int day) {
+        // user clicked on a specific date on the calendar
+    }
 
-            @Override
-            public boolean shouldAddNextMonth(int lastDisplayedYear, int lastDisplayedMonth) {
-                // return false if you don't want to show later months
-                return true;
-            }
+    @Override
+    public boolean shouldAddNextMonth(int lastDisplayedYear, int lastDisplayedMonth) {
+        // return false if you don't want to show later months
+        return true;
+    }
 
 });
 ```
