@@ -1,4 +1,4 @@
-package com.rafalmanka.scrollcalendar;
+package pl.rafalmanka.scrollcalendar;
 
 import android.content.Context;
 import android.graphics.Typeface;

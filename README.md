@@ -4,7 +4,7 @@ Android widget to present calendar in a recycler view. The idea was to
 replicate calendar the way calendar is presented in the amazing
 Airbnb app.
 
-![Example App](screenshot.png)
+![Example App](gif.gif)
 
 ## Installing
 
@@ -19,7 +19,7 @@ compile 'pl.rafalmanka:scroll-calendar:1.3.0'
 Define layout in your xml file
 
 ```
-<com.rafalmanka.scrollcalendar.ScrollCalendar
+<pl.rafalmanka.scrollcalendar.ScrollCalendar
         android:id="@+id/scrollCalendar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,41 +37,42 @@ Define layout in your xml file
         scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 ```
 
-Reference the widget in your Activity/Fragment
+Reference the widget in your Activity/Fragment and set callback
 
 ```
 ScrollCalendar scrollCalendar = (ScrollCalendar) findViewById(R.id.scrollCalendar);
-
-```
-
-Setup callback
-```
 scrollCalendar.setCallback(new ScrollCalendarCallback() {
 
+            @State
             @Override
             public int getStateForDate(int year, int month, int day) {
-                return doGetStateForDate(year, month, day);
+                //    CalendarDay.DEFAULT,
+                //    CalendarDay.DISABLED,
+                //    CalendarDay.TODAY,
+                //    CalendarDay.UNAVAILABLE,
+                //    CalendarDay.SELECTED,
+                return CalendarDay.DEFAULT;
             }
 
             @Override
             public void onCalendarDayClicked(int year, int month, int day) {
-                doOnCalendarDayClicked(year, month, day);
+                // user clicked on a specific date on the calendar
             }
 
             @Override
             public boolean shouldAddNextMonth(int lastDisplayedYear, int lastDisplayedMonth) {
-                return doShouldAddNextMonth(lastDisplayedYear, lastDisplayedMonth);
+                // return false if you don't want to show later months
+                return true;
             }
 
 });
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Contributing
 
-* Request feature
-* Create Pull request
+* File [bug report](https://github.com/RafalManka/ScrollCalendar/issues/new)
+* Request [feature](https://github.com/RafalManka/ScrollCalendar/issues/new)
+* Create [Pull request](https://github.com/RafalManka/ScrollCalendar/pulls)
 
 ## Authors
 

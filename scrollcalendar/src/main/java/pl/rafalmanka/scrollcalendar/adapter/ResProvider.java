@@ -1,4 +1,4 @@
-package com.rafalmanka.scrollcalendar.adapter;
+package pl.rafalmanka.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;

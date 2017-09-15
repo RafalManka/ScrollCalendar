@@ -1,11 +1,11 @@
-package com.rafalmanka.scrollcalendar.contract;
+package pl.rafalmanka.scrollcalendar.contract;
 
 import android.support.annotation.IntDef;
 
-import com.rafalmanka.scrollcalendar.data.CalendarDay;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import pl.rafalmanka.scrollcalendar.data.CalendarDay;
 
 /**
  * Created by rafal.manka on 10/09/2017

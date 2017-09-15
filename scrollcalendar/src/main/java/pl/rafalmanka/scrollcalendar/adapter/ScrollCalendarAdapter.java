@@ -1,4 +1,4 @@
-package com.rafalmanka.scrollcalendar.adapter;
+package pl.rafalmanka.scrollcalendar.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -6,11 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rafalmanka.scrollcalendar.contract.ClickCallback;
-import com.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
-import com.rafalmanka.scrollcalendar.contract.State;
-import com.rafalmanka.scrollcalendar.data.CalendarDay;
-import com.rafalmanka.scrollcalendar.data.CalendarMonth;
+import pl.rafalmanka.scrollcalendar.contract.ClickCallback;
+import pl.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
+import pl.rafalmanka.scrollcalendar.contract.State;
+import pl.rafalmanka.scrollcalendar.data.CalendarDay;
+import pl.rafalmanka.scrollcalendar.data.CalendarMonth;
 
 import java.util.ArrayList;
 import java.util.List;

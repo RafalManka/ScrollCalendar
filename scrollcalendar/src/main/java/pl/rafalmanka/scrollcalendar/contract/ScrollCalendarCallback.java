@@ -1,4 +1,4 @@
-package com.rafalmanka.scrollcalendar.contract;
+package pl.rafalmanka.scrollcalendar.contract;
 
 /**
  * Created by rafal.manka on 10/09/2017

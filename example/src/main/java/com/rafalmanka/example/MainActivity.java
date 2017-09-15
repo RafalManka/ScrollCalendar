@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.rafalmanka.scrollcalendar.ScrollCalendar;
-import com.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
-import com.rafalmanka.scrollcalendar.contract.State;
-import com.rafalmanka.scrollcalendar.data.CalendarDay;
+import pl.rafalmanka.scrollcalendar.ScrollCalendar;
+import pl.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
+import pl.rafalmanka.scrollcalendar.contract.State;
+import pl.rafalmanka.scrollcalendar.data.CalendarDay;
 
 import java.util.Calendar;
 

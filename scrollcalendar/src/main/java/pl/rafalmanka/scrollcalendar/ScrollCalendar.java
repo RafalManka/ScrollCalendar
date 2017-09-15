@@ -1,4 +1,4 @@
-package com.rafalmanka.scrollcalendar;
+package pl.rafalmanka.scrollcalendar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,10 +16,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import com.rafalmanka.scrollcalendar.adapter.LegendItem;
-import com.rafalmanka.scrollcalendar.adapter.ResProvider;
-import com.rafalmanka.scrollcalendar.adapter.ScrollCalendarAdapter;
-import com.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
+import pl.rafalmanka.scrollcalendar.adapter.LegendItem;
+import pl.rafalmanka.scrollcalendar.adapter.ResProvider;
+import pl.rafalmanka.scrollcalendar.adapter.ScrollCalendarAdapter;
+import pl.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -33,8 +33,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     @ColorRes
     private int disabledTextColor;
     @ColorRes
-    private int disabledBackgroundColor;
-    @ColorRes
     private int unavailableTextColor;
     @ColorRes
     private int selectedTextColor;
@@ -47,6 +45,9 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     private int selectedBackground;
     @DrawableRes
     private int currentDayBackground;
+
+    @ColorRes
+    private int disabledBackgroundColor;
 
     @Nullable
     private String customFont;

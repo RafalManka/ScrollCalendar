@@ -1,4 +1,4 @@
-package com.rafalmanka.scrollcalendar.data;
+package pl.rafalmanka.scrollcalendar.data;
 
 import android.support.annotation.NonNull;
 
