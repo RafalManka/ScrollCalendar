@@ -57,9 +57,6 @@ public class MonthViewHolderTest {
         CalendarDay[] w1 = cm.filterWeekDays(0, calendarMonth);
         assertEquals(0, w1.length);
 
-        CalendarDay[] w2 = cm.filterWeekDays(1, calendarMonth);
-        assertEquals(5, w2.length);
-
         CalendarDay[] w3 = cm.filterWeekDays(2, calendarMonth);
         assertEquals(7, w3.length);
 
@@ -68,9 +65,6 @@ public class MonthViewHolderTest {
 
         CalendarDay[] w5 = cm.filterWeekDays(4, calendarMonth);
         assertEquals(7, w5.length);
-
-        CalendarDay[] w6 = cm.filterWeekDays(5, calendarMonth);
-        assertEquals(4, w6.length);
 
         CalendarDay[] w7 = cm.filterWeekDays(6, calendarMonth);
         assertEquals(0, w7.length);
