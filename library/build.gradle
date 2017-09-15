@@ -1,14 +1,27 @@
 apply plugin: 'com.android.library'
+<<<<<<< Updated upstream:library/build.gradle
+=======
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg="rafalmanka"
+    groupId="pl.rafalmanka"
+    artifactId="scroll-calendar"
+    publishVersion="1.3.1"
+    desc="Scroll Calendar widget"
+    website="https://github.com/RafalManka/ScrollCalendar"
+}
+>>>>>>> Stashed changes:scrollcalendar/build.gradle
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

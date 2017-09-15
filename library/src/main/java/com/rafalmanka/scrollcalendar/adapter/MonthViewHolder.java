@@ -52,7 +52,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
 
     static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         return new MonthViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.month, parent, false),
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_month, parent, false),
                 calendarCallback, resProvider);
     }
 

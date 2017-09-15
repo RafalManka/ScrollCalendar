@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:library/src/main/AndroidManifest.xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rafalmanka.scrollcalendar">
 
@@ -7,5 +8,9 @@
         android:supportsRtl="true">
 
     </application>
+=======
+<manifest package="pl.rafalmanka.scrollcalendar">
+>>>>>>> Stashed changes:scrollcalendar/src/main/AndroidManifest.xml
 
+    <application />
 </manifest>
