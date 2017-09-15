@@ -1,15 +1,13 @@
 package com.rafalmanka.example;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.rafalmanka.scrollcalendar.ScrollCalendar;
-import com.rafalmanka.scrollcalendar.adapter.LegendItem;
 import com.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
+import com.rafalmanka.scrollcalendar.contract.State;
 import com.rafalmanka.scrollcalendar.data.CalendarDay;
-import com.rafalmanka.scrollcalendar.data.CalendarMonth;
 
 import java.util.Calendar;
 
@@ -35,18 +33,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCalendarDayClicked(int year, int month, int day) {
-                super.onCalendarDayClicked(year, month, day);
                 doOnCalendarDayClicked(year, month, day);
             }
 
             @Override
-            public boolean shouldAddNextMonth(@NonNull CalendarMonth lastMonth) {
-                return doShouldAddNextMonth(lastMonth);
+            public boolean shouldAddNextMonth(int lastDisplayedYear, int lastDisplayedMonth) {
+                return doShouldAddNextMonth(lastDisplayedYear, lastDisplayedMonth);
             }
 
         });
     }
 
+    @State
     private int doGetStateForDate(int year, int month, int day) {
 
         if (isSelected(selected, year, month, day)) {
@@ -91,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        selected = calendar;
+        if (selected != null && selected.equals(calendar)) {
+            selected = null;
+        } else {
+            selected = calendar;
+        }
     }
 
     private boolean isInThePast(int year, int month, int day) {
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         return now > then;
     }
 
-    private boolean doShouldAddNextMonth(@NonNull CalendarMonth lastMonth) {
+    private boolean doShouldAddNextMonth(int year, int month) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 10);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -121,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
         long target = calendar.getTimeInMillis();
 
-        calendar.set(Calendar.YEAR, lastMonth.getYear());
-        calendar.set(Calendar.MONTH, lastMonth.getMonth());
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
 
         return calendar.getTimeInMillis() < target;
     }

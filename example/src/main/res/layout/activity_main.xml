@@ -19,10 +19,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        scrollcalendar:backgroundColor="@android:color/transparent"
         scrollcalendar:currentDayBackground="@drawable/circle_outline"
         scrollcalendar:currentDayTextColor="@android:color/darker_gray"
         scrollcalendar:customFont="fonts/montserrat-light.otf"
+        scrollcalendar:disabledBackgroundColor="@android:color/transparent"
+        scrollcalendar:disabledTextColor="@android:color/darker_gray"
+        scrollcalendar:fontColor="@android:color/black"
         scrollcalendar:selectedBackground="@drawable/circle_full"
-        scrollcalendar:selectedTextColor="@android:color/white" />
+        scrollcalendar:selectedTextColor="@android:color/white"
+        scrollcalendar:unavailableBackground="@drawable/dash"
+        scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 
 </LinearLayout>
