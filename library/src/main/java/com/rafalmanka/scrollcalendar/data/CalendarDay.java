@@ -41,7 +41,7 @@ public class CalendarDay implements Serializable {
     public String toString() {
         return "CalendarDay{" +
                 "state=" + state +
-                ", day=" + day +
+                ", scrollcalendar_day=" + day +
                 '}';
     }
 

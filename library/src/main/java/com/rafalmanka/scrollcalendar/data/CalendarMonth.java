@@ -30,7 +30,7 @@ public class CalendarMonth implements Serializable {
     }
 
     @NonNull
-    public static CalendarDay[] makeDays(int year, int month) {
+    static CalendarDay[] makeDays(int year, int month) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -83,11 +83,15 @@ public class CalendarMonth implements Serializable {
     }
 
     private String maybeGetYear() {
-        if (year == Calendar.getInstance().get(Calendar.YEAR)) {
+        if (isaCurrentYear()) {
             return "";
         } else {
             return " " + year;
         }
+    }
+
+    private boolean isaCurrentYear() {
+        return year == Calendar.getInstance().get(Calendar.YEAR);
     }
 
     private String getMonthForInt(int num) {

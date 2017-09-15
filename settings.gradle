@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 include ':app', ':library'
+=======
+include ':examples', ':scrollcalendar'
+>>>>>>> Stashed changes

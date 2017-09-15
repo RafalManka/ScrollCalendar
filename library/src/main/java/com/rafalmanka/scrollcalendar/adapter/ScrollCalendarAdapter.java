@@ -21,12 +21,13 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @NonNull
     private final List<CalendarMonth> months = new ArrayList<>();
-    @Nullable
-    private ScrollCalendarCallback calendarCallback;
-    @Nullable
-    private View recyclerView;
     @NonNull
     private final ResProvider resProvider;
+
+    @Nullable
+    private ScrollCalendarCallback callback;
+    @Nullable
+    private View recyclerView;
 
     public ScrollCalendarAdapter(@NonNull ResProvider resProvider) {
         this.resProvider = resProvider;
@@ -68,6 +69,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     private boolean isAllowedToAddNextMonth() {
+<<<<<<< Updated upstream:library/src/main/java/com/rafalmanka/scrollcalendar/adapter/ScrollCalendarAdapter.java
         return calendarCallback != null && calendarCallback.shouldAddNextMonth(getLastItem());
     }
 
@@ -75,6 +77,30 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         if (calendarCallback != null) {
             calendarCallback.onBeforeMonthDisplayed(month);
         }
+=======
+        if (callback == null) {
+            return true;
+        }
+        CalendarMonth item = getLastItem();
+        return callback.shouldAddNextMonth(item.getYear(), item.getMonth());
+    }
+
+    private void prepare(CalendarMonth month) {
+        for (CalendarDay calendarDay : month.getDays()) {
+            calendarDay.setState(makeState(month, calendarDay));
+        }
+    }
+
+    @State
+    private int makeState(CalendarMonth month, CalendarDay calendarDay) {
+        if (callback == null) {
+            return CalendarDay.DEFAULT;
+        }
+        int year = month.getYear();
+        int monthInt = month.getMonth();
+        int day = calendarDay.getDay();
+        return callback.getStateForDate(year, monthInt, day);
+>>>>>>> Stashed changes:scrollcalendar/src/main/java/pl/rafalmanka/scrollcalendar/adapter/ScrollCalendarAdapter.java
     }
 
     private void appendCalendarMonth() {
@@ -99,14 +125,22 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         return months.size();
     }
 
-    public void setCalendarCallback(@Nullable ScrollCalendarCallback calendarCallback) {
-        this.calendarCallback = calendarCallback;
+    public void setCallback(@Nullable ScrollCalendarCallback callback) {
+        this.callback = callback;
     }
 
     @Override
     public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
+<<<<<<< Updated upstream:library/src/main/java/com/rafalmanka/scrollcalendar/adapter/ScrollCalendarAdapter.java
         if (calendarCallback != null) {
             calendarCallback.onCalendarDayClicked(calendarMonth, calendarDay);
+=======
+        if (callback != null) {
+            int year = calendarMonth.getYear();
+            int month = calendarMonth.getMonth();
+            int day = calendarDay.getDay();
+            callback.onCalendarDayClicked(year, month, day);
+>>>>>>> Stashed changes:scrollcalendar/src/main/java/pl/rafalmanka/scrollcalendar/adapter/ScrollCalendarAdapter.java
             notifyDataSetChanged();
         }
     }
