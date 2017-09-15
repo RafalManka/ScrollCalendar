@@ -115,7 +115,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         return months.size();
     }
 
-    public void setCalendarCallback(@Nullable ScrollCalendarCallback calendarCallback) {
+    public void setCallback(@Nullable ScrollCalendarCallback calendarCallback) {
         this.calendarCallback = calendarCallback;
     }
 

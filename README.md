@@ -68,6 +68,11 @@ scrollCalendar.setCallback(new ScrollCalendarCallback() {
 });
 ```
 
+## Known limitations
+
+Right now the library does not support ranges. If you have need for
+ranges please request that feature or create pull request.
+
 ## Contributing
 
 * File [bug report](https://github.com/RafalManka/ScrollCalendar/issues/new)

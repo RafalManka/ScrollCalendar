@@ -8,7 +8,6 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StyleableRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,56 +51,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     @Nullable
     private String customFont;
 
-    interface Keys {
-        @StyleableRes
-        int CURRENT_DAY_BG = R.styleable.ScrollCalendar_currentDayBackground;
-        @StyleableRes
-        int FONT_COLOR = R.styleable.ScrollCalendar_fontColor;
-        @StyleableRes
-        int BACKGROUND_COLOR = R.styleable.ScrollCalendar_backgroundColor;
-        @StyleableRes
-        int DISABLED_TEXT_COLOR = R.styleable.ScrollCalendar_disabledTextColor;
-        @StyleableRes
-        int DISABLED_BACKGROUND_COLOR = R.styleable.ScrollCalendar_disabledBackgroundColor;
-        @StyleableRes
-        int UNAVAILABLE_TEXT_COLOR = R.styleable.ScrollCalendar_unavailableTextColor;
-        @StyleableRes
-        int SELECTED_TEXT_COLOR = R.styleable.ScrollCalendar_selectedTextColor;
-        @StyleableRes
-        int UNAVAILABLE_BACKGROUND = R.styleable.ScrollCalendar_unavailableBackground;
-        @StyleableRes
-        int SELECTED_BACKGROUND = R.styleable.ScrollCalendar_selectedBackground;
-        @StyleableRes
-        int TODAY_TEXT_COLOR = R.styleable.ScrollCalendar_currentDayTextColor;
-        @StyleableRes
-        int CUSTOM_FONT = R.styleable.ScrollCalendar_customFont;
-    }
-
-    interface Defaults {
-        // Colors
-        @ColorRes
-        int FONT_COLOR = android.R.color.black;
-        @ColorRes
-        int BACKGROUND_COLOR = android.R.color.transparent;
-        @ColorRes
-        int DISABLED_TEXT_COLOR = android.R.color.darker_gray;
-        @ColorRes
-        int DISABLED_BACKGROUND_COLOR = android.R.color.transparent;
-        @ColorRes
-        int UNAVAILABLE_TEXT_COLOR = android.R.color.darker_gray;
-        @ColorRes
-        int SELECTED_TEXT_COLOR = android.R.color.darker_gray;
-        @ColorRes
-        int TODAY_TEXT_COLOR = android.R.color.black;
-        // Drawables
-        @DrawableRes
-        int CURRENT_DAY_BG = R.drawable.circle_outline;
-        @DrawableRes
-        int UNAVAILABLE_BACKGROUND = R.drawable.dash;
-        @DrawableRes
-        int SELECTED_BACKGROUND = R.drawable.dash;
-    }
-
     private final LegendItem[] legend = new LegendItem[7];
 
     @Nullable
@@ -126,7 +75,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     private void init(@NonNull Context context) {
         setOrientation(VERTICAL);
-        inflate(context, R.layout.calendar, this);
+        inflate(context, R.layout.scrollcalendar_calendar, this);
         for (int i = 0; i < legend.length; i++) {
             legend[i] = new LegendItem(i + 1);
         }
@@ -150,27 +99,19 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     }
 
     public void setCallback(@Nullable final ScrollCalendarCallback calendarCallback) {
-        post(new Runnable() {
-            @Override
-            public void run() {
-                ScrollCalendarAdapter a = getAdapter();
-                a.setCalendarCallback(calendarCallback);
-                a.notifyDataSetChanged();
-            }
-        });
+        getAdapter().setCallback(calendarCallback);
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
+        // Legend
         LinearLayout legendHolder = findViewById(R.id.legend);
-
         for (LegendItem legendItem : legend) {
             legendHolder.addView(legendItem.layout(legendHolder, this));
             legendItem.display();
         }
-
+        // RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
         recyclerView.setAdapter(getAdapter());

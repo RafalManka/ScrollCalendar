@@ -46,7 +46,7 @@ public class LegendItem {
 
     public View layout(LinearLayout parent, ResProvider resProvider) {
         if (textView == null) {
-            textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.day, parent, false);
+            textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
             if (textView != null) {
                 Typeface typeface = resProvider.getCustomFont();
                 if (typeface != null) {

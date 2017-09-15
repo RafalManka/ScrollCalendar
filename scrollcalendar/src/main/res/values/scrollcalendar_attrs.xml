@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScrollCalendar">
+        <!--Text Color-->
+        <attr name="fontColor" format="color" />
+        <attr name="disabledTextColor" format="color" />
+        <attr name="unavailableTextColor" format="color" />
+        <attr name="selectedTextColor" format="color" />
+        <attr name="currentDayTextColor" format="color" />
+        <!-- TODO change to drawable-->
+        <attr name="disabledBackgroundColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+        <!--Drawable-->
+        <attr name="currentDayBackground" format="reference" />
+        <attr name="unavailableBackground" format="reference" />
+        <attr name="selectedBackground" format="reference" />
+        <!--font-->
+        <attr name="customFont" format="string" />
+    </declare-styleable>
+</resources>

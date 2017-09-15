@@ -31,7 +31,7 @@ class WeekHolder {
     public View layout(LinearLayout parent) {
         if (container == null) {
             container = (LinearLayout) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.week, parent, false);
+                    .inflate(R.layout.scrollcalendar_week, parent, false);
             if (container != null) {
                 for (DayHolder day : days) {
                     container.addView(day.layout(container));
