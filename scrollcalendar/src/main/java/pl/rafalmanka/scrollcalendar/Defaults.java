@@ -29,4 +29,5 @@ interface Defaults {
     int UNAVAILABLE_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
     @DrawableRes
     int SELECTED_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
+    int FONT_SIZE = 22;
 }

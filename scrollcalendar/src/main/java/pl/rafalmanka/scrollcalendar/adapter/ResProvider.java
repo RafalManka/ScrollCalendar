@@ -44,6 +44,8 @@ public interface ResProvider {
     @DrawableRes
     int selectedBackgroundColor();
 
+    int fontSize();
+
     // Other
 
     @Nullable

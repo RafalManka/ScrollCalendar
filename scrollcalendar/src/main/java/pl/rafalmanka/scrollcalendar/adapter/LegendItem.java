@@ -52,6 +52,7 @@ public class LegendItem {
                 if (typeface != null) {
                     textView.setTypeface(typeface);
                 }
+                textView.setTextSize(resProvider.fontSize());
             }
         }
         return textView;

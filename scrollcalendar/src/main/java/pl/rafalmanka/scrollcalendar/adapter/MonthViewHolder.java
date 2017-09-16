@@ -37,6 +37,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         if (typeface != null) {
             title.setTypeface(typeface);
         }
+        title.setTextSize(resProvider.fontSize());
         for (int i = 0; i < weeks.length; i++) {
             weeks[i] = new WeekHolder(calendarCallback, resProvider);
         }

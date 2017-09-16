@@ -55,6 +55,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     @Nullable
     private ScrollCalendarAdapter adapter;
+    private int fontSize;
 
     public ScrollCalendar(Context context) {
         super(context);
@@ -94,6 +95,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         unavailableBackground = typedArray.getResourceId(Keys.UNAVAILABLE_BACKGROUND, Defaults.UNAVAILABLE_BACKGROUND);
         selectedBackground = typedArray.getResourceId(Keys.SELECTED_BACKGROUND, Defaults.SELECTED_BACKGROUND);
         todayTextColor = typedArray.getResourceId(Keys.TODAY_TEXT_COLOR, Defaults.TODAY_TEXT_COLOR);
+        fontSize = typedArray.getResourceId(Keys.FONT_SIZE, Defaults.FONT_SIZE);
         customFont = typedArray.getString(Keys.CUSTOM_FONT);
         typedArray.recycle();
     }
@@ -197,6 +199,11 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     @Override
     public int selectedBackgroundColor() {
         return selectedBackground;
+    }
+
+    @Override
+    public int fontSize() {
+        return fontSize;
     }
 
     // Other

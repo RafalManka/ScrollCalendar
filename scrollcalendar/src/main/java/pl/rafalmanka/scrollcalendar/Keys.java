@@ -28,4 +28,6 @@ interface Keys {
     int TODAY_TEXT_COLOR = R.styleable.ScrollCalendar_currentDayTextColor;
     @StyleableRes
     int CUSTOM_FONT = R.styleable.ScrollCalendar_customFont;
+    @StyleableRes
+    int FONT_SIZE = R.styleable.ScrollCalendar_fontSize;
 }

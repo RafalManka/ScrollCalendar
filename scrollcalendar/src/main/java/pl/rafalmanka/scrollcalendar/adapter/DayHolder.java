@@ -37,6 +37,7 @@ class DayHolder implements View.OnClickListener {
         if (textView == null) {
             textView = (SquareTextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
             textView.setOnClickListener(this);
+            textView.setTextSize(resProvider.fontSize());
         }
         return textView;
     }
