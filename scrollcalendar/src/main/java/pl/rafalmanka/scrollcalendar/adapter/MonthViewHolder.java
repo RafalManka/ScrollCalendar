@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         if (typeface != null) {
             title.setTypeface(typeface);
         }
-        title.setTextSize(resProvider.fontSize());
+        title.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.fontSize());
         for (int i = 0; i < weeks.length; i++) {
             weeks[i] = new WeekHolder(calendarCallback, resProvider);
         }

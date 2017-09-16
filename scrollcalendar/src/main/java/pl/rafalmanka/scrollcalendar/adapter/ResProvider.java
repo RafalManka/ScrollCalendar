@@ -2,6 +2,8 @@ package pl.rafalmanka.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DimenRes;
+import android.support.annotation.Dimension;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 
@@ -44,7 +46,8 @@ public interface ResProvider {
     @DrawableRes
     int selectedBackgroundColor();
 
-    int fontSize();
+    @Dimension
+    float fontSize();
 
     // Other
 

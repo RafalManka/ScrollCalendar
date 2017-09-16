@@ -1,6 +1,7 @@
 package pl.rafalmanka.scrollcalendar;
 
 import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 
 /**
@@ -29,5 +30,7 @@ interface Defaults {
     int UNAVAILABLE_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
     @DrawableRes
     int SELECTED_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
-    int FONT_SIZE = 22;
+
+    @DimenRes
+    int FONT_SIZE = R.dimen.scrollcalendar_sp12;
 }

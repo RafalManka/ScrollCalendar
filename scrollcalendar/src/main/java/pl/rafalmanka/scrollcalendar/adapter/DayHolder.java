@@ -3,6 +3,7 @@ package pl.rafalmanka.scrollcalendar.adapter;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -37,7 +38,7 @@ class DayHolder implements View.OnClickListener {
         if (textView == null) {
             textView = (SquareTextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
             textView.setOnClickListener(this);
-            textView.setTextSize(resProvider.fontSize());
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.fontSize());
         }
         return textView;
     }

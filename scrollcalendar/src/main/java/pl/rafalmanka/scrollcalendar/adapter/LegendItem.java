@@ -2,6 +2,7 @@ package pl.rafalmanka.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -52,7 +53,7 @@ public class LegendItem {
                 if (typeface != null) {
                     textView.setTypeface(typeface);
                 }
-                textView.setTextSize(resProvider.fontSize());
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.fontSize());
             }
         }
         return textView;

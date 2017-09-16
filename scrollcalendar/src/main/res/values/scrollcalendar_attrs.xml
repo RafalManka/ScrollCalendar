@@ -16,6 +16,6 @@
         <attr name="selectedBackground" format="reference" />
         <!--font-->
         <attr name="customFont" format="string" />
-        <attr name="fontSize" format="integer" />
+        <attr name="fontSize" format="dimension" />
     </declare-styleable>
 </resources>
