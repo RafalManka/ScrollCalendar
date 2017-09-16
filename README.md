@@ -12,8 +12,7 @@ Improt the library into gradle
 
 ```
 compile 'pl.rafalmanka:scroll-calendar:1.3.0', {
-    exclude group: 'com.android.support', module: 'recyclerview-v7'
-    exclude group: 'com.android.support', module: 'appcompat-v7'
+    exclude group: 'com.android.support'
 }
 ```
 

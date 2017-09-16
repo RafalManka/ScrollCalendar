@@ -12,12 +12,12 @@
         "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/layout/abc_alert_dialog_material.xml"
     },
     {
-        "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/layout/notification_template_custom_big.xml",
-        "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/layout/notification_template_custom_big.xml"
-    },
-    {
         "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/layout/support_simple_spinner_dropdown_item.xml",
         "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/layout/notification_template_custom_big.xml",
+        "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/layout/notification_template_custom_big.xml"
     },
     {
         "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/layout/abc_expanded_menu_layout.xml",

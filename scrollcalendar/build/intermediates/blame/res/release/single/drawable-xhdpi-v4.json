@@ -52,12 +52,12 @@
         "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
-        "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/drawable-xhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
         "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/rafal.manka/.android/build-cache/afdf59cb867fadeb3f2d5dfedf28787070c5ecdb/output/res/drawable-xhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/rafal.manka/Development/ScrollCalendar/scrollcalendar/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_btn_check_to_on_mtrl_015.png",

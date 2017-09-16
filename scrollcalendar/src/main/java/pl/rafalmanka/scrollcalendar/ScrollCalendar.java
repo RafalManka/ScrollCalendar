@@ -109,12 +109,18 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         LinearLayout legendHolder = findViewById(R.id.legend);
         for (LegendItem legendItem : legend) {
             legendHolder.addView(legendItem.layout(legendHolder, this));
-            legendItem.display();
         }
+        refreshLegend();
         // RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
         recyclerView.setAdapter(getAdapter());
+    }
+
+    private void refreshLegend() {
+        for (LegendItem legendItem : legend) {
+            legendItem.display();
+        }
     }
 
     @NonNull
@@ -123,6 +129,11 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
             adapter = new ScrollCalendarAdapter(this);
         }
         return adapter;
+    }
+
+    public void refresh() {
+        refreshLegend();
+        getAdapter().notifyDataSetChanged();
     }
 
     // Colors
