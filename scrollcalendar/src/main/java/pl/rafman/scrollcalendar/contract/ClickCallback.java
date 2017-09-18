@@ -1,9 +1,9 @@
-package pl.rafalmanka.scrollcalendar.contract;
+package pl.rafman.scrollcalendar.contract;
 
 import android.support.annotation.NonNull;
 
-import pl.rafalmanka.scrollcalendar.data.CalendarDay;
-import pl.rafalmanka.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.data.CalendarMonth;
 
 /**
  * Created by rafal.manka on 11/09/2017

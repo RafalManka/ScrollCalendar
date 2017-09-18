@@ -1,4 +1,4 @@
-package pl.rafalmanka.scrollcalendar.data;
+package pl.rafman.scrollcalendar.data;
 
 import android.annotation.SuppressLint;
 

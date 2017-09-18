@@ -1,4 +1,4 @@
-package pl.rafalmanka.scrollcalendar;
+package pl.rafman.scrollcalendar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,10 +16,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import pl.rafalmanka.scrollcalendar.adapter.LegendItem;
-import pl.rafalmanka.scrollcalendar.adapter.ResProvider;
-import pl.rafalmanka.scrollcalendar.adapter.ScrollCalendarAdapter;
-import pl.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
+import pl.rafman.scrollcalendar.R;
+import pl.rafman.scrollcalendar.adapter.LegendItem;
+import pl.rafman.scrollcalendar.adapter.ResProvider;
+import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.contract.DateWatcher;
+import pl.rafman.scrollcalendar.contract.MonthScrollListener;
+import pl.rafman.scrollcalendar.contract.OnDateClickListener;
+import pl.rafman.scrollcalendar.values.Defaults;
+import pl.rafman.scrollcalendar.values.Keys;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -101,8 +106,16 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         typedArray.recycle();
     }
 
-    public void setCallback(@Nullable final ScrollCalendarCallback calendarCallback) {
-        getAdapter().setCallback(calendarCallback);
+    public void setOnDateClickListener(@Nullable final OnDateClickListener calendarCallback) {
+        getAdapter().setOnDateClickListener(calendarCallback);
+    }
+
+    public void setDateWatcher(@Nullable final DateWatcher dateWatcher) {
+        getAdapter().setDateWatcher(dateWatcher);
+    }
+
+    public void setMonthScrollListener(@Nullable final MonthScrollListener monthScrollListener) {
+        getAdapter().setMonthScrollListener(monthScrollListener);
     }
 
     @Override
@@ -132,11 +145,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
             adapter = new ScrollCalendarAdapter(this);
         }
         return adapter;
-    }
-
-    public void refresh() {
-        refreshLegend();
-        getAdapter().notifyDataSetChanged();
     }
 
     // Colors
@@ -176,7 +184,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     public int unavailableTextColor() {
         return ContextCompat.getColor(getContext(), unavailableTextColor);
     }
-
 
     @Override
     public int selectedTextColor() {

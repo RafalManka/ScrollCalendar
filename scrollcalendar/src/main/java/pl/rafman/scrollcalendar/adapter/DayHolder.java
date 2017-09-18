@@ -1,4 +1,4 @@
-package pl.rafalmanka.scrollcalendar.adapter;
+package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import pl.rafalmanka.scrollcalendar.R;
-import pl.rafalmanka.scrollcalendar.SquareTextView;
-import pl.rafalmanka.scrollcalendar.contract.ClickCallback;
-import pl.rafalmanka.scrollcalendar.data.CalendarDay;
-import pl.rafalmanka.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.R;
+import pl.rafman.scrollcalendar.widgets.SquareTextView;
+import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.data.CalendarMonth;
 
 /**
  * Created by rafal.manka on 10/09/2017

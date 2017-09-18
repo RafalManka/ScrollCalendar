@@ -1,8 +1,8 @@
-package pl.rafalmanka.scrollcalendar.data;
+package pl.rafman.scrollcalendar.data;
 
 import java.io.Serializable;
 
-import pl.rafalmanka.scrollcalendar.contract.State;
+import pl.rafman.scrollcalendar.contract.State;
 
 /**
  * Created by rafal.manka on 10/09/2017

@@ -1,10 +1,10 @@
-package pl.rafalmanka.scrollcalendar.adapter;
+package pl.rafman.scrollcalendar.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.View;
 
-import pl.rafalmanka.scrollcalendar.data.CalendarDay;
-import pl.rafalmanka.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.data.CalendarMonth;
 
 import org.junit.Before;
 import org.junit.Test;

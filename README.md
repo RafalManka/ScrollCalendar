@@ -43,9 +43,13 @@ Reference the widget in your Activity/Fragment and set callback
 
 ```java
 ScrollCalendar scrollCalendar = (ScrollCalendar) findViewById(R.id.scrollCalendar);
-scrollCalendar.setCallback(new ScrollCalendarCallback() {
-
-    @State
+scrollCalendar.setOnDateClickListener(new OnDateClickListener() {
+    @Override
+    public void onCalendarDayClicked(int year, int month, int day) {
+        // user clicked on a specific date on the calendar
+    }
+});
+scrollCalendar.setDateWatcher(new DateWatcher() {
     @Override
     public int getStateForDate(int year, int month, int day) {
         //    CalendarDay.DEFAULT,
@@ -55,18 +59,13 @@ scrollCalendar.setCallback(new ScrollCalendarCallback() {
         //    CalendarDay.SELECTED,
         return CalendarDay.DEFAULT;
     }
-
-    @Override
-    public void onCalendarDayClicked(int year, int month, int day) {
-        // user clicked on a specific date on the calendar
-    }
-
+});
+scrollCalendar.setMonthScrollListener(new MonthScrollListener() {
     @Override
     public boolean shouldAddNextMonth(int lastDisplayedYear, int lastDisplayedMonth) {
         // return false if you don't want to show later months
         return true;
     }
-
 });
 ```
 

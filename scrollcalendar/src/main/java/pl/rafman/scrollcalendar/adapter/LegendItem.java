@@ -1,4 +1,4 @@
-package pl.rafalmanka.scrollcalendar.adapter;
+package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
@@ -12,7 +12,7 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.rafalmanka.scrollcalendar.R;
+import pl.rafman.scrollcalendar.R;
 
 /**
  * Created by rafal.manka on 10/09/2017

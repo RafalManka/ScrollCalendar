@@ -1,11 +1,13 @@
-package pl.rafalmanka.scrollcalendar;
+package pl.rafman.scrollcalendar.values;
 
 import android.support.annotation.StyleableRes;
 
+import pl.rafman.scrollcalendar.R;
+
 /**
- * Created by rafal.manka on 15/09/2017.
+ * Created by rafal.manka on 15/09/2017
  */
-interface Keys {
+public interface Keys {
     @StyleableRes
     int CURRENT_DAY_BG = R.styleable.ScrollCalendar_currentDayBackground;
     @StyleableRes

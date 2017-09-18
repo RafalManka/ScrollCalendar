@@ -1,4 +1,4 @@
-package pl.rafalmanka.scrollcalendar.adapter;
+package pl.rafman.scrollcalendar.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -6,14 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.rafalmanka.scrollcalendar.contract.ClickCallback;
-import pl.rafalmanka.scrollcalendar.contract.ScrollCalendarCallback;
-import pl.rafalmanka.scrollcalendar.contract.State;
-import pl.rafalmanka.scrollcalendar.data.CalendarDay;
-import pl.rafalmanka.scrollcalendar.data.CalendarMonth;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.contract.DateWatcher;
+import pl.rafman.scrollcalendar.contract.MonthScrollListener;
+import pl.rafman.scrollcalendar.contract.OnDateClickListener;
+import pl.rafman.scrollcalendar.contract.State;
+import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.data.CalendarMonth;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -22,12 +24,18 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @NonNull
     private final List<CalendarMonth> months = new ArrayList<>();
-    @Nullable
-    private ScrollCalendarCallback calendarCallback;
+
     @Nullable
     private View recyclerView;
     @NonNull
     private final ResProvider resProvider;
+
+    @Nullable
+    private MonthScrollListener monthScrollListener;
+    @Nullable
+    private OnDateClickListener onDateClickListener;
+    @Nullable
+    private DateWatcher dateWatcher;
 
     public ScrollCalendarAdapter(@NonNull ResProvider resProvider) {
         this.resProvider = resProvider;
@@ -69,11 +77,11 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     private boolean isAllowedToAddNextMonth() {
-        if (calendarCallback == null) {
+        if (monthScrollListener == null) {
             return true;
         }
         CalendarMonth item = getLastItem();
-        return calendarCallback.shouldAddNextMonth(item.getYear(), item.getMonth());
+        return monthScrollListener.shouldAddNextMonth(item.getYear(), item.getMonth());
     }
 
     private void prepare(CalendarMonth month) {
@@ -84,13 +92,13 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @State
     private int makeState(CalendarMonth month, CalendarDay calendarDay) {
-        if (calendarCallback == null) {
+        if (dateWatcher == null) {
             return CalendarDay.DEFAULT;
         }
         int year = month.getYear();
         int monthInt = month.getMonth();
         int day = calendarDay.getDay();
-        return calendarCallback.getStateForDate(year, monthInt, day);
+        return dateWatcher.getStateForDate(year, monthInt, day);
     }
 
     private void appendCalendarMonth() {
@@ -115,17 +123,25 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         return months.size();
     }
 
-    public void setCallback(@Nullable ScrollCalendarCallback calendarCallback) {
-        this.calendarCallback = calendarCallback;
+    public void setOnDateClickListener(@Nullable OnDateClickListener onDateClickListener) {
+        this.onDateClickListener = onDateClickListener;
+    }
+
+    public void setMonthScrollListener(@Nullable MonthScrollListener monthScrollListener) {
+        this.monthScrollListener = monthScrollListener;
+    }
+
+    public void setDateWatcher(@Nullable DateWatcher dateWatcher) {
+        this.dateWatcher = dateWatcher;
     }
 
     @Override
     public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
-        if (calendarCallback != null) {
+        if (onDateClickListener != null) {
             int year = calendarMonth.getYear();
             int month = calendarMonth.getMonth();
             int day = calendarDay.getDay();
-            calendarCallback.onCalendarDayClicked(year, month, day);
+            onDateClickListener.onCalendarDayClicked(year, month, day);
             notifyDataSetChanged();
         }
     }
