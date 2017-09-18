@@ -11,7 +11,7 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-compile 'pl.rafalmanka:scroll-calendar:1.3.0', {
+compile 'pl.rafman.widgets:scroll-calendar:1.3.6', {
     exclude group: 'com.android.support'
 }
 ```
@@ -20,7 +20,7 @@ compile 'pl.rafalmanka:scroll-calendar:1.3.0', {
 
 Define layout in your xml file
 
-```
+```xml
 <pl.rafalmanka.scrollcalendar.ScrollCalendar
         android:id="@+id/scrollCalendar"
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@ Define layout in your xml file
 
 Reference the widget in your Activity/Fragment and set callback
 
-```
+```java
 ScrollCalendar scrollCalendar = (ScrollCalendar) findViewById(R.id.scrollCalendar);
 scrollCalendar.setCallback(new ScrollCalendarCallback() {
 

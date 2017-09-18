@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="ScrollCalendar"><attr format="color" name="fontColor"/><attr format="color" name="disabledTextColor"/><attr format="color" name="unavailableTextColor"/><attr format="color" name="selectedTextColor"/><attr format="color" name="currentDayTextColor"/><attr format="color" name="disabledBackgroundColor"/><attr format="color" name="backgroundColor"/><attr format="reference" name="currentDayBackground"/><attr format="reference" name="unavailableBackground"/><attr format="reference" name="selectedBackground"/><attr format="string" name="customFont"/></declare-styleable>
-    <string name="scrollcalendar_library_name">Scroll Calendar</string>
-</resources>

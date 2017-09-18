@@ -38,16 +38,16 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     private int selectedTextColor;
     @ColorRes
     private int todayTextColor;
-
     @DrawableRes
     private int unavailableBackground;
     @DrawableRes
     private int selectedBackground;
     @DrawableRes
     private int currentDayBackground;
-
     @ColorRes
     private int disabledBackgroundColor;
+    @Dimension
+    private float fontSize;
 
     @Nullable
     private String customFont;
@@ -57,8 +57,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     @Nullable
     private ScrollCalendarAdapter adapter;
 
-    @Dimension
-    private float fontSize;
 
     public ScrollCalendar(Context context) {
         super(context);
