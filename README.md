@@ -1,5 +1,7 @@
 # Scroll Calendar
 
+[ ![Download](https://api.bintray.com/packages/rafalmanka/maven/scroll-calendar/images/download.svg?version=1.3.8) ](https://bintray.com/rafalmanka/maven/scroll-calendar/1.3.8/link)
+
 Android widget to present calendar in a recycler view. The idea was to
 replicate calendar the way calendar is presented in the amazing
 Airbnb app.
@@ -11,7 +13,7 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-compile 'pl.rafman.widgets:scroll-calendar:1.3.6', {
+compile 'pl.rafman.widgets:scroll-calendar:1.3.8', {
     exclude group: 'com.android.support'
 }
 ```

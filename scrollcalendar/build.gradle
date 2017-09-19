@@ -3,9 +3,9 @@ apply plugin: 'com.novoda.bintray-release'
 
 publish {
     userOrg = "rafalmanka"
-    groupId = "pl.rafman.android"
+    groupId = "pl.rafman.widgets"
     artifactId = "scroll-calendar"
-    publishVersion = "1.3.7"
+    publishVersion = "1.3.8"
     desc = "Scroll Calendar widget"
     website = "https://github.com/RafalManka/ScrollCalendar"
 }
