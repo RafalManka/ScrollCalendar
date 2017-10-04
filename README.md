@@ -24,7 +24,7 @@ compile 'pl.rafman.widgets:scroll-calendar:1.3.8', {
 Define layout in your xml file
 
 ```xml
-<pl.rafalmanka.scrollcalendar.ScrollCalendar
+<pl.rafman.scrollcalendar.ScrollCalendar
         android:id="@+id/scrollCalendar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
