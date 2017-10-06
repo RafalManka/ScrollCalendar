@@ -16,7 +16,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.adapter.LegendItem;
 import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
@@ -53,6 +52,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     private int disabledBackgroundColor;
     @Dimension
     private float fontSize;
+    private boolean endlessTop;
 
     @Nullable
     private String customFont;
@@ -103,6 +103,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         todayTextColor = typedArray.getResourceId(Keys.TODAY_TEXT_COLOR, Defaults.TODAY_TEXT_COLOR);
         fontSize = typedArray.getDimension(Keys.FONT_SIZE, getResources().getDimensionPixelSize(Defaults.FONT_SIZE));
         customFont = typedArray.getString(Keys.CUSTOM_FONT);
+        endlessTop = typedArray.getBoolean(Keys.ENDLESS_TOP, Defaults.ENDLESS_TOP);
         typedArray.recycle();
     }
 
@@ -228,5 +229,10 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public boolean isEndlessTop() {
+        return endlessTop;
     }
 }

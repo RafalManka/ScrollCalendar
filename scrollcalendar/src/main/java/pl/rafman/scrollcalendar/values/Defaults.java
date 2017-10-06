@@ -35,4 +35,6 @@ public interface Defaults {
     // Dimens
     @DimenRes
     int FONT_SIZE = R.dimen.scrollcalendar_sp12;
+    // settings
+    boolean ENDLESS_TOP = false;
 }

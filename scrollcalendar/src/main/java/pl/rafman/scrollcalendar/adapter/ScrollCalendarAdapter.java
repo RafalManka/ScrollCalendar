@@ -3,7 +3,6 @@ package pl.rafman.scrollcalendar.adapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private final List<CalendarMonth> months = new ArrayList<>();
 
     @Nullable
-    private View recyclerView;
+    private RecyclerView recyclerView;
     @NonNull
     private final ResProvider resProvider;
 
@@ -62,14 +61,29 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     private void afterBindViewHolder(int position) {
-        if (recyclerView != null && shouldAddNextMonth(position)) {
-            recyclerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    appendCalendarMonth();
-                }
-            });
+        if (recyclerView != null) {
+            if (shouldAddPreviousMonth(position)) {
+                recyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        prependCalendarMonth();
+                    }
+                });
+            }
+            if (shouldAddNextMonth(position)) {
+                recyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        appendCalendarMonth();
+                    }
+                });
+            }
         }
+
+    }
+
+    private boolean shouldAddPreviousMonth(int position) {
+        return isNearTop(position) && resProvider.isEndlessTop();
     }
 
     private boolean shouldAddNextMonth(int position) {
@@ -101,9 +115,21 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         return dateWatcher.getStateForDate(year, monthInt, day);
     }
 
+
+    private void prependCalendarMonth() {
+        if (recyclerView != null) {
+            months.add(0, getFirstItem().previous());
+            notifyItemInserted(0);
+        }
+    }
+
     private void appendCalendarMonth() {
         months.add(getLastItem().next());
-        notifyDataSetChanged();
+        notifyItemInserted(months.size() - 1);
+    }
+
+    private CalendarMonth getFirstItem() {
+        return months.get(0);
     }
 
     private CalendarMonth getLastItem() {
@@ -112,6 +138,10 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     private CalendarMonth getItem(int position) {
         return months.get(position);
+    }
+
+    private boolean isNearTop(int position) {
+        return position == 0;
     }
 
     private boolean isNearBottom(int position) {

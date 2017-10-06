@@ -17,5 +17,8 @@
         <!--font-->
         <attr name="customFont" format="string" />
         <attr name="fontSize" format="dimension" />
+        <!--settings-->
+        <attr name="endlessTop" format="boolean" />
+
     </declare-styleable>
 </resources>

@@ -30,6 +30,7 @@
         scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
         scrollcalendar:selectedTextColor="@android:color/white"
         scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
+        scrollcalendar:endlessTop="true"
         scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 
 </LinearLayout>
