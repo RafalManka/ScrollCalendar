@@ -32,6 +32,4 @@ public interface Keys {
     int CUSTOM_FONT = R.styleable.ScrollCalendar_customFont;
     @StyleableRes
     int FONT_SIZE = R.styleable.ScrollCalendar_fontSize;
-    @StyleableRes
-    int ENDLESS_TOP = R.styleable.ScrollCalendar_endlessTop;
 }

@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean shouldAddNextMonth(int lastDisplayedYear, int lastDisplayedMonth) {
                 return doShouldAddNextMonth(lastDisplayedYear, lastDisplayedMonth);
             }
+
+            @Override
+            public boolean shouldAddPreviousMonth(int firstDisplayedYear, int firstDisplayedMonth) {
+                return doShouldAddPreviousMonth(firstDisplayedYear, firstDisplayedMonth);
+            }
         });
     }
 
@@ -106,6 +111,22 @@ public class MainActivity extends AppCompatActivity {
 
         long then = calendar.getTimeInMillis();
         return now > then;
+    }
+
+    private boolean doShouldAddPreviousMonth(int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -10);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        long target = calendar.getTimeInMillis();
+
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+
+        return calendar.getTimeInMillis() > target;
     }
 
     private boolean doShouldAddNextMonth(int year, int month) {

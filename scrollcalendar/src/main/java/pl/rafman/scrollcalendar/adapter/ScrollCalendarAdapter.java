@@ -83,7 +83,15 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     private boolean shouldAddPreviousMonth(int position) {
-        return isNearTop(position) && resProvider.isEndlessTop();
+        return isNearTop(position) && isAllowedToAddPreviousMonth();
+    }
+
+    private boolean isAllowedToAddPreviousMonth() {
+        if (monthScrollListener == null) {
+            return true;
+        }
+        CalendarMonth item = getFirstItem();
+        return monthScrollListener.shouldAddPreviousMonth(item.getYear(), item.getMonth());
     }
 
     private boolean shouldAddNextMonth(int position) {

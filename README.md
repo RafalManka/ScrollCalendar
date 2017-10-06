@@ -39,7 +39,6 @@ Define layout in your xml file
         scrollcalendar:selectedBackground="@drawable/circle_full"
         scrollcalendar:selectedTextColor="@android:color/white"
         scrollcalendar:unavailableBackground="@drawable/dash"
-        scrollcalendar:endlessTop="true"
         scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 ```
 
@@ -70,14 +69,13 @@ scrollCalendar.setMonthScrollListener(new MonthScrollListener() {
         // return false if you don't want to show later months
         return true;
     }
+    @Override
+    public boolean shouldAddPreviousMonth(int firstDisplayedYear, int firstDisplayedMonth) {
+        // return false if you don't want to show previous months
+        return true;
+    }
 });
 ```
-
-## Configuration
-* Endless top - by default the calendar sets the current month as a start
-and does not allow scrolling to previous months. In order to enable
-endless scrolling, in xml set endlessTop="true".
-
 
 ## Known limitations
 
