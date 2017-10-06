@@ -88,7 +88,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     private boolean isAllowedToAddPreviousMonth() {
         if (monthScrollListener == null) {
-            return true;
+            return false;
         }
         CalendarMonth item = getFirstItem();
         return monthScrollListener.shouldAddPreviousMonth(item.getYear(), item.getMonth());
