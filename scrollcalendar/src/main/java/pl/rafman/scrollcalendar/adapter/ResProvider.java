@@ -45,6 +45,12 @@ public interface ResProvider {
     @DrawableRes
     int selectedBackgroundColor();
 
+    @DrawableRes
+    int selectedBeginningBackgroundColor();
+
+    @DrawableRes
+    int selectedEndBackgroundColor();
+
     @Dimension
     float fontSize();
 
@@ -52,5 +58,9 @@ public interface ResProvider {
 
     @Nullable
     Typeface getCustomFont();
+
+
+    @DrawableRes
+    int selectedMiddleBackgroundColor();
 
 }

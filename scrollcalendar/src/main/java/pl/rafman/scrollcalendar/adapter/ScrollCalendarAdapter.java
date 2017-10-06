@@ -183,4 +183,5 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
             notifyDataSetChanged();
         }
     }
+
 }

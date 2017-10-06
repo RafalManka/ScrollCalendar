@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         if (isSelected(selected, year, month, day)) {
             return CalendarDay.SELECTED;
         }
+        if (isSelected(selected, year, month, day - 1)) {
+            return CalendarDay.SELECTED;
+        }
+        if (isSelected(selected, year, month, day + 1)) {
+            return CalendarDay.SELECTED;
+        }
         if (isToday(year, month, day)) {
             return CalendarDay.TODAY;
         }

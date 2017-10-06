@@ -14,6 +14,9 @@
         <attr name="currentDayBackground" format="reference" />
         <attr name="unavailableBackground" format="reference" />
         <attr name="selectedBackground" format="reference" />
+        <attr name="selectedBackgroundBeginning" format="reference" />
+        <attr name="selectedBackgroundMiddle" format="reference" />
+        <attr name="selectedBackgroundEnd" format="reference" />
         <!--font-->
         <attr name="customFont" format="string" />
         <attr name="fontSize" format="dimension" />

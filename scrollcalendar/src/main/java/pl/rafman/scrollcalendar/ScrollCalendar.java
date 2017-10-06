@@ -47,6 +47,13 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     @DrawableRes
     private int selectedBackground;
     @DrawableRes
+    private int selectedBackgroundBeginning;
+    @DrawableRes
+    private int selectedBackgroundEnd;
+    @DrawableRes
+    private int selectedBackgroundMiddle;
+
+    @DrawableRes
     private int currentDayBackground;
     @ColorRes
     private int disabledBackgroundColor;
@@ -99,6 +106,9 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         selectedTextColor = typedArray.getResourceId(Keys.SELECTED_TEXT_COLOR, Defaults.SELECTED_TEXT_COLOR);
         unavailableBackground = typedArray.getResourceId(Keys.UNAVAILABLE_BACKGROUND, Defaults.UNAVAILABLE_BACKGROUND);
         selectedBackground = typedArray.getResourceId(Keys.SELECTED_BACKGROUND, Defaults.SELECTED_BACKGROUND);
+        selectedBackgroundBeginning = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_BEGINNING, Defaults.SELECTED_BACKGROUND_BEGINNING);
+        selectedBackgroundMiddle = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_MIDDLE, Defaults.SELECTED_BACKGROUND_MIDDLE);
+        selectedBackgroundEnd = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_END, Defaults.SELECTED_BACKGROUND_END);
         todayTextColor = typedArray.getResourceId(Keys.TODAY_TEXT_COLOR, Defaults.TODAY_TEXT_COLOR);
         fontSize = typedArray.getDimension(Keys.FONT_SIZE, getResources().getDimensionPixelSize(Defaults.FONT_SIZE));
         customFont = typedArray.getString(Keys.CUSTOM_FONT);
@@ -208,6 +218,20 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         return selectedBackground;
     }
 
+    @Override
+    public int selectedBeginningBackgroundColor() {
+        return selectedBackgroundBeginning;
+    }
+
+    @Override
+    public int selectedEndBackgroundColor() {
+        return selectedBackgroundEnd;
+    }
+
+    @Override
+    public int selectedMiddleBackgroundColor() {
+        return selectedBackgroundMiddle;
+    }
     @Dimension
     @Override
     public float fontSize() {
@@ -228,5 +252,6 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
             return null;
         }
     }
+
 
 }

@@ -32,6 +32,12 @@ public interface Defaults {
     int UNAVAILABLE_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
     @DrawableRes
     int SELECTED_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
+    @DrawableRes
+    int SELECTED_BACKGROUND_BEGINNING = R.drawable.scrollcalendar_range_start;
+    @DrawableRes
+    int SELECTED_BACKGROUND_MIDDLE = R.drawable.scrollcalendar_range_middle;
+    @DrawableRes
+    int SELECTED_BACKGROUND_END = R.drawable.scrollcalendar_range_end;
     // Dimens
     @DimenRes
     int FONT_SIZE = R.dimen.scrollcalendar_sp12;

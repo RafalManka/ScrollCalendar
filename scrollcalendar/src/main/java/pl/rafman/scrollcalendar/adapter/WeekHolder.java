@@ -46,8 +46,21 @@ class WeekHolder {
             container.setVisibility(daysOfWeek.length == 0 ? View.GONE : View.VISIBLE);
         }
         for (int i = 0; i < days.length; i++) {
-            days[i].display(month, dayOrNull(i, week, daysOfWeek));
+            days[i].display(
+                    month,
+                    dayOrNull(i, week, daysOfWeek),
+                    neighbourOrNull(i - 1, daysOfWeek),
+                    neighbourOrNull(i + 1, daysOfWeek)
+            );
         }
+    }
+
+    private CalendarDay neighbourOrNull(int position, CalendarDay[] calendarDays) {
+        if (position >= calendarDays.length || position < 0) {
+            return null;
+        }
+
+        return calendarDays[position];
     }
 
     private CalendarDay dayOrNull(int position, int week, CalendarDay[] calendarDays) {

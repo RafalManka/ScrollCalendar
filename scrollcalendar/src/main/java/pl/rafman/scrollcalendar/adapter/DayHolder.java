@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import pl.rafman.scrollcalendar.R;
-import pl.rafman.scrollcalendar.widgets.SquareTextView;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -27,7 +27,7 @@ class DayHolder implements View.OnClickListener {
     @Nullable
     private CalendarMonth calendarMonth;
     @Nullable
-    private CalendarDay calendarDay;
+    private CalendarDay currentDay;
 
     DayHolder(@NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         this.calendarCallback = calendarCallback;
@@ -43,16 +43,14 @@ class DayHolder implements View.OnClickListener {
         return textView;
     }
 
-    void display(@Nullable CalendarMonth calendarMonth, @Nullable CalendarDay calendarDay) {
-        refreshValue(calendarMonth, calendarDay);
-        refreshAppearance(calendarDay);
-        refreshStyle(calendarDay);
+    void display(@Nullable CalendarMonth calendarMonth, @Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
+        this.calendarMonth = calendarMonth;
+        this.currentDay = currentDay;
+
+        refreshAppearance(currentDay);
+        refreshStyle(currentDay, previousDay, nextDay);
     }
 
-    private void refreshValue(@Nullable CalendarMonth calendarMonth, @Nullable CalendarDay calendarDay) {
-        this.calendarMonth = calendarMonth;
-        this.calendarDay = calendarDay;
-    }
 
     private void refreshAppearance(@Nullable CalendarDay calendarDay) {
         if (textView == null) {
@@ -67,17 +65,31 @@ class DayHolder implements View.OnClickListener {
         }
     }
 
-    private void refreshStyle(@Nullable CalendarDay calendarDay) {
+    private void refreshStyle(@Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         if (textView == null) {
             return;
         }
 
-        if (calendarDay != null) {
-            switch (calendarDay.getState()) {
+        if (currentDay != null) {
+            switch (currentDay.getState()) {
                 case CalendarDay.SELECTED:
-                    textView.setTextColor(resProvider.selectedTextColor());
-                    textView.setBackgroundResource(resProvider.selectedBackgroundColor());
-                    setFont(resProvider.getCustomFont());
+                    if (hasNoNeighbours(previousDay, nextDay)) {
+                        textView.setTextColor(resProvider.selectedTextColor());
+                        textView.setBackgroundResource(resProvider.selectedBackgroundColor());
+                        setFont(resProvider.getCustomFont());
+                    } else if (isBeginning(previousDay)) {
+                        textView.setTextColor(resProvider.selectedTextColor());
+                        textView.setBackgroundResource(resProvider.selectedBeginningBackgroundColor());
+                        setFont(resProvider.getCustomFont());
+                    } else if (isMiddle(previousDay, nextDay)) {
+                        textView.setTextColor(resProvider.selectedTextColor());
+                        textView.setBackgroundResource(resProvider.selectedMiddleBackgroundColor());
+                        setFont(resProvider.getCustomFont());
+                    } else if (isEnd(nextDay)) {
+                        textView.setTextColor(resProvider.selectedTextColor());
+                        textView.setBackgroundResource(resProvider.selectedEndBackgroundColor());
+                        setFont(resProvider.getCustomFont());
+                    }
                     break;
                 case CalendarDay.UNAVAILABLE:
                     textView.setTextColor(resProvider.unavailableTextColor());
@@ -104,6 +116,26 @@ class DayHolder implements View.OnClickListener {
         }
     }
 
+    private boolean isEnd(CalendarDay nextDay) {
+        return !isSelected(nextDay);
+    }
+
+    private boolean isMiddle(CalendarDay previousDay, CalendarDay nextDay) {
+        return isSelected(previousDay) && isSelected(nextDay);
+    }
+
+    private boolean isBeginning(@Nullable CalendarDay previousDay) {
+        return !isSelected(previousDay);
+    }
+
+    private boolean hasNoNeighbours(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
+        return !isSelected(previousDay) && !isSelected(nextDay);
+    }
+
+    private boolean isSelected(@Nullable CalendarDay previousDay) {
+        return previousDay != null && previousDay.getState() == CalendarDay.SELECTED;
+    }
+
     private void setFont(Typeface customFont) {
         if (textView == null) {
             return;
@@ -116,8 +148,8 @@ class DayHolder implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (calendarMonth != null && calendarDay != null) {
-            calendarCallback.onCalendarDayClicked(calendarMonth, calendarDay);
+        if (calendarMonth != null && currentDay != null) {
+            calendarCallback.onCalendarDayClicked(calendarMonth, currentDay);
         }
     }
 

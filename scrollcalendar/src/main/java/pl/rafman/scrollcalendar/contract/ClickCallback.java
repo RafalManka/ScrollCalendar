@@ -10,4 +10,5 @@ import pl.rafman.scrollcalendar.data.CalendarMonth;
  */
 public interface ClickCallback {
     void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay);
+
 }
