@@ -52,4 +52,6 @@ public interface ResProvider {
 
     @Nullable
     Typeface getCustomFont();
+
+    boolean isEndlessTop();
 }

@@ -63,9 +63,18 @@ public class CalendarMonth implements Serializable {
         return month;
     }
 
+
+    public CalendarMonth previous() {
+        if (month == Calendar.JANUARY) {
+            return new CalendarMonth(year - 1, Calendar.DECEMBER);
+        } else {
+            return new CalendarMonth(year, month - 1);
+        }
+    }
+
     public CalendarMonth next() {
         if (month == Calendar.DECEMBER) {
-            return new CalendarMonth(year + 1, 0);
+            return new CalendarMonth(year + 1, Calendar.JANUARY);
         } else {
             return new CalendarMonth(year, month + 1);
         }
