@@ -14,7 +14,7 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-compile 'pl.rafman.widgets:scroll-calendar:1.4.2', {
+compile 'pl.rafman.widgets:scroll-calendar:1.5.0', {
     exclude group: 'com.android.support'
 }
 ```
@@ -81,11 +81,6 @@ scrollCalendar.setMonthScrollListener(new MonthScrollListener() {
     }
 });
 ```
-
-## Known limitations
-
-Right now the library does not support ranges. If you have need for
-ranges please request that feature or create pull request.
 
 ## Contributing
 
