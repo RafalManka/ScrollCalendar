@@ -2,6 +2,7 @@ package pl.rafman.scrollcalendar.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -49,18 +50,10 @@ class WeekHolder {
             days[i].display(
                     month,
                     dayOrNull(i, week, daysOfWeek),
-                    neighbourOrNull(i - 1, daysOfWeek),
-                    neighbourOrNull(i + 1, daysOfWeek)
+                    dayOrNull(i - 1, week, daysOfWeek),
+                    dayOrNull(i + 1, week, daysOfWeek)
             );
         }
-    }
-
-    private CalendarDay neighbourOrNull(int position, CalendarDay[] calendarDays) {
-        if (position >= calendarDays.length || position < 0) {
-            return null;
-        }
-
-        return calendarDays[position];
     }
 
     private CalendarDay dayOrNull(int position, int week, CalendarDay[] calendarDays) {
@@ -73,7 +66,7 @@ class WeekHolder {
 
     @Nullable
     private CalendarDay takeLeftAligned(int position, CalendarDay[] calendarDays) {
-        if (position < calendarDays.length) { // 0 < 3 ; 1 < 3 ; 2 < 3
+        if (position >= 0 && position < calendarDays.length) { // 0 < 3 ; 1 < 3 ; 2 < 3
             return calendarDays[position];
         } else { // 3!<3 | 4!<3 | 5!<3 | 6!<3
             return null;
@@ -86,7 +79,11 @@ class WeekHolder {
         if (position < offset) {
             return null;
         } else {
-            return calendarDays[position - offset];
+            int realPosition = position - offset;
+            if (realPosition < 0 || realPosition >= calendarDays.length) {
+                return null;
+            }
+            return calendarDays[realPosition];
         }
     }
 

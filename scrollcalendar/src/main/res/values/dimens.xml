@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="scrollcalendar_sp12">22sp</dimen>
+    <dimen name="scrollcalendar_radius">25sp</dimen>
 </resources>

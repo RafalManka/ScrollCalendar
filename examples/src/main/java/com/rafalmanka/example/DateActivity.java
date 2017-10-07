@@ -3,6 +3,7 @@ package com.rafalmanka.example;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
@@ -13,7 +14,7 @@ import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 
-public class MainActivity extends AppCompatActivity {
+public class DateActivity extends AppCompatActivity {
 
     @Nullable
     private Calendar selected;
@@ -21,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calendar);
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText(R.string.date_activity_title);
+        //
         ScrollCalendar scrollCalendar = (ScrollCalendar) findViewById(R.id.scrollCalendar);
         if (scrollCalendar == null) {
             return;
@@ -55,12 +59,6 @@ public class MainActivity extends AppCompatActivity {
     @State
     private int doGetStateForDate(int year, int month, int day) {
         if (isSelected(selected, year, month, day)) {
-            return CalendarDay.SELECTED;
-        }
-        if (isSelected(selected, year, month, day - 1)) {
-            return CalendarDay.SELECTED;
-        }
-        if (isSelected(selected, year, month, day + 1)) {
             return CalendarDay.SELECTED;
         }
         if (isToday(year, month, day)) {
