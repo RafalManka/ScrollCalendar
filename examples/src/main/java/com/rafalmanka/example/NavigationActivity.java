@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,9 +19,10 @@ public class NavigationActivity extends AppCompatActivity {
     private class Item {
 
         private final int id;
-        private final String title;
+        @StringRes
+        private final int title;
 
-        Item(int id, String title) {
+        Item(int id, @StringRes int title) {
             this.id = id;
             this.title = title;
         }
@@ -71,8 +73,8 @@ public class NavigationActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter = new RecyclerView.Adapter<MyViewHolder>() {
 
         private final Item[] items = new Item[]{
-                new Item(1, "Date"),
-                new Item(2, "Range")
+                new Item(1, R.string.simple_date_selection),
+                new Item(2, R.string.selecting_ranges)
         };
 
         @Override

@@ -30,15 +30,20 @@ Define layout in your xml file
         android:layout_height="0dp"
         android:layout_weight="1"
         scrollcalendar:backgroundColor="@android:color/transparent"
-        scrollcalendar:currentDayBackground="@drawable/circle_outline"
+        scrollcalendar:currentDayBackground="@drawable/scrollcalendar_circle_outline"
         scrollcalendar:currentDayTextColor="@android:color/darker_gray"
         scrollcalendar:customFont="fonts/montserrat-light.otf"
         scrollcalendar:disabledBackgroundColor="@android:color/transparent"
         scrollcalendar:disabledTextColor="@android:color/darker_gray"
+        scrollcalendar:endlessTop="true"
         scrollcalendar:fontColor="@android:color/black"
-        scrollcalendar:selectedBackground="@drawable/circle_full"
+        scrollcalendar:fontSize="18dp"
+        scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
+        scrollcalendar:selectedBackgroundBeginning="@drawable/scrollcalendar_range_start"
+        scrollcalendar:selectedBackgroundEnd="@drawable/scrollcalendar_range_end"
+        scrollcalendar:selectedBackgroundMiddle="@drawable/scrollcalendar_range_middle"
         scrollcalendar:selectedTextColor="@android:color/white"
-        scrollcalendar:unavailableBackground="@drawable/dash"
+        scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
         scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 ```
 
