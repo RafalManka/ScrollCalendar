@@ -118,7 +118,10 @@ scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
 scrollcalendar:unavailableTextColor="@android:color/darker_gray"
 ```
 * CalendarDay.SELECTED - When a day is selected. By default it's a ble
-circle with white text.
+circle with white text. In order to display ranges properly you need
+to set Beginning, middle and end drawables according to your style.
+Proper drawables will be used automatically when two or more selected
+dates are placed next to each other.
 ```
 scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
 scrollcalendar:selectedBackgroundBeginning="@drawable/scrollcalendar_range_start"
