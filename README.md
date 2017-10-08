@@ -82,6 +82,51 @@ scrollCalendar.setMonthScrollListener(new MonthScrollListener() {
 });
 ```
 
+## Default behavior
+* Endless scrolling to the future. By default you can scroll the calendar
+Endlessly. If you want to stop adding months to the bottom of the adapter
+set MonthScrollListener callback and return false for the last month
+that you want to appear in shouldAddNextMonth method.
+* Endless scrolling to the past. By default you can not scroll to previous
+months. If you want to keep adding previous months potentially to infinity
+set MonthScrollListener callback and return true in shouldAddPreviousMonth
+method
+
+## States
+Calendar supports Different states that a day can have in a month.
+Each state can be expressed by applying specific drawable background and
+a text color.
+* CalendarDay.DEFAULT - Regular day with no styling applied
+```
+scrollcalendar:fontColor="@android:color/black"
+```
+* CalendarDay.DISABLED - When you want to indicate that the date
+is not available.
+```
+scrollcalendar:disabledBackgroundColor="@android:color/transparent"
+scrollcalendar:disabledTextColor="@android:color/darker_gray"
+```
+* CalendarDay.TODAY - for expressing current day
+```
+scrollcalendar:currentDayBackground="@drawable/scrollcalendar_circle_outline"
+scrollcalendar:currentDayTextColor="@android:color/darker_gray"
+```
+* CalendarDay.UNAVAILABLE - when day is not available take, or invalid.
+By default this state is expressed by strikethrough.
+```
+scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
+scrollcalendar:unavailableTextColor="@android:color/darker_gray"
+```
+* CalendarDay.SELECTED - When a day is selected. By default it's a ble
+circle with white text.
+```
+scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
+scrollcalendar:selectedBackgroundBeginning="@drawable/scrollcalendar_range_start"
+scrollcalendar:selectedBackgroundEnd="@drawable/scrollcalendar_range_end"
+scrollcalendar:selectedBackgroundMiddle="@drawable/scrollcalendar_range_middle"
+scrollcalendar:selectedTextColor="@android:color/white"
+```
+
 ## Contributing
 
 * File [bug report](https://github.com/RafalManka/ScrollCalendar/issues/new)
