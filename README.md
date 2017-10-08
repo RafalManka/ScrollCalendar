@@ -1,6 +1,6 @@
 # Scroll Calendar
 
-[ ![Download](https://api.bintray.com/packages/rafalmanka/maven/scroll-calendar/images/download.svg?version=1.3.8) ](https://bintray.com/rafalmanka/maven/scroll-calendar/1.3.8/link)
+[![Download](https://api.bintray.com/packages/rafalmanka/maven/scroll-calendar/images/download.svg?version=1.5.0) ](https://bintray.com/rafalmanka/maven/scroll-calendar/1.5.0/link)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ScrollCalendar-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6228)
 
 Android widget to present calendar in a recycler view. The idea was to
@@ -96,7 +96,7 @@ method
 Calendar supports Different states that a day can have in a month.
 Each state can be expressed by applying specific drawable background and
 a text color.
-* CalendarDay.DEFAULT - Regular day with no styling applied
+* CalendarDay.DEFAULT - Regular day with no background
 ```
 scrollcalendar:fontColor="@android:color/black"
 ```
