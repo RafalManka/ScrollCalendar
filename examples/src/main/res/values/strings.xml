@@ -6,6 +6,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="date_activity_title">Select date</string>
     <string name="range_activity_title">Select range</string>
-    <string name="simple_date_selection">Simple date selection</string>
+    <string name="simple_date_selection">Selected, disabled, unavailable, today</string>
     <string name="selecting_ranges">Ranges</string>
 </resources>

@@ -56,9 +56,6 @@ public class RangeActivity extends AppCompatActivity {
         if (isInRange(from, until, year, month, day)) {
             return CalendarDay.SELECTED;
         }
-        if (isToday(year, month, day)) {
-            return CalendarDay.TODAY;
-        }
         return CalendarDay.DEFAULT;
     }
 
@@ -86,32 +83,27 @@ public class RangeActivity extends AppCompatActivity {
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
         long millis3 = calendar.getTimeInMillis();
-
-        if (day == 17) {
-            Log.d("", "");
-        }
-
         return millis1 <= millis3 && millis2 >= millis3;
     }
 
     private void doOnCalendarDayClicked(int year, int month, int day) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
+        Calendar clickedOn = Calendar.getInstance();
+        clickedOn.set(Calendar.YEAR, year);
+        clickedOn.set(Calendar.MONTH, month);
+        clickedOn.set(Calendar.DAY_OF_MONTH, day);
+        clickedOn.set(Calendar.HOUR_OF_DAY, 0);
+        clickedOn.set(Calendar.MINUTE, 0);
+        clickedOn.set(Calendar.SECOND, 0);
+        clickedOn.set(Calendar.MILLISECOND, 0);
 
-        if (shouldClearAllSelected(calendar)) {
+        if (shouldClearAllSelected(clickedOn)) {
             from = null;
             until = null;
-        } else if (shouldSetFrom(calendar)) {
-            from = calendar;
+        } else if (shouldSetFrom(clickedOn)) {
+            from = clickedOn;
             until = null;
         } else if (shouldSetUntil()) {
-            until = calendar;
+            until = clickedOn;
         }
     }
 
@@ -127,24 +119,24 @@ public class RangeActivity extends AppCompatActivity {
         return from == null || until != null || isBefore(from, calendar);
     }
 
-    private boolean isBefore(Calendar from, Calendar selected) {
-        if (from == null || selected == null) {
+    private boolean isBefore(Calendar c1, Calendar c2) {
+        if (c1 == null || c2 == null) {
             return false;
         }
         //noinspection UnnecessaryLocalVariable
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, selected.get(Calendar.YEAR));
-        calendar.set(Calendar.MONTH, selected.get(Calendar.MONTH));
-        calendar.set(Calendar.DAY_OF_MONTH, selected.get(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.YEAR, c2.get(Calendar.YEAR));
+        calendar.set(Calendar.MONTH, c2.get(Calendar.MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH, c2.get(Calendar.DAY_OF_MONTH));
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         long millis = calendar.getTimeInMillis();
 
-        calendar.set(Calendar.YEAR, from.get(Calendar.YEAR));
-        calendar.set(Calendar.MONTH, from.get(Calendar.MONTH));
-        calendar.set(Calendar.DAY_OF_MONTH, from.get(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.YEAR, c1.get(Calendar.YEAR));
+        calendar.set(Calendar.MONTH, c1.get(Calendar.MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH, c1.get(Calendar.DAY_OF_MONTH));
         long millis2 = calendar.getTimeInMillis();
 
         return millis < millis2;
@@ -173,24 +165,4 @@ public class RangeActivity extends AppCompatActivity {
         return millis == millis2;
     }
 
-    private boolean isToday(int year, int month, int day) {
-        //noinspection UnnecessaryLocalVariable
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-
-        // Today in milliseconds
-        long today = calendar.getTime().getTime();
-
-        // Given day in milliseconds
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-
-        long calendarMillis = calendar.getTime().getTime();
-
-        return today == calendarMillis;
-    }
 }
