@@ -35,7 +35,6 @@ Define layout in your xml file
         scrollcalendar:customFont="fonts/montserrat-light.otf"
         scrollcalendar:disabledBackgroundColor="@android:color/transparent"
         scrollcalendar:disabledTextColor="@android:color/darker_gray"
-        scrollcalendar:endlessTop="true"
         scrollcalendar:fontColor="@android:color/black"
         scrollcalendar:fontSize="18dp"
         scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
