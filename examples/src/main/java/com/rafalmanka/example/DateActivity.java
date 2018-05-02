@@ -54,6 +54,7 @@ public class DateActivity extends AppCompatActivity {
                 return doShouldAddPreviousMonth(firstDisplayedYear, firstDisplayedMonth);
             }
         });
+//        scrollCalendar.reset
     }
 
     @State
