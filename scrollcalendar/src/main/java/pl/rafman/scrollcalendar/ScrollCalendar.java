@@ -119,6 +119,11 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         getAdapter().setOnDateClickListener(calendarCallback);
     }
 
+    public void refresh() {
+        refreshLegend();
+        getAdapter().notifyDataSetChanged();
+    }
+
     public void setDateWatcher(@Nullable final DateWatcher dateWatcher) {
         getAdapter().setDateWatcher(dateWatcher);
     }

@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Scroll Calendar</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="date_activity_title">Select date</string>
     <string name="range_activity_title">Select range</string>
     <string name="simple_date_selection">Selected, disabled, unavailable, today</string>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import pl.rafman.scrollcalendar.R;
 
@@ -26,7 +27,7 @@ public class LegendItem {
         List<Character> characters = new ArrayList<>();
         for (String s : original) {
             if (s != null && !s.isEmpty()) {
-                characters.add(s.toUpperCase().charAt(0));
+                characters.add(s.toUpperCase(Locale.US).charAt(0));
             }
         }
         days = new char[characters.size()];
