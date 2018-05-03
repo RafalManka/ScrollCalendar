@@ -128,9 +128,6 @@ scrollcalendar:selectedBackgroundEnd="@drawable/scrollcalendar_range_end"
 scrollcalendar:selectedBackgroundMiddle="@drawable/scrollcalendar_range_middle"
 scrollcalendar:selectedTextColor="@android:color/white"
 ```
-## Various
-
-In order to refresh adapter e.g. to force
 
 ## Contributing
 
