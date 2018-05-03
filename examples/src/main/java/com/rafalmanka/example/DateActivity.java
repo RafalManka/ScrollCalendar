@@ -23,10 +23,10 @@ public class DateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        TextView title = (TextView) findViewById(R.id.title);
+        TextView title = findViewById(R.id.title);
         title.setText(R.string.date_activity_title);
         //
-        ScrollCalendar scrollCalendar = (ScrollCalendar) findViewById(R.id.scrollCalendar);
+        ScrollCalendar scrollCalendar = findViewById(R.id.scrollCalendar);
         if (scrollCalendar == null) {
             return;
         }
@@ -54,7 +54,6 @@ public class DateActivity extends AppCompatActivity {
                 return doShouldAddPreviousMonth(firstDisplayedYear, firstDisplayedMonth);
             }
         });
-//        scrollCalendar.reset
     }
 
     @State

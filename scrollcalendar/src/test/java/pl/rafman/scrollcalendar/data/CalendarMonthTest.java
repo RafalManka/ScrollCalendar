@@ -53,17 +53,7 @@ public class CalendarMonthTest {
     }
 
     @Test
-    public void shoudalsdja() throws Exception {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        calendar.set(Calendar.MONTH, 9);
-        int month = calendar.get(Calendar.MONTH);
-        assertEquals(2017, year);
-        assertEquals(9, month);
-    }
-
-    @Test
-    public void qweqwe() throws Exception {
+    public void shouldFormatDayAndMonth() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2017);
         calendar.set(Calendar.MONTH, Calendar.DECEMBER);

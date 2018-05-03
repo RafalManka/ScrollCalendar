@@ -1,6 +1,6 @@
 # Scroll Calendar
 
-[![Download](https://api.bintray.com/packages/rafalmanka/maven/scroll-calendar/images/download.svg?version=1.5.0) ](https://bintray.com/rafalmanka/maven/scroll-calendar/1.5.0/link)
+[![Download](https://api.bintray.com/packages/rafalmanka/maven/scroll-calendar/images/download.svg) ](https://bintray.com/rafalmanka/maven/scroll-calendar/_latestVersion)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ScrollCalendar-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6228)
 
 Android widget to present calendar in a recycler view. The idea was to
@@ -14,7 +14,7 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-compile 'pl.rafman.widgets:scroll-calendar:1.5.1', {
+implementation 'pl.rafman.widgets:scroll-calendar:1.5.2', {
     exclude group: 'com.android.support'
 }
 ```
@@ -128,6 +128,9 @@ scrollcalendar:selectedBackgroundEnd="@drawable/scrollcalendar_range_end"
 scrollcalendar:selectedBackgroundMiddle="@drawable/scrollcalendar_range_middle"
 scrollcalendar:selectedTextColor="@android:color/white"
 ```
+## Various
+
+In order to refresh adapter e.g. to force
 
 ## Contributing
 
