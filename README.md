@@ -83,14 +83,14 @@ are free to do so. Here are all of the attributes you can use.
 
 ### Default adapters
 
-If you want only some basic functionality from the calendar, you can
-use one of our two default adapters. First one is for selecting a date,
-second one is for selecting a range of dates. Just declare which adapter
-you want to use in layout or styles. If you don't declare this value,
-no adapter will be applied and you should use callbacks to control the
-behavior of the calendar as described further.
+If you only want some basic functionality out of the widget, you can
+use one of our two built in adapters. First one is for selecting a date,
+second one is for selecting a range of dates. Just declare which one
+you want to use in layout.xml or styles.xml. If you don't declare this value,
+no behavior will be applied and you should use callbacks to control the
+calendar as described further on in this readme.
 
-You have types of adapter to choose from: "date", "range" or "none".
+You have following types of adapters to choose from: "date", "range" or "none".
 Default value is "none" so you don't have to declare anything.
 
 **your_layout.xml**
@@ -111,9 +111,9 @@ or **styles.xml**
 ```
 
 If you want the value of the selected date or range, call:
-*scrollCallendar.getAdapter()*. This method will return
+*scrollCallendar.getAdapter()*. This method will return the
 adapter and you can use specific methods to retrieve dates.
-Take a look at the examples for how to use it.
+Take a look at the examples to learn how to do it.
 
 ### More control
 
@@ -154,17 +154,7 @@ scrollCalendar.setMonthScrollListener(new MonthScrollListener() {
 });
 ```
 
-## Default behavior
-* Endless scrolling to the future. By default you can scroll the calendar
-Endlessly. If you want to stop adding months to the bottom of the adapter
-set MonthScrollListener callback and return false for the last month
-that you want to appear in shouldAddNextMonth method.
-* Endless scrolling to the past. By default you can not scroll to previous
-months. If you want to keep adding previous months potentially to infinity
-set MonthScrollListener callback and return true in shouldAddPreviousMonth
-method
-
-## States
+#### States
 Calendar supports Different states that a day can have in a month.
 Each state can be expressed by applying specific drawable background and
 a text color.
@@ -178,19 +168,17 @@ is not available.
 scrollcalendar:disabledBackgroundColor="@android:color/transparent"
 scrollcalendar:disabledTextColor="@android:color/darker_gray"
 ```
-* CalendarDay.TODAY - for expressing current day
+* CalendarDay.TODAY - for expressing current date
 ```
 scrollcalendar:currentDayBackground="@drawable/scrollcalendar_circle_outline"
 scrollcalendar:currentDayTextColor="@android:color/darker_gray"
 ```
 * CalendarDay.UNAVAILABLE - when day is not available take, or invalid.
-By default this state is expressed by strikethrough.
 ```
 scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
 scrollcalendar:unavailableTextColor="@android:color/darker_gray"
 ```
-* CalendarDay.SELECTED - When a day is selected. By default it's a ble
-circle with white text. In order to display ranges properly you need
+* CalendarDay.SELECTED - When a day is selected. In order to display ranges properly you need
 to set Beginning, middle and end drawables according to your style.
 Proper drawables will be used automatically when two or more selected
 dates are placed next to each other.
