@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Scroll Calendar</string>
     <string name="date_activity_title">Select date</string>
-    <string name="range_activity_title">Select range</string>
+    <string name="default_adapter_title">Default adapter (date)</string>
     <string name="simple_date_selection">Selected, disabled, unavailable, today</string>
-    <string name="selecting_ranges">Ranges</string>
+    <string name="selecting_ranges">Simple range</string>
+    <string name="default_adapter_item_title">Default date adapter (no style)</string>
+    <string name="title_activity_advanced_range">AdvancedRangeActivity</string>
+    <string name="show_selected_date">Toast date</string>
+    <string name="no_date_selected">No date selected</string>
+    <string name="range_activity_title">Select range</string>
+    <string name="default_range_adapter_item_title">Default range adapter (xml style)</string>
 </resources>

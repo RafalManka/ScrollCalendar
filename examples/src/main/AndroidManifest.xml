@@ -25,6 +25,15 @@
             android:name=".RangeActivity"
             android:parentActivityName=".NavigationActivity"
             tools:targetApi="jelly_bean" />
+        <activity
+            android:name=".DefaultAdapterActivity"
+            android:label="@string/title_activity_advanced_range"
+            android:parentActivityName=".NavigationActivity"
+            android:theme="@style/AppTheme.NoTheme" />
+        <activity
+            android:name=".DefaultRangeAdapterActivity"
+            android:label="@string/title_activity_advanced_range"
+            android:parentActivityName=".NavigationActivity" />
     </application>
 
 </manifest>

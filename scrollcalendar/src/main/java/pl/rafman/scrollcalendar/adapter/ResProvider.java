@@ -2,6 +2,7 @@ package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.Dimension;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -12,7 +13,6 @@ import android.support.annotation.Nullable;
 public interface ResProvider {
 
     // ColorRes
-
     @ColorInt
     int defaultFontColor();
 

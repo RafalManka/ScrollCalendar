@@ -86,7 +86,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         return isNearTop(position) && isAllowedToAddPreviousMonth();
     }
 
-    private boolean isAllowedToAddPreviousMonth() {
+    protected boolean isAllowedToAddPreviousMonth() {
         if (monthScrollListener == null) {
             return false;
         }
@@ -98,7 +98,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         return isNearBottom(position) && isAllowedToAddNextMonth();
     }
 
-    private boolean isAllowedToAddNextMonth() {
+    protected boolean isAllowedToAddNextMonth() {
         if (monthScrollListener == null) {
             return true;
         }
@@ -114,13 +114,18 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @State
     private int makeState(CalendarMonth month, CalendarDay calendarDay) {
-        if (dateWatcher == null) {
-            return CalendarDay.DEFAULT;
-        }
         int year = month.getYear();
         int monthInt = month.getMonth();
         int day = calendarDay.getDay();
-        return dateWatcher.getStateForDate(year, monthInt, day);
+        return getStateForDate(year, monthInt, day);
+    }
+
+    @State
+    protected int getStateForDate(int year, int month, int day) {
+        if (dateWatcher == null) {
+            return CalendarDay.DEFAULT;
+        }
+        return dateWatcher.getStateForDate(year, month, day);
     }
 
 
@@ -175,12 +180,16 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @Override
     public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
+        int year = calendarMonth.getYear();
+        int month = calendarMonth.getMonth();
+        int day = calendarDay.getDay();
+        onCalendarDayClicked(year, month, day);
+        notifyDataSetChanged();
+    }
+
+    protected void onCalendarDayClicked(int year, int month, int day) {
         if (onDateClickListener != null) {
-            int year = calendarMonth.getYear();
-            int month = calendarMonth.getMonth();
-            int day = calendarDay.getDay();
             onDateClickListener.onCalendarDayClicked(year, month, day);
-            notifyDataSetChanged();
         }
     }
 

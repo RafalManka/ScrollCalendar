@@ -5,7 +5,7 @@ publish {
     userOrg = "rafalmanka"
     groupId = "pl.rafman.widgets"
     artifactId = "scroll-calendar"
-    publishVersion = "1.5.2"
+    publishVersion = "2.0.0"
     desc = "Scroll Calendar widget"
     website = "https://github.com/RafalManka/ScrollCalendar"
 }
@@ -17,8 +17,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 6
-        versionName "1.5.2"
+        versionCode 7
+        versionName "2.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    testCompile 'org.mockito:mockito-core:2.8.9'
+    testCompile 'org.mockito:mockito-core:2.16.0'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:27.1.1'
     compile 'com.android.support:recyclerview-v7:27.1.1'
