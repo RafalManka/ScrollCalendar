@@ -7,8 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AppTheme" parent="AppTheme.NoTheme">
-        <item name="scrollCalendarStyleAttr">@style/MyScrollableCalendarStyle</item>
+        <item name="scrollCalendarStyleAttr">@style/MyScrollCalendarStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -20,7 +21,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="MyScrollableCalendarStyle" parent="@style/ScrollCalendarStyle">
+    <style name="MyScrollCalendarStyle" parent="@style/ScrollCalendarStyle">
         <item name="backgroundColor">@android:color/transparent</item>
         <item name="currentDayBackground">@drawable/circle_outline</item>
         <item name="currentDayTextColor">@android:color/darker_gray</item>
@@ -35,6 +36,7 @@
         <item name="selectedTextColor">@android:color/white</item>
         <item name="unavailableBackground">@drawable/strikethrough</item>
         <item name="unavailableTextColor">@android:color/darker_gray</item>
+        <item name="adapter">none</item>
         <!--scrollcalendar:customFont="fonts/montserrat-light.otf"-->
     </style>
 </resources>

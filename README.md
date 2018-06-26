@@ -14,21 +14,56 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-implementation 'pl.rafman.widgets:scroll-calendar:1.5.2', {
+implementation ('pl.rafman.widgets:scroll-calendar:1.5.2') {
     exclude group: 'com.android.support'
 }
 ```
 
 ### Getting Started
 
-Define layout in your xml file
+Define layout in your xml file.
+
+**your_layout.xml**
+```xml
+<pl.rafman.scrollcalendar.ScrollCalendar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+```
+
+**styles.xml**
+```xml
+<style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="scrollCalendarStyleAttr">@style/MyScrollCalendarStyle</item>
+</style>
+
+<style name="MyScrollCalendarStyle" parent="@style/ScrollCalendarStyle">
+    <item name="backgroundColor">@android:color/transparent</item>
+    <item name="currentDayBackground">@drawable/circle_outline</item>
+    <item name="currentDayTextColor">@android:color/darker_gray</item>
+    <item name="disabledBackgroundColor">@android:color/transparent</item>
+    <item name="disabledTextColor">@android:color/darker_gray</item>
+    <item name="fontColor">@android:color/black</item>
+    <item name="fontSize">18dp</item>
+    <item name="selectedBackground">@drawable/circle_full</item>
+    <item name="selectedBackgroundBeginning">@drawable/range_start</item>
+    <item name="selectedBackgroundEnd">@drawable/range_end</item>
+    <item name="selectedBackgroundMiddle">@drawable/range_middle</item>
+    <item name="selectedTextColor">@android:color/white</item>
+    <item name="unavailableBackground">@drawable/strikethrough</item>
+    <item name="unavailableTextColor">@android:color/darker_gray</item>
+    <item name="adapter">date</item>
+</style>
+```
+
+#### Styling in layout.xml
+If for some reason you prefer to style directly in your layout file, you
+are free to do so. Here are all of the attributes you can use.
 
 ```xml
 <pl.rafman.scrollcalendar.ScrollCalendar
-        android:id="@+id/scrollCalendar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        scrollcalendar:adapter="date"
         scrollcalendar:backgroundColor="@android:color/transparent"
         scrollcalendar:currentDayBackground="@drawable/scrollcalendar_circle_outline"
         scrollcalendar:currentDayTextColor="@android:color/darker_gray"
@@ -46,6 +81,44 @@ Define layout in your xml file
         scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 ```
 
+### Default adapters
+
+If you want only some basic functionality from the calendar, you can
+use one of our two default adapters. First one is for selecting a date,
+second one is for selecting a range of dates. Just declare which adapter
+you want to use in layout or styles. If you don't declare this value,
+no adapter will be applied and you should use callbacks to control the
+behavior of the calendar as described further.
+
+You have types of adapter to choose from: "date", "range" or "none".
+Default value is "none" so you don't have to declare anything.
+
+**your_layout.xml**
+```xml
+<pl.rafman.scrollcalendar.ScrollCalendar
+    ...
+    scrollcalendar:adapter="date"
+    ...
+    />
+```
+or **styles.xml**
+```xml
+<style name="MyScrollCalendarStyle" parent="@style/ScrollCalendarStyle">
+    ...
+    <item name="adapter">range</item>
+    ...
+</style>
+```
+
+If you want the value of the selected date or range, call:
+*scrollCallendar.getAdapter()*. This method will return
+adapter and you can use specific methods to retrieve dates.
+Take a look at the examples for how to use it.
+
+### More control
+
+If you have more advanced needs, you can control the behavior of the
+calendar by using callbacks.
 Reference the widget in your Activity/Fragment and set callback
 
 ```java
