@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        scrollcalendar:adapter="none"
         scrollcalendar:backgroundColor="@android:color/transparent"
         scrollcalendar:currentDayBackground="@drawable/circle_outline"
         scrollcalendar:currentDayTextColor="@android:color/darker_gray"

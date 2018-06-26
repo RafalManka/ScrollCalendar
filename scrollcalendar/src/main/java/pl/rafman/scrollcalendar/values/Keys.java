@@ -38,4 +38,6 @@ public interface Keys {
     int CUSTOM_FONT = R.styleable.ScrollCalendar_customFont;
     @StyleableRes
     int FONT_SIZE = R.styleable.ScrollCalendar_fontSize;
+    @StyleableRes
+    int ADAPTER = R.styleable.ScrollCalendar_adapter;
 }

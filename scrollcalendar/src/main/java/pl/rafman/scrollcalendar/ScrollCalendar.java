@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.annotation.Dimension;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -19,6 +18,8 @@ import android.widget.LinearLayout;
 import pl.rafman.scrollcalendar.adapter.LegendItem;
 import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.adapter.simple.DefaultDateScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.adapter.simple.DefaultRangeScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
@@ -30,18 +31,24 @@ import pl.rafman.scrollcalendar.values.Keys;
  */
 public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
-    @ColorRes
+    @ColorInt
     private int fontColor;
-    @ColorRes
+
+    @ColorInt
     private int backgroundColor;
-    @ColorRes
+
+    @ColorInt
     private int disabledTextColor;
-    @ColorRes
+
+    @ColorInt
     private int unavailableTextColor;
-    @ColorRes
+
+    @ColorInt
     private int selectedTextColor;
-    @ColorRes
+
+    @ColorInt
     private int todayTextColor;
+
     @DrawableRes
     private int unavailableBackground;
     @DrawableRes
@@ -55,7 +62,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     @DrawableRes
     private int currentDayBackground;
-    @ColorRes
+    @ColorInt
     private int disabledBackgroundColor;
     @Dimension
     private float fontSize;
@@ -67,6 +74,8 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     @Nullable
     private ScrollCalendarAdapter adapter;
+
+    private int defaultAdapter;
 
 
     public ScrollCalendar(Context context) {
@@ -96,20 +105,21 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     private void initStyle(@NonNull Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context
-                .obtainStyledAttributes(attrs, R.styleable.ScrollCalendar);
+                .obtainStyledAttributes(attrs, R.styleable.ScrollCalendar, R.attr.scrollCalendarStyleAttr, R.style.ScrollCalendarStyle);
         currentDayBackground = typedArray.getResourceId(Keys.CURRENT_DAY_BG, Defaults.CURRENT_DAY_BG);
-        fontColor = typedArray.getResourceId(Keys.FONT_COLOR, Defaults.FONT_COLOR);
-        backgroundColor = typedArray.getResourceId(Keys.BACKGROUND_COLOR, Defaults.BACKGROUND_COLOR);
-        disabledTextColor = typedArray.getResourceId(Keys.DISABLED_TEXT_COLOR, Defaults.DISABLED_TEXT_COLOR);
-        disabledBackgroundColor = typedArray.getResourceId(Keys.DISABLED_BACKGROUND_COLOR, Defaults.DISABLED_BACKGROUND_COLOR);
-        unavailableTextColor = typedArray.getResourceId(Keys.UNAVAILABLE_TEXT_COLOR, Defaults.UNAVAILABLE_TEXT_COLOR);
-        selectedTextColor = typedArray.getResourceId(Keys.SELECTED_TEXT_COLOR, Defaults.SELECTED_TEXT_COLOR);
+        fontColor = typedArray.getColor(Keys.FONT_COLOR, ContextCompat.getColor(context, Defaults.FONT_COLOR));
+        backgroundColor = typedArray.getColor(Keys.BACKGROUND_COLOR, ContextCompat.getColor(context, Defaults.BACKGROUND_COLOR));
+        disabledTextColor = typedArray.getColor(Keys.DISABLED_TEXT_COLOR, ContextCompat.getColor(context, Defaults.DISABLED_TEXT_COLOR));
+        disabledBackgroundColor = typedArray.getColor(Keys.DISABLED_BACKGROUND_COLOR, ContextCompat.getColor(context, Defaults.DISABLED_BACKGROUND_COLOR));
+        unavailableTextColor = typedArray.getColor(Keys.UNAVAILABLE_TEXT_COLOR, ContextCompat.getColor(context, Defaults.UNAVAILABLE_TEXT_COLOR));
+        selectedTextColor = typedArray.getColor(Keys.SELECTED_TEXT_COLOR, ContextCompat.getColor(context, Defaults.SELECTED_TEXT_COLOR));
+        todayTextColor = typedArray.getColor(Keys.TODAY_TEXT_COLOR, ContextCompat.getColor(context, Defaults.TODAY_TEXT_COLOR));
         unavailableBackground = typedArray.getResourceId(Keys.UNAVAILABLE_BACKGROUND, Defaults.UNAVAILABLE_BACKGROUND);
         selectedBackground = typedArray.getResourceId(Keys.SELECTED_BACKGROUND, Defaults.SELECTED_BACKGROUND);
         selectedBackgroundBeginning = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_BEGINNING, Defaults.SELECTED_BACKGROUND_BEGINNING);
         selectedBackgroundMiddle = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_MIDDLE, Defaults.SELECTED_BACKGROUND_MIDDLE);
         selectedBackgroundEnd = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_END, Defaults.SELECTED_BACKGROUND_END);
-        todayTextColor = typedArray.getResourceId(Keys.TODAY_TEXT_COLOR, Defaults.TODAY_TEXT_COLOR);
+        defaultAdapter = typedArray.getInt(Keys.ADAPTER, Defaults.ADAPTER);
         fontSize = typedArray.getDimension(Keys.FONT_SIZE, getResources().getDimensionPixelSize(Defaults.FONT_SIZE));
         customFont = typedArray.getString(Keys.CUSTOM_FONT);
         typedArray.recycle();
@@ -154,54 +164,66 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     }
 
     @NonNull
-    private ScrollCalendarAdapter getAdapter() {
+    public ScrollCalendarAdapter getAdapter() {
         if (adapter == null) {
-            adapter = new ScrollCalendarAdapter(this);
+            adapter = createAdapter();
         }
         return adapter;
     }
 
-    // Colors
+    private ScrollCalendarAdapter createAdapter() {
+        switch (defaultAdapter) {
+            case 1:
+                return new DefaultDateScrollCalendarAdapter(this);
+            case 2:
+                return new DefaultRangeScrollCalendarAdapter(this);
+            case 0:
+            default:
+                return new ScrollCalendarAdapter(this);
+        }
+    }
 
+    // Colors
     @ColorInt
     @Override
     public int defaultFontColor() {
-        return ContextCompat.getColor(getContext(), fontColor);
+        return fontColor;
     }
 
     @ColorInt
     @Override
     public int defaultBackgroundColor() {
-        return ContextCompat.getColor(getContext(), backgroundColor);
+        return backgroundColor;
     }
 
     @ColorInt
     @Override
     public int disabledTextColor() {
-        return ContextCompat.getColor(getContext(), disabledTextColor);
+        return disabledTextColor;
     }
 
     @ColorInt
     @Override
     public int disabledBackgroundColor() {
-        return ContextCompat.getColor(getContext(), disabledBackgroundColor);
+        return disabledBackgroundColor;
     }
 
     @ColorInt
     @Override
     public int todayTextColor() {
-        return ContextCompat.getColor(getContext(), todayTextColor);
+        return todayTextColor;
     }
 
     @ColorInt
     @Override
     public int unavailableTextColor() {
-        return ContextCompat.getColor(getContext(), unavailableTextColor);
+        return unavailableTextColor;
     }
 
+    @ColorInt
     @Override
     public int selectedTextColor() {
-        return ContextCompat.getColor(getContext(), selectedTextColor);
+        return selectedTextColor;
     }
 
     // Drawables
@@ -237,6 +259,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     public int selectedMiddleBackgroundColor() {
         return selectedBackgroundMiddle;
     }
+
     @Dimension
     @Override
     public float fontSize() {

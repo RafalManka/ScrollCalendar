@@ -29,13 +29,20 @@ public class NavigationActivity extends AppCompatActivity {
 
         @Nullable
         Class<? extends Activity> getDestination() {
-            if (id == 1) {
-                return DateActivity.class;
-            } else if (id == 2) {
-                return RangeActivity.class;
+            switch (id) {
+                case 1:
+                    return DateActivity.class;
+                case 2:
+                    return RangeActivity.class;
+                case 3:
+                    return DefaultAdapterActivity.class;
+                case 4:
+                    return DefaultRangeAdapterActivity.class;
+                default:
+                    return null;
             }
-            return null;
         }
+
     }
 
 
@@ -74,7 +81,9 @@ public class NavigationActivity extends AppCompatActivity {
 
         private final Item[] items = new Item[]{
                 new Item(1, R.string.simple_date_selection),
-                new Item(2, R.string.selecting_ranges)
+                new Item(2, R.string.selecting_ranges),
+                new Item(3, R.string.default_adapter_item_title),
+                new Item(4, R.string.default_range_adapter_item_title),
         };
 
         @Override
@@ -99,7 +108,7 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(lm);
         recyclerView.setAdapter(adapter);

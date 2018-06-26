@@ -41,4 +41,6 @@ public interface Defaults {
     // Dimens
     @DimenRes
     int FONT_SIZE = R.dimen.scrollcalendar_sp12;
+    // enums
+    int ADAPTER = 0;
 }

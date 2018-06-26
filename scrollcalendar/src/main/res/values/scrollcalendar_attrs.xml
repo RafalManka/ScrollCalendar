@@ -7,7 +7,6 @@
         <attr name="unavailableTextColor" format="color" />
         <attr name="selectedTextColor" format="color" />
         <attr name="currentDayTextColor" format="color" />
-        <!-- TODO change to drawable-->
         <attr name="disabledBackgroundColor" format="color" />
         <attr name="backgroundColor" format="color" />
         <!--Drawable-->
@@ -20,8 +19,16 @@
         <!--font-->
         <attr name="customFont" format="string" />
         <attr name="fontSize" format="dimension" />
+        <!--adapter-->
+        <attr name="adapter" format="enum">
+            <enum name="none" value="0" />
+            <enum name="date" value="1" />
+            <enum name="range" value="2" />
+        </attr>
         <!--settings-->
         <attr name="endlessTop" format="boolean" />
 
     </declare-styleable>
+
+    <attr name="scrollCalendarStyleAttr" format="reference" />
 </resources>
