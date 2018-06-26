@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,7 +30,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
     @Nullable
     private final TextView title;
 
-    private final WeekHolder[] weeks = new WeekHolder[6];
+    private final WeekHolder[] weeks = new WeekHolder[7];
 
     private MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         super(rootView);
@@ -63,8 +64,8 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         if (title != null) {
             title.setText(month.getReadableMonthName());
         }
-        for (int i = 1; i <= weeks.length; i++) {
-            weeks[i - 1].display(i, month, filterWeekDays(i, month));
+        for (int i = 0; i <= weeks.length - 1; i++) {
+            weeks[i].display(i, month, filterWeekDays(i, month));
         }
     }
 

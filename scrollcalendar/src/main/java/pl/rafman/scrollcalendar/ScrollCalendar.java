@@ -33,19 +33,14 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     @ColorInt
     private int fontColor;
-
     @ColorInt
     private int backgroundColor;
-
     @ColorInt
     private int disabledTextColor;
-
     @ColorInt
     private int unavailableTextColor;
-
     @ColorInt
     private int selectedTextColor;
-
     @ColorInt
     private int todayTextColor;
 
@@ -129,6 +124,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         getAdapter().setOnDateClickListener(calendarCallback);
     }
 
+    @SuppressWarnings("unused")
     public void refresh() {
         refreshLegend();
         getAdapter().notifyDataSetChanged();

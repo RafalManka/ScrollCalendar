@@ -88,7 +88,7 @@ class WeekHolder {
     }
 
     private boolean isRightAligned(int week) {
-        return week == 1;
+        return week <= 1;
     }
 
 }
