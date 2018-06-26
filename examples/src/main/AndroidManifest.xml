@@ -29,11 +29,13 @@
             android:name=".DefaultAdapterActivity"
             android:label="@string/title_activity_advanced_range"
             android:parentActivityName=".NavigationActivity"
-            android:theme="@style/AppTheme.NoTheme" />
+            android:theme="@style/AppTheme.NoTheme"
+            tools:ignore="UnusedAttribute" />
         <activity
             android:name=".DefaultRangeAdapterActivity"
             android:label="@string/title_activity_advanced_range"
-            android:parentActivityName=".NavigationActivity" />
+            android:parentActivityName=".NavigationActivity"
+            tools:ignore="UnusedAttribute" />
     </application>
 
 </manifest>
