@@ -27,13 +27,13 @@
             tools:targetApi="jelly_bean" />
         <activity
             android:name=".DefaultAdapterActivity"
-            android:label="@string/title_activity_advanced_range"
+            android:label="@string/title_default_adapter"
             android:parentActivityName=".NavigationActivity"
             android:theme="@style/AppTheme.NoTheme"
             tools:ignore="UnusedAttribute" />
         <activity
             android:name=".DefaultRangeAdapterActivity"
-            android:label="@string/title_activity_advanced_range"
+            android:label="@string/title_activity_default_adapter_range"
             android:parentActivityName=".NavigationActivity"
             tools:ignore="UnusedAttribute" />
     </application>

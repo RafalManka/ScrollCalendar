@@ -26,7 +26,7 @@ public class RangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         TextView title = findViewById(R.id.title);
-        title.setText(R.string.default_adapter_title);
+        title.setText(R.string.title_select_range);
         //
         ScrollCalendar scrollCalendar = findViewById(R.id.scrollCalendar);
         if (scrollCalendar == null) {

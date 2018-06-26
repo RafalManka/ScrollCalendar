@@ -5,9 +5,11 @@
     <string name="simple_date_selection">Selected, disabled, unavailable, today</string>
     <string name="selecting_ranges">Simple range</string>
     <string name="default_adapter_item_title">Default date adapter (no style)</string>
-    <string name="title_activity_advanced_range">AdvancedRangeActivity</string>
+    <string name="title_activity_default_adapter_range">Default range adapter</string>
     <string name="show_selected_date">Toast date</string>
     <string name="no_date_selected">No date selected</string>
     <string name="range_activity_title">Select range</string>
     <string name="default_range_adapter_item_title">Default range adapter (xml style)</string>
+    <string name="title_default_adapter">Default adapter</string>
+    <string name="title_select_range">Select range</string>
 </resources>
