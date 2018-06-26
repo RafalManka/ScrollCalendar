@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
-import pl.rafman.scrollcalendar.adapter.simple.DefaultDateScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.adapter.example.DefaultDateScrollCalendarAdapter;
 
 
 public class DefaultAdapterActivity extends AppCompatActivity implements View.OnClickListener {

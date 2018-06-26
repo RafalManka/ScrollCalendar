@@ -1,4 +1,4 @@
-package pl.rafman.scrollcalendar.adapter.simple;
+package pl.rafman.scrollcalendar.adapter.example;
 
 import android.support.annotation.Nullable;
 

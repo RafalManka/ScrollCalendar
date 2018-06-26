@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
-import pl.rafman.scrollcalendar.adapter.simple.DefaultRangeScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.adapter.example.DefaultRangeScrollCalendarAdapter;
 
 
 public class DefaultRangeAdapterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -46,7 +46,7 @@ public class DefaultRangeAdapterActivity extends AppCompatActivity implements Vi
             text += " - ";
             Date until = defaultAdapter.getUntil();
             if (until == null) {
-                text += "-";
+                text += "?";
             } else {
                 text += format.format(until);
             }
