@@ -3,6 +3,7 @@ package com.rafalmanka.example;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.rafalmanka.example.example1.DateActivity;
+import com.rafalmanka.example.example2.RangeActivity;
+import com.rafalmanka.example.example3.DefaultAdapterActivity;
+import com.rafalmanka.example.example4.DefaultRangeAdapterActivity;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -21,10 +28,16 @@ public class NavigationActivity extends AppCompatActivity {
         private final int id;
         @StringRes
         private final int title;
+        @StringRes
+        private final int description;
+        @DrawableRes
+        private final int preview;
 
-        Item(int id, @StringRes int title) {
+        Item(int id, @StringRes int title, @StringRes int description, @DrawableRes int preview) {
             this.id = id;
             this.title = title;
+            this.description = description;
+            this.preview = preview;
         }
 
         @Nullable
@@ -48,18 +61,24 @@ public class NavigationActivity extends AppCompatActivity {
 
     private class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final TextView textView;
+        private final TextView textViewTitle;
+        private final TextView textViewDescription;
+        private final ImageView image;
         private Item item;
 
         MyViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textView);
-            textView.setOnClickListener(this);
+            textViewTitle = itemView.findViewById(R.id.textViewTitle);
+            textViewDescription = itemView.findViewById(R.id.textViewDescription);
+            image = itemView.findViewById(R.id.image);
+            itemView.setOnClickListener(this);
         }
 
         void refresh(Item item) {
             this.item = item;
-            textView.setText(item.title);
+            textViewTitle.setText(item.title);
+            textViewDescription.setText(item.description);
+            image.setImageResource(item.preview);
         }
 
         @Override
@@ -80,10 +99,10 @@ public class NavigationActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter = new RecyclerView.Adapter<MyViewHolder>() {
 
         private final Item[] items = new Item[]{
-                new Item(1, R.string.simple_date_selection),
-                new Item(2, R.string.selecting_ranges),
-                new Item(3, R.string.default_adapter_item_title),
-                new Item(4, R.string.default_range_adapter_item_title),
+                new Item(1, R.string.title_example_1, R.string.description_example_1, R.drawable.example1),
+                new Item(2, R.string.title_example_2, R.string.description_example_2, R.drawable.example2),
+                new Item(3, R.string.title_example_3, R.string.description_example_3, R.drawable.example3),
+                new Item(4, R.string.title_example_4, R.string.description_example_4, R.drawable.example4),
         };
 
         @Override

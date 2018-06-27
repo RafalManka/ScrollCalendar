@@ -2,14 +2,18 @@
     <string name="app_name">Scroll Calendar</string>
     <string name="date_activity_title">Select date</string>
     <string name="default_adapter_title">Default adapter (date)</string>
-    <string name="simple_date_selection">Selected, disabled, unavailable, today</string>
-    <string name="selecting_ranges">Simple range</string>
-    <string name="default_adapter_item_title">Default date adapter (no style)</string>
     <string name="title_activity_default_adapter_range">Default range adapter</string>
     <string name="show_selected_date">Toast date</string>
     <string name="no_date_selected">No date selected</string>
     <string name="range_activity_title">Select range</string>
-    <string name="default_range_adapter_item_title">Default range adapter (xml style)</string>
     <string name="title_default_adapter">Default adapter</string>
     <string name="title_select_range">Select range</string>
+    <string name="title_example_1">Example 1</string>
+    <string name="description_example_1">Showcase of possible use cases of the widget, including stuff as: selected and current date, disabled, unavailable days. Example of setting style attributes from layout xml file.</string>
+    <string name="title_example_2">Example 2</string>
+    <string name="description_example_2">Showcase of possible use case of the widget by implementing ranges. There is also project specific styling of the calendar, selected dates etc.</string>
+    <string name="title_example_3">Example 3</string>
+    <string name="description_example_3">Here you can see an example of calendar that uses build-in date adapter. You can select a date and retrieve it from the widget, but there are many limitations. Also there is no styling applied here and you can see only default look of the calendar.</string>
+    <string name="title_example_4">Example 4</string>
+    <string name="description_example_4">Here you can see an example of calendar that uses build-in range adapter. You can select range of dates and retrieve them from the widget. In this example we used styling from within styles.xml rather than setting parameters from the layout widget.</string>
 </resources>

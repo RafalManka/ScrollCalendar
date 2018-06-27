@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.rafalmanka.example.DateActivity">
+    tools:context="com.rafalmanka.example.example1.DateActivity">
 
     <TextView
         android:id="@+id/title"
