@@ -39,6 +39,7 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
         } else {
             selected = calendar;
         }
+        super.onCalendarDayClicked(year, month, day);
     }
 
     @Override

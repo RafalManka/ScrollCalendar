@@ -44,6 +44,7 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
         } else if (shouldSetUntil()) {
             until = clickedOn;
         }
+        super.onCalendarDayClicked(year, month, day);
     }
 
     @State
@@ -199,12 +200,12 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
     }
 
     @Nullable
-    public Date getFrom() {
+    public Date getStartDate() {
         return from != null ? from.getTime() : null;
     }
 
     @Nullable
-    public Date getUntil() {
+    public Date getEndDate() {
         return until != null ? until.getTime() : null;
     }
 }
