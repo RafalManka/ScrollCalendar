@@ -36,6 +36,12 @@
             android:label="@string/title_activity_default_adapter_range"
             android:parentActivityName=".NavigationActivity"
             tools:ignore="UnusedAttribute" />
+        <activity
+            android:name=".example5.RedLayoutActivity"
+            android:label="@string/title_activity_red_layout"
+            android:parentActivityName=".NavigationActivity"
+            android:theme="@style/AppThemeRed"
+            tools:ignore="UnusedAttribute" />
     </application>
 
 </manifest>

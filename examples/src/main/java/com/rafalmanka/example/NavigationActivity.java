@@ -19,6 +19,7 @@ import com.rafalmanka.example.example1.DateActivity;
 import com.rafalmanka.example.example2.RangeActivity;
 import com.rafalmanka.example.example3.DefaultAdapterActivity;
 import com.rafalmanka.example.example4.DefaultRangeAdapterActivity;
+import com.rafalmanka.example.example5.RedLayoutActivity;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -51,6 +52,8 @@ public class NavigationActivity extends AppCompatActivity {
                     return DefaultAdapterActivity.class;
                 case 4:
                     return DefaultRangeAdapterActivity.class;
+                case 5:
+                    return RedLayoutActivity.class;
                 default:
                     return null;
             }
@@ -103,6 +106,7 @@ public class NavigationActivity extends AppCompatActivity {
                 new Item(2, R.string.title_example_2, R.string.description_example_2, R.drawable.example2),
                 new Item(3, R.string.title_example_3, R.string.description_example_3, R.drawable.example3),
                 new Item(4, R.string.title_example_4, R.string.description_example_4, R.drawable.example4),
+                new Item(5, R.string.title_example_5, R.string.description_example_5, R.drawable.example5),
         };
 
         @Override

@@ -3,12 +3,11 @@
 
     <style name="ScrollCalendarStyle">
         <item name="fontColor">@android:color/black</item>
-        <item name="fontSize">18sp</item>
         <item name="backgroundColor">@android:color/transparent</item>
+        <item name="selectedItemStyle">@style/SelectedItemStyle</item>
         <!--<item name="customFont">@android:color/black</item>-->
         <!--current day-->
-        <item name="currentDayTextColor">@android:color/black</item>
-        <item name="currentDayBackground">@android:color/transparent</item>
+        <item name="currentDayStyle">@style/CurrentDayStyle</item>
         <!--disabled-->
         <item name="disabledTextColor">@android:color/darker_gray</item>
         <item name="disabledBackgroundColor">@android:color/transparent</item>
@@ -16,10 +15,23 @@
         <item name="unavailableTextColor">@android:color/darker_gray</item>
         <item name="unavailableBackground">@android:color/transparent</item>
         <!--selected-->
-        <item name="selectedTextColor">@android:color/white</item>
-        <item name="selectedBackgroundBeginning">@drawable/scrollcalendar_range_start</item>
+        <item name="selectedBeginningItemStyle">@drawable/scrollcalendar_range_start</item>
         <item name="selectedBackgroundMiddle">@drawable/scrollcalendar_range_middle</item>
         <item name="selectedBackgroundEnd">@drawable/scrollcalendar_range_end</item>
-        <item name="selectedBackground">@drawable/scrollcalendar_circle_full</item>
+    </style>
+
+    <style name="CurrentDayStyle">
+        <item name="android:background">@drawable/scrollcalendar_circle_outline</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SelectedItemStyle">
+        <item name="android:background">@drawable/scrollcalendar_circle_full</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="SelectedItemBeginningStyle">
+        <item name="android:background">@drawable/scrollcalendar_range_start</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

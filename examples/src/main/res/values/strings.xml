@@ -16,4 +16,9 @@
     <string name="description_example_3">Here you can see an example of calendar that uses build-in date adapter. You can select a date and retrieve it from the widget, but there are many limitations. Also there is no styling applied here and you can see only default look of the calendar.</string>
     <string name="title_example_4">Example 4</string>
     <string name="description_example_4">Here you can see an example of calendar that uses build-in range adapter. You can select range of dates and retrieve them from the widget. In this example we used styling from within styles.xml rather than setting parameters from the layout widget.</string>
+    <string name="title_example_5">Example 5</string>
+    <string name="description_example_5">Different styling to showcase what is possible.</string>
+    <string name="title_activity_red_layout">Red inspiration</string>
+    <string name="select_ending_date">Select ending date</string>
+    <string name="select_starting_date">Select starting date</string>
 </resources>

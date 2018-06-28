@@ -17,8 +17,8 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
     @Nullable
     private Calendar until;
 
-    public DefaultRangeScrollCalendarAdapter(ResProvider resProvider) {
-        super(resProvider);
+    public DefaultRangeScrollCalendarAdapter(ResProvider resProvider, boolean showYearAlways) {
+        super(resProvider, showYearAlways);
     }
 
     @Override

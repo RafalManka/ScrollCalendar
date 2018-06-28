@@ -1,13 +1,16 @@
 package pl.rafman.scrollcalendar.adapter;
 
+import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import java.util.Arrays;
 
 import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
@@ -20,6 +23,15 @@ import pl.rafman.scrollcalendar.widgets.SquareTextView;
  */
 class DayHolder implements View.OnClickListener {
 
+    private static final int[] attrs = {
+            android.R.attr.background,
+            android.R.attr.textColor,
+    };
+
+    static {
+        Arrays.sort(attrs);
+    }
+
     @NonNull
     private final ClickCallback calendarCallback;
     @Nullable
@@ -30,6 +42,20 @@ class DayHolder implements View.OnClickListener {
     @Nullable
     private CalendarDay currentDay;
 
+    @DrawableRes
+    private int currentDayBackground;
+    @DrawableRes
+    private int selectedDayBackground;
+    @DrawableRes
+    private int selectedBeginningDayBackground;
+
+    @ColorInt
+    private int currentDayTextColor;
+    @ColorInt
+    private int selectedDayTextColor;
+    @ColorInt
+    private int selectedBeginningDayTextColor;
+
     DayHolder(@NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         this.calendarCallback = calendarCallback;
         this.resProvider = resProvider;
@@ -39,7 +65,39 @@ class DayHolder implements View.OnClickListener {
         if (textView == null) {
             textView = (SquareTextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
             textView.setOnClickListener(this);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.fontSize());
+
+            TypedArray typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getCurrentDayStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    currentDayBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    currentDayTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
+
+            typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getSelectedDayStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    selectedDayBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    selectedDayTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
+
+
+            typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getSelectedBeginningDayStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    selectedBeginningDayBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    selectedBeginningDayTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
+
+
         }
         return textView;
     }
@@ -75,19 +133,19 @@ class DayHolder implements View.OnClickListener {
             switch (currentDay.getState()) {
                 case CalendarDay.SELECTED:
                     if (hasNoNeighbours(previousDay, nextDay)) {
-                        textView.setTextColor(resProvider.selectedTextColor());
-                        textView.setBackgroundResource(resProvider.selectedBackgroundColor());
+                        textView.setTextColor(selectedDayTextColor);
+                        textView.setBackgroundResource(selectedDayBackground);
                         setFont(resProvider.getCustomFont());
                     } else if (isBeginning(previousDay)) {
-                        textView.setTextColor(resProvider.selectedTextColor());
-                        textView.setBackgroundResource(resProvider.selectedBeginningBackgroundColor());
+                        textView.setTextColor(selectedBeginningDayTextColor);
+                        textView.setBackgroundResource(selectedBeginningDayBackground);
                         setFont(resProvider.getCustomFont());
                     } else if (isMiddle(previousDay, nextDay)) {
-                        textView.setTextColor(resProvider.selectedTextColor());
+                        textView.setTextColor(selectedDayTextColor);
                         textView.setBackgroundResource(resProvider.selectedMiddleBackgroundColor());
                         setFont(resProvider.getCustomFont());
                     } else if (isEnd(nextDay)) {
-                        textView.setTextColor(resProvider.selectedTextColor());
+                        textView.setTextColor(selectedDayTextColor);
                         textView.setBackgroundResource(resProvider.selectedEndBackgroundColor());
                         setFont(resProvider.getCustomFont());
                     }
@@ -103,8 +161,8 @@ class DayHolder implements View.OnClickListener {
                     setFont(resProvider.getCustomFont());
                     break;
                 case CalendarDay.TODAY:
-                    textView.setTextColor(resProvider.todayTextColor());
-                    textView.setBackgroundResource(resProvider.todayBackground());
+                    textView.setTextColor(currentDayTextColor);
+                    textView.setBackgroundResource(currentDayBackground);
                     setFont(resProvider.getCustomFont());
                     break;
                 case CalendarDay.DEFAULT:

@@ -2,10 +2,9 @@ package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.Dimension;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 
 /**
  * Created by rafal.manka on 11/09/2017
@@ -26,41 +25,34 @@ public interface ResProvider {
     int disabledBackgroundColor();
 
     @ColorInt
-    int todayTextColor();
-
-    @ColorInt
     int unavailableTextColor();
 
-    @ColorInt
-    int selectedTextColor();
-
     // Drawables
-
-    @DrawableRes
-    int todayBackground();
-
     @DrawableRes
     int unavailableBackgroundColor();
 
     @DrawableRes
-    int selectedBackgroundColor();
-
-    @DrawableRes
-    int selectedBeginningBackgroundColor();
-
-    @DrawableRes
     int selectedEndBackgroundColor();
 
-    @Dimension
-    float fontSize();
-
     // Other
-
     @Nullable
     Typeface getCustomFont();
-
 
     @DrawableRes
     int selectedMiddleBackgroundColor();
 
+    @StyleRes
+    int getMonthTitleStyle();
+
+    @StyleRes
+    int getLegendItemStyle();
+
+    @StyleRes
+    int getCurrentDayStyle();
+
+    @StyleRes
+    int getSelectedDayStyle();
+
+    @StyleRes
+    int getSelectedBeginningDayStyle();
 }

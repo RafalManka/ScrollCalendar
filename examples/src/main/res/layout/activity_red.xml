@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:scrollcalendar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        style="@style/HeaderBarRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/red" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.rafalmanka.example.DateLabel
+            android:id="@+id/from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            scrollcalendar:cta="@string/select_starting_date"
+            scrollcalendar:hint="Starting at" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_light" />
+
+        <com.rafalmanka.example.DateLabel
+            android:id="@+id/to"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            scrollcalendar:hint="Ending at" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light" />
+
+    <pl.rafman.scrollcalendar.ScrollCalendar
+        android:id="@+id/scrollCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        scrollcalendar:adapter="range"
+
+        scrollcalendar:selectedBeginningItemStyle="@style/RedLayoutSelectedBeginningItemStyle"
+        scrollcalendar:selectedItemStyle="@style/RedLayoutSelectedItemStyle"
+        scrollcalendar:currentDayStyle="@style/RedLayoutCurrentDayStyle"
+        scrollcalendar:legendItemStyle="@style/LegendItemStyle"
+        scrollcalendar:legendSeparatorStyle="@style/LegendSeparatorStyle"
+        scrollcalendar:monthTitleStyle="@style/MonthTitleStyle"
+        scrollcalendar:showYearAlways="true" />
+
+</LinearLayout>

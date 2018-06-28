@@ -87,6 +87,7 @@ public class CalendarMonth implements Serializable {
         return new CalendarMonth(year, month);
     }
 
+    @NonNull
     public String getReadableMonthName() {
         return getMonthForInt(getMonth()) + maybeGetYear();
     }
@@ -115,4 +116,8 @@ public class CalendarMonth implements Serializable {
         return months[num];
     }
 
+    @NonNull
+    public String getMonthNameWithYear() {
+        return getMonthForInt(getMonth()) + " " + year;
+    }
 }
