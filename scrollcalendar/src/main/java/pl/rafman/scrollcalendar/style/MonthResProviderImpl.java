@@ -27,11 +27,9 @@ public class MonthResProviderImpl implements MonthResProvider {
     private int textSize;
     private int gravity;
     private boolean textAllCaps;
-    //    private Typeface typeface;
     private boolean showYearAlways;
 
     public MonthResProviderImpl(Context context, ResProvider resProvider) {
-        // Text appearance
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(resProvider.getMonthTitleStyle(), attrs);
         for (int i = 0; i < attrs.length; i++) {
             switch (attrs[i]) {
@@ -52,10 +50,7 @@ public class MonthResProviderImpl implements MonthResProvider {
             }
         }
         typedArray.recycle();
-        // Typeface
-//        typeface = resProvider.getCustomFont();
         showYearAlways = resProvider.showYearAlways();
-
     }
 
     @Override

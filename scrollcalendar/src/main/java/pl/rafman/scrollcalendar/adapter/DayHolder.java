@@ -75,6 +75,9 @@ class DayHolder implements View.OnClickListener {
                 case CalendarDay.FIRST_SELECTED:
                     setupForFirstSelectedDate();
                     break;
+                case CalendarDay.ONLY_SELECTED:
+                    setupForOnlySelectedDate();
+                    break;
                 case CalendarDay.LAST_SELECTED:
                     setupForLastSelectedDate();
                     break;
@@ -96,6 +99,14 @@ class DayHolder implements View.OnClickListener {
                     break;
             }
         }
+    }
+
+    private void setupForOnlySelectedDate() {
+        if (textView == null) {
+            return;
+        }
+        textView.setTextColor(resProvider.getSelectedDayTextColor());
+        textView.setBackgroundResource(resProvider.getSelectedDayBackground());
     }
 
     private void setupForDefaultDate() {
@@ -162,7 +173,11 @@ class DayHolder implements View.OnClickListener {
         if (textView == null) {
             return;
         }
-
+        if (!resProvider.softLineBreaks()) {
+            textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
+            textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
+            return;
+        }
 
         if (hasNoNeighbours(previousDay, nextDay)) {
             textView.setTextColor(resProvider.getSelectedDayTextColor());

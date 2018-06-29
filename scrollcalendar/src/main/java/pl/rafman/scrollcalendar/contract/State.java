@@ -18,6 +18,7 @@ import pl.rafman.scrollcalendar.data.CalendarDay;
         CalendarDay.SELECTED,
         CalendarDay.FIRST_SELECTED,
         CalendarDay.LAST_SELECTED,
+        CalendarDay.ONLY_SELECTED,
 })
 @Retention(value = RetentionPolicy.SOURCE)
 public @interface State {

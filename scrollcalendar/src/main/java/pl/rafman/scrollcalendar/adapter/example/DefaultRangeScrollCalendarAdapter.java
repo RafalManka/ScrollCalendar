@@ -56,14 +56,16 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
             return CalendarDay.DISABLED;
         }
         if (isInRange(from, until, year, month, day)) {
-            if (until != null) {
-                if (isSelected(from, year, month, day)) {
-                    return CalendarDay.FIRST_SELECTED;
-                } else if (isSelected(until, year, month, day)) {
-                    return CalendarDay.LAST_SELECTED;
-                }
+            if (until == null) {
+                return CalendarDay.ONLY_SELECTED;
             }
-            return CalendarDay.SELECTED;
+            if (isSelected(from, year, month, day)) {
+                return CalendarDay.FIRST_SELECTED;
+            } else if (isSelected(until, year, month, day)) {
+                return CalendarDay.LAST_SELECTED;
+            } else {
+                return CalendarDay.SELECTED;
+            }
         }
         if (isToday(year, month, day)) {
             return CalendarDay.TODAY;

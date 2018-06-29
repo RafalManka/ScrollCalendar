@@ -21,8 +21,6 @@ public class DayResProviderImpl implements DayResProvider {
         Arrays.sort(attrs);
     }
 
-    private final Typeface customFont;
-
     @DrawableRes
     private int dayBackground;
     @DrawableRes
@@ -39,7 +37,6 @@ public class DayResProviderImpl implements DayResProvider {
     private int selectedEndDayBackground;
     @DrawableRes
     private int disabledBackground;
-
     @ColorInt
     private int currentDayTextColor;
     @ColorInt
@@ -56,6 +53,8 @@ public class DayResProviderImpl implements DayResProvider {
     private int unavailableTextColor;
     @ColorInt
     private int dayTextColor;
+
+    private final Typeface customFont;
     private boolean softLineBreaks;
 
     @Override

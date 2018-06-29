@@ -16,6 +16,7 @@ public class CalendarDay implements Serializable {
     public static final int SELECTED = 4;
     public static final int FIRST_SELECTED = 5;
     public static final int LAST_SELECTED = 6;
+    public static final int ONLY_SELECTED = 7;
     public static final int[] SELECTED_STATES = {SELECTED, FIRST_SELECTED, LAST_SELECTED};
 
 
