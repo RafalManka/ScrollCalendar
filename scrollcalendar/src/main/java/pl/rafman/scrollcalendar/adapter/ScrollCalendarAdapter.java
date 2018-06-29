@@ -15,6 +15,8 @@ import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.style.DayResProvider;
+import pl.rafman.scrollcalendar.style.MonthResProvider;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -26,8 +28,6 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @Nullable
     private RecyclerView recyclerView;
-    @NonNull
-    private final ResProvider resProvider;
 
     @Nullable
     private MonthScrollListener monthScrollListener;
@@ -35,9 +35,12 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private OnDateClickListener onDateClickListener;
     @Nullable
     private DateWatcher dateWatcher;
+    private MonthResProvider monthResProvider;
+    private DayResProvider dayResProvider;
 
-    public ScrollCalendarAdapter(@NonNull ResProvider resProvider) {
-        this.resProvider = resProvider;
+    public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+        this.monthResProvider = monthResProvider;
+        this.dayResProvider = dayResProvider;
         months.add(CalendarMonth.now());
     }
 
@@ -49,7 +52,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @Override
     public MonthViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return MonthViewHolder.create(parent, this, resProvider);
+        return MonthViewHolder.create(parent, this, monthResProvider, dayResProvider);
     }
 
     @Override

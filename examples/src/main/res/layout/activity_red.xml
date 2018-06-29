@@ -53,17 +53,6 @@
         android:id="@+id/scrollCalendar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        scrollcalendar:adapter="range"
-        scrollcalendar:currentDayStyle="@style/RedLayoutCurrentDayStyle"
-        scrollcalendar:legendItemStyle="@style/RedLegendItemStyle"
-        scrollcalendar:legendSeparatorStyle="@style/RedLegendSeparatorStyle"
-        scrollcalendar:monthTitleStyle="@style/MonthTitleStyle"
-        scrollcalendar:roundLineBreaks="false"
-        scrollcalendar:selectedBeginningItemStyle="@style/RedLayoutSelectedBeginningItemStyle"
-        scrollcalendar:selectedEndItemStyle="@style/RedLayoutSelectedEndItemStyle"
-        scrollcalendar:selectedItemStyle="@style/RedLayoutSelectedItemStyle"
-        scrollcalendar:selectedMiddleItemStyle="@style/RedLayoutSelectedMiddleItemStyle"
-        scrollcalendar:showYearAlways="true" />
+        android:layout_weight="1" />
 
 </LinearLayout>

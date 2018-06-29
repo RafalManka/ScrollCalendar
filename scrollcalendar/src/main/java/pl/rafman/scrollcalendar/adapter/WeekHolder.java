@@ -2,7 +2,6 @@ package pl.rafman.scrollcalendar.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,6 +10,7 @@ import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.style.DayResProvider;
 
 /**
  * Created by rafal.manka on 11/09/2017
@@ -22,7 +22,7 @@ class WeekHolder {
     @Nullable
     private LinearLayout container;
 
-    WeekHolder(@NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
+    WeekHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
         for (int i = 0; i < days.length; i++) {
             days[i] = new DayHolder(calendarCallback, resProvider);
         }

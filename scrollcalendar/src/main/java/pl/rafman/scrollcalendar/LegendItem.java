@@ -1,4 +1,4 @@
-package pl.rafman.scrollcalendar.adapter;
+package pl.rafman.scrollcalendar;
 
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import pl.rafman.scrollcalendar.R;
+import pl.rafman.scrollcalendar.adapter.ResProvider;
 
 /**
  * Created by rafal.manka on 10/09/2017

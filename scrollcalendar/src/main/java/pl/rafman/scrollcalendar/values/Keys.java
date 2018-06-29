@@ -9,10 +9,6 @@ import pl.rafman.scrollcalendar.R;
  */
 public interface Keys {
     @StyleableRes
-    int FONT_COLOR = R.styleable.ScrollCalendar_fontColor;
-    @StyleableRes
-    int BACKGROUND_COLOR = R.styleable.ScrollCalendar_backgroundColor;
-    @StyleableRes
     int CUSTOM_FONT = R.styleable.ScrollCalendar_customFont;
     @StyleableRes
     int ADAPTER = R.styleable.ScrollCalendar_adapter;

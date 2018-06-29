@@ -14,7 +14,7 @@ Airbnb app.
 Improt the library into gradle
 
 ```
-implementation ('pl.rafman.widgets:scroll-calendar:2.0.1') {
+implementation ('pl.rafman.widgets:scroll-calendar:2.1.0') {
     exclude group: 'com.android.support'
 }
 ```
@@ -37,13 +37,14 @@ Define layout in your xml file.
 </style>
 
 <style name="MyScrollCalendarStyle" parent="@style/ScrollCalendarStyle">
+    <item name="fontColor">@android:color/black</item>
     <item name="backgroundColor">@android:color/transparent</item>
+    <item name="fontSize">18dp</item>
+
     <item name="currentDayBackground">@drawable/circle_outline</item>
     <item name="currentDayTextColor">@android:color/darker_gray</item>
     <item name="disabledBackgroundColor">@android:color/transparent</item>
     <item name="disabledTextColor">@android:color/darker_gray</item>
-    <item name="fontColor">@android:color/black</item>
-    <item name="fontSize">18dp</item>
     <item name="selectedBackground">@drawable/circle_full</item>
     <item name="selectedBackgroundBeginning">@drawable/range_start</item>
     <item name="selectedBackgroundEnd">@drawable/range_end</item>

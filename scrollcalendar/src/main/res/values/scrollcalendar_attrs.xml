@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ScrollCalendar">
+        <attr name="customFont" format="string" />
+        <!--Text Color-->
+        <attr name="dayStyle" format="reference" />
         <!--styles-->
         <attr name="currentDayStyle" format="reference" />
         <attr name="legendSeparatorStyle" format="reference" />
@@ -12,21 +15,16 @@
         <attr name="selectedMiddleItemStyle" format="reference" />
         <attr name="selectedEndItemStyle" format="reference" />
         <attr name="selectedBeginningItemStyle" format="reference" />
+        <!--settings-->
+        <attr name="endlessTop" format="boolean" />
+        <attr name="showYearAlways" format="boolean" />
+        <attr name="roundLineBreaks" format="boolean" />
         <!--adapter-->
         <attr name="adapter" format="enum">
             <enum name="none" value="0" />
             <enum name="date" value="1" />
             <enum name="range" value="2" />
         </attr>
-        <!--Text Color-->
-        <attr name="fontColor" format="color" />
-        <attr name="customFont" format="string" />
-        <attr name="backgroundColor" format="color" />
-        <!--settings-->
-        <attr name="endlessTop" format="boolean" />
-        <attr name="showYearAlways" format="boolean" />
-        <attr name="roundLineBreaks" format="boolean" />
-
     </declare-styleable>
 
     <attr name="scrollCalendarStyleAttr" format="reference" />
