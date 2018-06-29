@@ -23,13 +23,11 @@
         scrollcalendar:backgroundColor="@android:color/transparent"
         scrollcalendar:currentDayStyle="@style/CurrentDayStyle"
         scrollcalendar:customFont="fonts/montserrat-light.otf"
-        scrollcalendar:disabledBackgroundColor="@android:color/transparent"
-        scrollcalendar:disabledTextColor="@android:color/darker_gray"
+        scrollcalendar:disabledItemStyle="@style/DisabledItemStyle"
         scrollcalendar:fontColor="@android:color/black"
         scrollcalendar:legendItemStyle="@style/LegendItemStyle"
         scrollcalendar:monthTitleStyle="@style/MonthTitleStyle"
         scrollcalendar:selectedItemStyle="@style/SelectedItemStyle"
-        scrollcalendar:unavailableBackground="@drawable/strikethrough"
-        scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
+        scrollcalendar:unavailableItemStyle="@style/UnavailableItemStyle" />
 
 </LinearLayout>

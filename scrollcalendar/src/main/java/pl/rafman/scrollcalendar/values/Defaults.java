@@ -14,15 +14,6 @@ public interface Defaults {
     int FONT_COLOR = android.R.color.black;
     @ColorRes
     int BACKGROUND_COLOR = android.R.color.transparent;
-    @ColorRes
-    int DISABLED_TEXT_COLOR = android.R.color.darker_gray;
-    @ColorRes
-    int DISABLED_BACKGROUND_COLOR = android.R.color.transparent;
-    @ColorRes
-    int UNAVAILABLE_TEXT_COLOR = android.R.color.darker_gray;
-    // Drawables
-    @DrawableRes
-    int UNAVAILABLE_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
     // enums
     int ADAPTER = 0;
 }

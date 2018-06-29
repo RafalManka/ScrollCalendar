@@ -43,6 +43,8 @@ class DayHolder implements View.OnClickListener {
     private CalendarDay currentDay;
 
     @DrawableRes
+    private int unavailableBackground;
+    @DrawableRes
     private int currentDayBackground;
     @DrawableRes
     private int selectedDayBackground;
@@ -52,9 +54,13 @@ class DayHolder implements View.OnClickListener {
     private int selectedMiddleDayBackground;
     @DrawableRes
     private int selectedEndDayBackground;
+    @DrawableRes
+    private int disabledBackground;
 
     @ColorInt
     private int currentDayTextColor;
+    @ColorInt
+    private int disabledTextColor;
     @ColorInt
     private int selectedDayTextColor;
     @ColorInt
@@ -63,6 +69,8 @@ class DayHolder implements View.OnClickListener {
     private int selectedBeginningDayTextColor;
     @ColorInt
     private int selectedEndDayTextColor;
+    @ColorInt
+    private int unavailableTextColor;
 
     DayHolder(@NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         this.calendarCallback = calendarCallback;
@@ -125,6 +133,26 @@ class DayHolder implements View.OnClickListener {
             }
             typedArray.recycle();
 
+            typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getDisabledItemStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    disabledBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    disabledTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
+
+            typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getUnavailableItemStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    unavailableBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    unavailableTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
+
         }
         return textView;
     }
@@ -133,12 +161,12 @@ class DayHolder implements View.OnClickListener {
         this.calendarMonth = calendarMonth;
         this.currentDay = currentDay;
 
-        refreshAppearance(currentDay);
-        refreshStyle(currentDay, previousDay, nextDay);
+        setupVisibility(currentDay);
+        setupStyles(currentDay, previousDay, nextDay);
     }
 
 
-    private void refreshAppearance(@Nullable CalendarDay calendarDay) {
+    private void setupVisibility(@Nullable CalendarDay calendarDay) {
         if (textView == null) {
             return;
         }
@@ -151,7 +179,7 @@ class DayHolder implements View.OnClickListener {
         }
     }
 
-    private void refreshStyle(@Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
+    private void setupStyles(@Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         if (textView == null) {
             return;
         }
@@ -195,13 +223,13 @@ class DayHolder implements View.OnClickListener {
                     setFont(resProvider.getCustomFont());
                     break;
                 case CalendarDay.UNAVAILABLE:
-                    textView.setTextColor(resProvider.unavailableTextColor());
-                    textView.setBackgroundResource(resProvider.unavailableBackgroundColor());
+                    textView.setTextColor(unavailableTextColor);
+                    textView.setBackgroundResource(unavailableBackground);
                     setFont(resProvider.getCustomFont());
                     break;
                 case CalendarDay.DISABLED:
-                    textView.setTextColor(resProvider.disabledTextColor());
-                    textView.setBackgroundColor(resProvider.disabledBackgroundColor());
+                    textView.setTextColor(disabledTextColor);
+                    textView.setBackgroundColor(disabledBackground);
                     setFont(resProvider.getCustomFont());
                     break;
                 case CalendarDay.TODAY:
@@ -234,14 +262,6 @@ class DayHolder implements View.OnClickListener {
 
     private boolean hasNoNeighbours(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         return !isSelected(previousDay) && !isSelected(nextDay);
-    }
-
-    private boolean isFirstDate(@Nullable CalendarDay previousDay) {
-        return previousDay != null && previousDay.getState() == CalendarDay.FIRST_SELECTED;
-    }
-
-    private boolean isLastDate(@Nullable CalendarDay previousDay) {
-        return previousDay != null && previousDay.getState() == CalendarDay.LAST_SELECTED;
     }
 
     private boolean isSelected(@Nullable CalendarDay previousDay) {

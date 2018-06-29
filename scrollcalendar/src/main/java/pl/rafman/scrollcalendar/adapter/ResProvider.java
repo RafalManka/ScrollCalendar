@@ -2,7 +2,6 @@ package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 
@@ -17,19 +16,6 @@ public interface ResProvider {
 
     @ColorInt
     int defaultBackgroundColor();
-
-    @ColorInt
-    int disabledTextColor();
-
-    @ColorInt
-    int disabledBackgroundColor();
-
-    @ColorInt
-    int unavailableTextColor();
-
-    // Drawables
-    @DrawableRes
-    int unavailableBackgroundColor();
 
     // Other
     @Nullable
@@ -55,6 +41,12 @@ public interface ResProvider {
 
     @StyleRes
     int getSelectedEndDayStyle();
+
+    @StyleRes
+    int getUnavailableItemStyle();
+
+    @StyleRes
+    int getDisabledItemStyle();
 
     boolean showYearAlways();
 
