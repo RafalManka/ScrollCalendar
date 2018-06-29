@@ -23,10 +23,6 @@ public interface Defaults {
     // Drawables
     @DrawableRes
     int UNAVAILABLE_BACKGROUND = R.drawable.scrollcalendar_strikethrough;
-    @DrawableRes
-    int SELECTED_BACKGROUND_MIDDLE = R.drawable.scrollcalendar_range_middle;
-    @DrawableRes
-    int SELECTED_BACKGROUND_END = R.drawable.scrollcalendar_range_end;
     // enums
     int ADAPTER = 0;
 }

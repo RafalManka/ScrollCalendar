@@ -14,6 +14,10 @@ public class CalendarDay implements Serializable {
     public static final int TODAY = 2;
     public static final int UNAVAILABLE = 3;
     public static final int SELECTED = 4;
+    public static final int FIRST_SELECTED = 5;
+    public static final int LAST_SELECTED = 6;
+    public static final int[] SELECTED_STATES = {SELECTED, FIRST_SELECTED, LAST_SELECTED};
+
 
     @State
     private int state = DEFAULT;

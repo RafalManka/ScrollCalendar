@@ -21,10 +21,6 @@ public interface Keys {
     @StyleableRes
     int UNAVAILABLE_BACKGROUND = R.styleable.ScrollCalendar_unavailableBackground;
     @StyleableRes
-    int SELECTED_BACKGROUND_MIDDLE =  R.styleable.ScrollCalendar_selectedBackgroundMiddle;
-    @StyleableRes
-    int SELECTED_BACKGROUND_END =  R.styleable.ScrollCalendar_selectedBackgroundEnd;
-    @StyleableRes
     int CUSTOM_FONT = R.styleable.ScrollCalendar_customFont;
     @StyleableRes
     int ADAPTER = R.styleable.ScrollCalendar_adapter;

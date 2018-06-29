@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
-        style="@style/HeaderBarRed"
+        style="@style/RedHeaderBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@color/red" />
@@ -55,13 +55,15 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         scrollcalendar:adapter="range"
-
-        scrollcalendar:selectedBeginningItemStyle="@style/RedLayoutSelectedBeginningItemStyle"
-        scrollcalendar:selectedItemStyle="@style/RedLayoutSelectedItemStyle"
         scrollcalendar:currentDayStyle="@style/RedLayoutCurrentDayStyle"
-        scrollcalendar:legendItemStyle="@style/LegendItemStyle"
-        scrollcalendar:legendSeparatorStyle="@style/LegendSeparatorStyle"
+        scrollcalendar:legendItemStyle="@style/RedLegendItemStyle"
+        scrollcalendar:legendSeparatorStyle="@style/RedLegendSeparatorStyle"
         scrollcalendar:monthTitleStyle="@style/MonthTitleStyle"
+        scrollcalendar:roundLineBreaks="false"
+        scrollcalendar:selectedBeginningItemStyle="@style/RedLayoutSelectedBeginningItemStyle"
+        scrollcalendar:selectedEndItemStyle="@style/RedLayoutSelectedEndItemStyle"
+        scrollcalendar:selectedItemStyle="@style/RedLayoutSelectedItemStyle"
+        scrollcalendar:selectedMiddleItemStyle="@style/RedLayoutSelectedMiddleItemStyle"
         scrollcalendar:showYearAlways="true" />
 
 </LinearLayout>

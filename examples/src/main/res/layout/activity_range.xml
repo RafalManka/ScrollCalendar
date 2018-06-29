@@ -27,7 +27,6 @@
         scrollcalendar:disabledBackgroundColor="@android:color/transparent"
         scrollcalendar:disabledTextColor="@android:color/darker_gray"
         scrollcalendar:fontColor="@android:color/black"
-        scrollcalendar:selectedItemStyle="@style/SelectedItemStyle"
         scrollcalendar:unavailableBackground="@drawable/strikethrough"
         scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
 

@@ -17,8 +17,8 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
     @Nullable
     private Calendar until;
 
-    public DefaultRangeScrollCalendarAdapter(ResProvider resProvider, boolean showYearAlways) {
-        super(resProvider, showYearAlways);
+    public DefaultRangeScrollCalendarAdapter(ResProvider resProvider) {
+        super(resProvider);
     }
 
     @Override
@@ -53,22 +53,25 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
         if (isInThePast(year, month, day)) {
             return CalendarDay.DISABLED;
         }
-        if (isSelected(from, year, month, day)) {
+        if (isInRange(from, until, year, month, day)) {
+            if (until != null) {
+                if (isSelected(from, year, month, day)) {
+                    return CalendarDay.FIRST_SELECTED;
+                } else if (isSelected(until, year, month, day)) {
+                    return CalendarDay.LAST_SELECTED;
+                }
+            }
             return CalendarDay.SELECTED;
         }
         if (isToday(year, month, day)) {
             return CalendarDay.TODAY;
         }
-        if (isInRange(from, until, year, month, day)) {
-            return CalendarDay.SELECTED;
-        }
         return CalendarDay.DEFAULT;
     }
 
-
     private boolean isInRange(Calendar from, Calendar until, int year, int month, int day) {
         if (from == null || until == null) {
-            return false;
+            return from != null && isSelected(from, year, month, day);
         }
         //noinspection UnnecessaryLocalVariable
         Calendar calendar = Calendar.getInstance();

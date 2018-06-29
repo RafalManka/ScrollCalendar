@@ -7,33 +7,31 @@
         <attr name="monthTitleStyle" format="reference" />
         <attr name="legendItemStyle" format="reference" />
         <attr name="selectedItemStyle" format="reference" />
+        <attr name="selectedMiddleItemStyle" format="reference" />
+        <attr name="selectedEndItemStyle" format="reference" />
+        <attr name="selectedBeginningItemStyle" format="reference" />
         <!--adapter-->
         <attr name="adapter" format="enum">
             <enum name="none" value="0" />
             <enum name="date" value="1" />
             <enum name="range" value="2" />
         </attr>
-
         <!--Text Color-->
         <attr name="fontColor" format="color" />
         <attr name="disabledTextColor" format="color" />
         <attr name="unavailableTextColor" format="color" />
         <attr name="currentDayTextColor" format="color" />
         <attr name="disabledBackgroundColor" format="color" />
-
         <attr name="backgroundColor" format="color" />
         <!--Drawable-->
-        <attr name="selectedBeginningItemStyle" format="reference" />
-        <attr name="selectedBackgroundMiddle" format="reference" />
-        <attr name="selectedBackgroundEnd" format="reference" />
         <!--unavailable-->
         <attr name="unavailableBackground" format="reference" />
         <!--font-->
         <attr name="customFont" format="string" />
-
         <!--settings-->
         <attr name="endlessTop" format="boolean" />
         <attr name="showYearAlways" format="boolean" />
+        <attr name="roundLineBreaks" format="boolean" />
 
     </declare-styleable>
 

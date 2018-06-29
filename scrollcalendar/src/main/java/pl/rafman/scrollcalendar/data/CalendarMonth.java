@@ -108,11 +108,9 @@ public class CalendarMonth implements Serializable {
         if (num < 0) {
             return "";
         }
-
         if (num >= months.length) {
             return "";
         }
-
         return months[num];
     }
 

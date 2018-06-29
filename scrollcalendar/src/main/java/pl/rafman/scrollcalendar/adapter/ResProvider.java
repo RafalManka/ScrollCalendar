@@ -31,15 +31,9 @@ public interface ResProvider {
     @DrawableRes
     int unavailableBackgroundColor();
 
-    @DrawableRes
-    int selectedEndBackgroundColor();
-
     // Other
     @Nullable
     Typeface getCustomFont();
-
-    @DrawableRes
-    int selectedMiddleBackgroundColor();
 
     @StyleRes
     int getMonthTitleStyle();
@@ -55,4 +49,14 @@ public interface ResProvider {
 
     @StyleRes
     int getSelectedBeginningDayStyle();
+
+    @StyleRes
+    int getSelectedMiddleDayStyle();
+
+    @StyleRes
+    int getSelectedEndDayStyle();
+
+    boolean showYearAlways();
+
+    boolean softLineBreaks();
 }

@@ -132,8 +132,7 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         recyclerView = findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(lm);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
 }

@@ -42,6 +42,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
 
     @Nullable
     private final TextView title;
+    private ResProvider resProvider;
 
     private final WeekHolder[] weeks = new WeekHolder[7];
     private boolean textAllCaps;
@@ -49,6 +50,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
 
     private MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         super(rootView);
+        this.resProvider = resProvider;
         LinearLayout monthContainer = rootView.findViewById(R.id.monthContainer);
         title = rootView.findViewById(R.id.title);
         setupTitleAppearance(resProvider);
@@ -103,9 +105,9 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
                 calendarCallback, resProvider);
     }
 
-    void bind(CalendarMonth month, boolean showYearAlways) {
+    void bind(CalendarMonth month) {
         if (title != null) {
-            String txt = showYearAlways ? month.getMonthNameWithYear() : month.getReadableMonthName();
+            String txt = resProvider.showYearAlways() ? month.getMonthNameWithYear() : month.getReadableMonthName();
             title.setText(applyCase(txt));
         }
         for (int i = 0; i <= weeks.length - 1; i++) {

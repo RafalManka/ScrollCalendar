@@ -48,13 +48,21 @@ class DayHolder implements View.OnClickListener {
     private int selectedDayBackground;
     @DrawableRes
     private int selectedBeginningDayBackground;
+    @DrawableRes
+    private int selectedMiddleDayBackground;
+    @DrawableRes
+    private int selectedEndDayBackground;
 
     @ColorInt
     private int currentDayTextColor;
     @ColorInt
     private int selectedDayTextColor;
     @ColorInt
+    private int selectedMiddleDayTextColor;
+    @ColorInt
     private int selectedBeginningDayTextColor;
+    @ColorInt
+    private int selectedEndDayTextColor;
 
     DayHolder(@NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
         this.calendarCallback = calendarCallback;
@@ -97,6 +105,25 @@ class DayHolder implements View.OnClickListener {
             }
             typedArray.recycle();
 
+            typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getSelectedMiddleDayStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    selectedMiddleDayBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    selectedMiddleDayTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
+
+            typedArray = textView.getContext().getTheme().obtainStyledAttributes(resProvider.getSelectedEndDayStyle(), attrs);
+            for (int i = 0; i < attrs.length; i++) {
+                if (attrs[i] == android.R.attr.background) {
+                    selectedEndDayBackground = typedArray.getResourceId(i, 0);
+                } else if (attrs[i] == android.R.attr.textColor) {
+                    selectedEndDayTextColor = typedArray.getColor(i, 0);
+                }
+            }
+            typedArray.recycle();
 
         }
         return textView;
@@ -131,24 +158,41 @@ class DayHolder implements View.OnClickListener {
 
         if (currentDay != null) {
             switch (currentDay.getState()) {
+                case CalendarDay.FIRST_SELECTED:
+                    textView.setTextColor(selectedBeginningDayTextColor);
+                    textView.setBackgroundResource(selectedBeginningDayBackground);
+                    setFont(resProvider.getCustomFont());
+                    break;
+                case CalendarDay.LAST_SELECTED:
+                    textView.setTextColor(selectedEndDayTextColor);
+                    textView.setBackgroundResource(selectedEndDayBackground);
+                    setFont(resProvider.getCustomFont());
+                    break;
                 case CalendarDay.SELECTED:
                     if (hasNoNeighbours(previousDay, nextDay)) {
                         textView.setTextColor(selectedDayTextColor);
                         textView.setBackgroundResource(selectedDayBackground);
-                        setFont(resProvider.getCustomFont());
                     } else if (isBeginning(previousDay)) {
-                        textView.setTextColor(selectedBeginningDayTextColor);
-                        textView.setBackgroundResource(selectedBeginningDayBackground);
-                        setFont(resProvider.getCustomFont());
+                        if (resProvider.softLineBreaks()) {
+                            textView.setTextColor(selectedBeginningDayTextColor);
+                            textView.setBackgroundResource(selectedBeginningDayBackground);
+                        } else {
+                            textView.setTextColor(selectedMiddleDayTextColor);
+                            textView.setBackgroundResource(selectedMiddleDayBackground);
+                        }
                     } else if (isMiddle(previousDay, nextDay)) {
-                        textView.setTextColor(selectedDayTextColor);
-                        textView.setBackgroundResource(resProvider.selectedMiddleBackgroundColor());
-                        setFont(resProvider.getCustomFont());
+                        textView.setTextColor(selectedMiddleDayTextColor);
+                        textView.setBackgroundResource(selectedMiddleDayBackground);
                     } else if (isEnd(nextDay)) {
-                        textView.setTextColor(selectedDayTextColor);
-                        textView.setBackgroundResource(resProvider.selectedEndBackgroundColor());
-                        setFont(resProvider.getCustomFont());
+                        if (resProvider.softLineBreaks()) {
+                            textView.setTextColor(selectedEndDayTextColor);
+                            textView.setBackgroundResource(selectedEndDayBackground);
+                        } else {
+                            textView.setTextColor(selectedMiddleDayTextColor);
+                            textView.setBackgroundResource(selectedMiddleDayBackground);
+                        }
                     }
+                    setFont(resProvider.getCustomFont());
                     break;
                 case CalendarDay.UNAVAILABLE:
                     textView.setTextColor(resProvider.unavailableTextColor());
@@ -175,6 +219,10 @@ class DayHolder implements View.OnClickListener {
         }
     }
 
+    private boolean isBeginning(@Nullable CalendarDay previousDay) {
+        return !isSelected(previousDay);
+    }
+
     private boolean isEnd(CalendarDay nextDay) {
         return !isSelected(nextDay);
     }
@@ -183,16 +231,30 @@ class DayHolder implements View.OnClickListener {
         return isSelected(previousDay) && isSelected(nextDay);
     }
 
-    private boolean isBeginning(@Nullable CalendarDay previousDay) {
-        return !isSelected(previousDay);
-    }
 
     private boolean hasNoNeighbours(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         return !isSelected(previousDay) && !isSelected(nextDay);
     }
 
+    private boolean isFirstDate(@Nullable CalendarDay previousDay) {
+        return previousDay != null && previousDay.getState() == CalendarDay.FIRST_SELECTED;
+    }
+
+    private boolean isLastDate(@Nullable CalendarDay previousDay) {
+        return previousDay != null && previousDay.getState() == CalendarDay.LAST_SELECTED;
+    }
+
     private boolean isSelected(@Nullable CalendarDay previousDay) {
-        return previousDay != null && previousDay.getState() == CalendarDay.SELECTED;
+        return previousDay != null && equalsAny(previousDay.getState(), CalendarDay.SELECTED_STATES);
+    }
+
+    private boolean equalsAny(int state, int[] ints) {
+        for (int anInt : ints) {
+            if (anInt == state) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void setFont(Typeface customFont) {

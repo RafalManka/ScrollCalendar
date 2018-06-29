@@ -15,8 +15,8 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
     @Nullable
     private Calendar selected;
 
-    public DefaultDateScrollCalendarAdapter(ResProvider resProvider, boolean showYearAlways) {
-        super(resProvider, showYearAlways);
+    public DefaultDateScrollCalendarAdapter(ResProvider resProvider) {
+        super(resProvider);
     }
 
     @Override

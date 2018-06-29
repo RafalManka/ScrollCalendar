@@ -23,7 +23,6 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @NonNull
     private final List<CalendarMonth> months = new ArrayList<>();
-    private final boolean showYearAlways;
 
     @Nullable
     private RecyclerView recyclerView;
@@ -37,9 +36,8 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     @Nullable
     private DateWatcher dateWatcher;
 
-    public ScrollCalendarAdapter(@NonNull ResProvider resProvider, boolean showYearAlways) {
+    public ScrollCalendarAdapter(@NonNull ResProvider resProvider) {
         this.resProvider = resProvider;
-        this.showYearAlways = showYearAlways;
         months.add(CalendarMonth.now());
     }
 
@@ -58,7 +56,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     public void onBindViewHolder(MonthViewHolder holder, int position) {
         CalendarMonth month = getItem(position);
         prepare(month);
-        holder.bind(month,showYearAlways);
+        holder.bind(month);
         afterBindViewHolder(position);
     }
 
