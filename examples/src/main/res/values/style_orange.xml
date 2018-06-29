@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="OrangeScrollCalendarStyle" parent="@style/ScrollCalendarStyle">
+        <item name="currentDayStyle">@style/CurrentDayStyle</item>
+        <item name="disabledItemStyle">@style/DisabledItemStyle</item>
+        <item name="dayStyle">@style/DayStyle</item>
+        <item name="selectedItemStyle">@style/OrangeSelectedItemStyle</item>
+        <item name="selectedBeginningItemStyle">@style/OrangeSelectedItemBeginningStyle</item>
+        <item name="selectedEndItemStyle">@style/OrangeSelectedItemEndStyle</item>
+        <item name="selectedMiddleItemStyle">@style/OrangeSelectedItemMiddleStyle</item>
+        <item name="unavailableItemStyle">@style/UnavailableItemStyle</item>
+        <item name="adapter">none</item>
+        <item name="legendItemStyle">@style/LegendItemStyle</item>
+    </style>
+
+    <style name="OrangeSelectedItemStyle">
+        <item name="android:height">1dp</item>
+        <item name="android:background">@drawable/circle_full</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OrangeSelectedItemMiddleStyle">
+        <item name="android:background">@drawable/range_middle</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OrangeSelectedItemEndStyle">
+        <item name="android:background">@drawable/range_end</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OrangeSelectedItemBeginningStyle">
+        <item name="android:background">@drawable/range_start</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

@@ -1,14 +1,16 @@
 package pl.rafman.scrollcalendar.adapter.example;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.style.DayResProvider;
+import pl.rafman.scrollcalendar.style.MonthResProvider;
 
 public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
 
@@ -17,8 +19,8 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
     @Nullable
     private Calendar until;
 
-    public DefaultRangeScrollCalendarAdapter(ResProvider resProvider) {
-        super(resProvider);
+    public DefaultRangeScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+        super(monthResProvider, dayResProvider);
     }
 
     @Override
@@ -44,6 +46,7 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
         } else if (shouldSetUntil()) {
             until = clickedOn;
         }
+        super.onCalendarDayClicked(year, month, day);
     }
 
     @State
@@ -52,22 +55,27 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
         if (isInThePast(year, month, day)) {
             return CalendarDay.DISABLED;
         }
-        if (isSelected(from, year, month, day)) {
-            return CalendarDay.SELECTED;
+        if (isInRange(from, until, year, month, day)) {
+            if (until == null) {
+                return CalendarDay.ONLY_SELECTED;
+            }
+            if (isSelected(from, year, month, day)) {
+                return CalendarDay.FIRST_SELECTED;
+            } else if (isSelected(until, year, month, day)) {
+                return CalendarDay.LAST_SELECTED;
+            } else {
+                return CalendarDay.SELECTED;
+            }
         }
         if (isToday(year, month, day)) {
             return CalendarDay.TODAY;
         }
-        if (isInRange(from, until, year, month, day)) {
-            return CalendarDay.SELECTED;
-        }
         return CalendarDay.DEFAULT;
     }
 
-
     private boolean isInRange(Calendar from, Calendar until, int year, int month, int day) {
         if (from == null || until == null) {
-            return false;
+            return from != null && isSelected(from, year, month, day);
         }
         //noinspection UnnecessaryLocalVariable
         Calendar calendar = Calendar.getInstance();
@@ -199,12 +207,12 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
     }
 
     @Nullable
-    public Date getFrom() {
+    public Date getStartDate() {
         return from != null ? from.getTime() : null;
     }
 
     @Nullable
-    public Date getUntil() {
+    public Date getEndDate() {
         return until != null ? until.getTime() : null;
     }
 }

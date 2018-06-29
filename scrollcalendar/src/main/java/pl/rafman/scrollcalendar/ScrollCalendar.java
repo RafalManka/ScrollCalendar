@@ -3,19 +3,16 @@ package pl.rafman.scrollcalendar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Dimension;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.StyleRes;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 
-import pl.rafman.scrollcalendar.adapter.LegendItem;
 import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultDateScrollCalendarAdapter;
@@ -23,6 +20,8 @@ import pl.rafman.scrollcalendar.adapter.example.DefaultRangeScrollCalendarAdapte
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
+import pl.rafman.scrollcalendar.style.DayResProviderImpl;
+import pl.rafman.scrollcalendar.style.MonthResProviderImpl;
 import pl.rafman.scrollcalendar.values.Defaults;
 import pl.rafman.scrollcalendar.values.Keys;
 
@@ -31,47 +30,38 @@ import pl.rafman.scrollcalendar.values.Keys;
  */
 public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
-    @ColorInt
-    private int fontColor;
-    @ColorInt
-    private int backgroundColor;
-    @ColorInt
-    private int disabledTextColor;
-    @ColorInt
-    private int unavailableTextColor;
-    @ColorInt
-    private int selectedTextColor;
-    @ColorInt
-    private int todayTextColor;
-
-    @DrawableRes
-    private int unavailableBackground;
-    @DrawableRes
-    private int selectedBackground;
-    @DrawableRes
-    private int selectedBackgroundBeginning;
-    @DrawableRes
-    private int selectedBackgroundEnd;
-    @DrawableRes
-    private int selectedBackgroundMiddle;
-
-    @DrawableRes
-    private int currentDayBackground;
-    @ColorInt
-    private int disabledBackgroundColor;
-    @Dimension
-    private float fontSize;
-
     @Nullable
     private String customFont;
-
-    private final LegendItem[] legend = new LegendItem[7];
-
     @Nullable
     private ScrollCalendarAdapter adapter;
+    @StyleRes
+    private int monthTitleStyle;
+    @StyleRes
+    private int legendItemStyle;
+    @StyleRes
+    private int legendSeparatorStyle;
+    @StyleRes
+    private int currentDayStyle;
+    @StyleRes
+    private int selectedItemStyle;
+    @StyleRes
+    private int selectedBeginningDayStyle;
+    @StyleRes
+    private int selectedMiddleDayStyle;
+    @StyleRes
+    private int selectedEndDayStyle;
+    @StyleRes
+    private int disabledItemStyle;
+    @StyleRes
+    private int unavailableItemStyle;
+    @StyleRes
+    private int dayStyle;
 
     private int defaultAdapter;
+    private boolean showYearAlways;
+    private boolean softLineBreaks;
 
+    private final LegendItem[] legend = new LegendItem[7];
 
     public ScrollCalendar(Context context) {
         super(context);
@@ -101,22 +91,21 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     private void initStyle(@NonNull Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context
                 .obtainStyledAttributes(attrs, R.styleable.ScrollCalendar, R.attr.scrollCalendarStyleAttr, R.style.ScrollCalendarStyle);
-        currentDayBackground = typedArray.getResourceId(Keys.CURRENT_DAY_BG, Defaults.CURRENT_DAY_BG);
-        fontColor = typedArray.getColor(Keys.FONT_COLOR, ContextCompat.getColor(context, Defaults.FONT_COLOR));
-        backgroundColor = typedArray.getColor(Keys.BACKGROUND_COLOR, ContextCompat.getColor(context, Defaults.BACKGROUND_COLOR));
-        disabledTextColor = typedArray.getColor(Keys.DISABLED_TEXT_COLOR, ContextCompat.getColor(context, Defaults.DISABLED_TEXT_COLOR));
-        disabledBackgroundColor = typedArray.getColor(Keys.DISABLED_BACKGROUND_COLOR, ContextCompat.getColor(context, Defaults.DISABLED_BACKGROUND_COLOR));
-        unavailableTextColor = typedArray.getColor(Keys.UNAVAILABLE_TEXT_COLOR, ContextCompat.getColor(context, Defaults.UNAVAILABLE_TEXT_COLOR));
-        selectedTextColor = typedArray.getColor(Keys.SELECTED_TEXT_COLOR, ContextCompat.getColor(context, Defaults.SELECTED_TEXT_COLOR));
-        todayTextColor = typedArray.getColor(Keys.TODAY_TEXT_COLOR, ContextCompat.getColor(context, Defaults.TODAY_TEXT_COLOR));
-        unavailableBackground = typedArray.getResourceId(Keys.UNAVAILABLE_BACKGROUND, Defaults.UNAVAILABLE_BACKGROUND);
-        selectedBackground = typedArray.getResourceId(Keys.SELECTED_BACKGROUND, Defaults.SELECTED_BACKGROUND);
-        selectedBackgroundBeginning = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_BEGINNING, Defaults.SELECTED_BACKGROUND_BEGINNING);
-        selectedBackgroundMiddle = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_MIDDLE, Defaults.SELECTED_BACKGROUND_MIDDLE);
-        selectedBackgroundEnd = typedArray.getResourceId(Keys.SELECTED_BACKGROUND_END, Defaults.SELECTED_BACKGROUND_END);
+        selectedItemStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_selectedItemStyle, 0);
         defaultAdapter = typedArray.getInt(Keys.ADAPTER, Defaults.ADAPTER);
-        fontSize = typedArray.getDimension(Keys.FONT_SIZE, getResources().getDimensionPixelSize(Defaults.FONT_SIZE));
         customFont = typedArray.getString(Keys.CUSTOM_FONT);
+        monthTitleStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_monthTitleStyle, 0);
+        legendItemStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_legendItemStyle, 0);
+        currentDayStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_currentDayStyle, 0);
+        selectedBeginningDayStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_selectedBeginningItemStyle, 0);
+        legendSeparatorStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_legendSeparatorStyle, 0);
+        selectedMiddleDayStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_selectedMiddleItemStyle, 0);
+        selectedEndDayStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_selectedEndItemStyle, 0);
+        disabledItemStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_disabledItemStyle, 0);
+        unavailableItemStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_unavailableItemStyle, 0);
+        dayStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_dayStyle, 0);
+        showYearAlways = typedArray.getBoolean(R.styleable.ScrollCalendar_showYearAlways, false);
+        softLineBreaks = typedArray.getBoolean(R.styleable.ScrollCalendar_roundLineBreaks, true);
         typedArray.recycle();
     }
 
@@ -138,19 +127,57 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         getAdapter().setMonthScrollListener(monthScrollListener);
     }
 
+    private static final int[] attrs = {
+            android.R.attr.background,
+            android.R.attr.height,
+    };
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        // Legend
+        setupLegend();
+        setupSeparatorStyle();
+        setupRecyclerView();
+    }
+
+    private void setupLegend() {
         LinearLayout legendHolder = findViewById(R.id.legend);
         for (LegendItem legendItem : legend) {
             legendHolder.addView(legendItem.layout(legendHolder, this));
         }
         refreshLegend();
-        // RecyclerView
+    }
+
+    private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
         recyclerView.setAdapter(getAdapter());
+    }
+
+    private void setupSeparatorStyle() {
+        // Legend
+        View separator = findViewById(R.id.separator);
+        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(legendSeparatorStyle, attrs);
+        for (int i = 0; i < attrs.length; i++) {
+            switch (attrs[i]) {
+                case android.R.attr.background: {
+                    int resource = typedArray.getResourceId(i, 0);
+                    if (resource != 0) {
+                        separator.setBackgroundResource(resource);
+                    }
+                    break;
+                }
+                case android.R.attr.height: {
+                    int resource = typedArray.getDimensionPixelSize(i, 0);
+                    LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, resource);
+                    separator.setLayoutParams(params);
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        typedArray.recycle();
     }
 
     private void refreshLegend() {
@@ -168,98 +195,86 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     }
 
     private ScrollCalendarAdapter createAdapter() {
+        MonthResProviderImpl monthResProvider = new MonthResProviderImpl(getContext(), this);
+        DayResProviderImpl dayResProvider = new DayResProviderImpl(getContext(), this);
         switch (defaultAdapter) {
             case 1:
-                return new DefaultDateScrollCalendarAdapter(this);
+                return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider);
             case 2:
-                return new DefaultRangeScrollCalendarAdapter(this);
+                return new DefaultRangeScrollCalendarAdapter(monthResProvider, dayResProvider);
             case 0:
             default:
-                return new ScrollCalendarAdapter(this);
+                return new ScrollCalendarAdapter(monthResProvider, dayResProvider);
         }
     }
 
-    // Colors
-    @ColorInt
+    @StyleRes
     @Override
-    public int defaultFontColor() {
-        return fontColor;
-    }
-
-    @ColorInt
-    @Override
-    public int defaultBackgroundColor() {
-        return backgroundColor;
-    }
-
-    @ColorInt
-    @Override
-    public int disabledTextColor() {
-        return disabledTextColor;
-    }
-
-    @ColorInt
-    @Override
-    public int disabledBackgroundColor() {
-        return disabledBackgroundColor;
-    }
-
-    @ColorInt
-    @Override
-    public int todayTextColor() {
-        return todayTextColor;
-    }
-
-    @ColorInt
-    @Override
-    public int unavailableTextColor() {
-        return unavailableTextColor;
-    }
-
-    @ColorInt
-    @Override
-    public int selectedTextColor() {
-        return selectedTextColor;
-    }
-
-    // Drawables
-
-    @Override
-    @DrawableRes
-    public int todayBackground() {
-        return currentDayBackground;
+    public int getMonthTitleStyle() {
+        return monthTitleStyle;
     }
 
     @Override
-    @DrawableRes
-    public int unavailableBackgroundColor() {
-        return unavailableBackground;
+    public int getLegendItemStyle() {
+        return legendItemStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getCurrentDayStyle() {
+        return currentDayStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getSelectedDayStyle() {
+        return selectedItemStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getSelectedBeginningDayStyle() {
+        return selectedBeginningDayStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getSelectedMiddleDayStyle() {
+        return selectedMiddleDayStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getSelectedEndDayStyle() {
+        return selectedEndDayStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getUnavailableItemStyle() {
+        return unavailableItemStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getDayStyle() {
+        return dayStyle;
+    }
+
+    @StyleRes
+    @Override
+    public int getDisabledItemStyle() {
+        return disabledItemStyle;
     }
 
     @Override
-    public int selectedBackgroundColor() {
-        return selectedBackground;
+    public boolean showYearAlways() {
+        return showYearAlways;
     }
 
     @Override
-    public int selectedBeginningBackgroundColor() {
-        return selectedBackgroundBeginning;
-    }
-
-    @Override
-    public int selectedEndBackgroundColor() {
-        return selectedBackgroundEnd;
-    }
-
-    @Override
-    public int selectedMiddleBackgroundColor() {
-        return selectedBackgroundMiddle;
-    }
-
-    @Dimension
-    @Override
-    public float fontSize() {
-        return fontSize;
+    public boolean softLineBreaks() {
+        return softLineBreaks;
     }
 
     // Other

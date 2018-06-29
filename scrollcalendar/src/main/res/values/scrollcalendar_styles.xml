@@ -2,24 +2,75 @@
 <resources>
 
     <style name="ScrollCalendarStyle">
-        <item name="fontColor">@android:color/black</item>
-        <item name="fontSize">18sp</item>
-        <item name="backgroundColor">@android:color/transparent</item>
-        <!--<item name="customFont">@android:color/black</item>-->
-        <!--current day-->
-        <item name="currentDayTextColor">@android:color/black</item>
-        <item name="currentDayBackground">@android:color/transparent</item>
-        <!--disabled-->
-        <item name="disabledTextColor">@android:color/darker_gray</item>
-        <item name="disabledBackgroundColor">@android:color/transparent</item>
-        <!--unavailable-->
-        <item name="unavailableTextColor">@android:color/darker_gray</item>
-        <item name="unavailableBackground">@android:color/transparent</item>
-        <!--selected-->
-        <item name="selectedTextColor">@android:color/black</item>
-        <item name="selectedBackgroundBeginning">@android:color/darker_gray</item>
-        <item name="selectedBackgroundMiddle">@android:color/darker_gray</item>
-        <item name="selectedBackgroundEnd">@android:color/darker_gray</item>
-        <item name="selectedBackground">@android:color/darker_gray</item>
+        <item name="legendSeparatorStyle">@style/LegendSeparatorStyle</item>
+        <item name="currentDayStyle">@style/CurrentDayStyle</item>
+        <item name="disabledItemStyle">@style/DisabledItemStyle</item>
+        <item name="unavailableItemStyle">@style/UnavailableItemStyle</item>
+        <item name="selectedItemStyle">@style/SelectedItemStyle</item>
+        <item name="selectedBeginningItemStyle">@drawable/scrollcalendar_range_start</item>
+        <item name="selectedMiddleItemStyle">@style/SelectedItemMiddleStyle</item>
+        <item name="selectedEndItemStyle">@style/SelectedItemEndStyle</item>
+        <item name="legendItemStyle">@style/LegendItemStyle</item>
+        <item name="monthTitleStyle">@style/MonthTitleStyle</item>
+        <item name="dayStyle">@style/DayStyle</item>
+    </style>
+
+    <style name="DayStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="DisabledItemStyle">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="UnavailableItemStyle">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:background">@drawable/scrollcalendar_strikethrough</item>
+    </style>
+
+    <style name="LegendSeparatorStyle">
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:height">1dp</item>
+    </style>
+
+    <style name="MonthTitleStyle">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CurrentDayStyle">
+        <item name="android:background">@drawable/scrollcalendar_circle_outline</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SelectedItemStyle">
+        <item name="android:background">@drawable/scrollcalendar_circle_full</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="SelectedItemMiddleStyle">
+        <item name="android:background">@drawable/scrollcalendar_range_middle</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="LegendItemStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SelectedItemEndStyle">
+        <item name="android:background">@drawable/scrollcalendar_range_end</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="SelectedItemBeginningStyle">
+        <item name="android:background">@drawable/scrollcalendar_range_start</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

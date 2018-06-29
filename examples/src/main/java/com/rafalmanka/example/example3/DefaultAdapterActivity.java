@@ -1,10 +1,13 @@
-package com.rafalmanka.example;
+package com.rafalmanka.example.example3;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.rafalmanka.example.R;
+import com.rafalmanka.example.example4.DefaultRangeAdapterActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +16,7 @@ import java.util.Locale;
 import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultDateScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 
 
 public class DefaultAdapterActivity extends AppCompatActivity implements View.OnClickListener {

@@ -1,13 +1,15 @@
 package pl.rafman.scrollcalendar.adapter.example;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.style.DayResProvider;
+import pl.rafman.scrollcalendar.style.MonthResProvider;
 
 public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
 
@@ -15,8 +17,8 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
     @Nullable
     private Calendar selected;
 
-    public DefaultDateScrollCalendarAdapter(ResProvider resProvider) {
-        super(resProvider);
+    public DefaultDateScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+        super(monthResProvider, dayResProvider);
     }
 
     @Override
@@ -39,6 +41,7 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
         } else {
             selected = calendar;
         }
+        super.onCalendarDayClicked(year, month, day);
     }
 
     @Override

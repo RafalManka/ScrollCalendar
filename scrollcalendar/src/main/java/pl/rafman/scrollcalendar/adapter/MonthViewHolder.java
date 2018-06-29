@@ -1,10 +1,8 @@
 package pl.rafman.scrollcalendar.adapter;
 
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -21,6 +18,8 @@ import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
+import pl.rafman.scrollcalendar.style.DayResProvider;
+import pl.rafman.scrollcalendar.style.MonthResProvider;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -29,24 +28,34 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
 
     @Nullable
     private final TextView title;
+    private MonthResProvider monthResProvider;
 
     private final WeekHolder[] weeks = new WeekHolder[7];
+    private boolean textAllCaps;
 
-    private MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
+
+    private MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
         super(rootView);
+        this.monthResProvider = monthResProvider;
         LinearLayout monthContainer = rootView.findViewById(R.id.monthContainer);
         title = rootView.findViewById(R.id.title);
-        Typeface typeface = resProvider.getCustomFont();
-        if (typeface != null) {
-            title.setTypeface(typeface);
-        }
-        title.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.fontSize());
+        setupTitleAppearance(monthResProvider);
+
         for (int i = 0; i < weeks.length; i++) {
-            weeks[i] = new WeekHolder(calendarCallback, resProvider);
+            WeekHolder holder = new WeekHolder(calendarCallback, dayResProvider);
+            weeks[i] = holder;
+            monthContainer.addView(holder.layout(monthContainer));
         }
-        for (WeekHolder week : weeks) {
-            monthContainer.addView(week.layout(monthContainer));
+    }
+
+    private void setupTitleAppearance(@NonNull MonthResProvider resProvider) {
+        if (title == null) {
+            return;
         }
+        title.setTextColor(resProvider.getTextColor());
+        title.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.gatTextSize());
+        title.setGravity(resProvider.getGravity());
+        textAllCaps = resProvider.getTextAllCaps();
     }
 
     MonthViewHolder(View rootView) {
@@ -54,19 +63,24 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         title = null;
     }
 
-    static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull ResProvider resProvider) {
+    static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {
         return new MonthViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_month, parent, false),
-                calendarCallback, resProvider);
+                calendarCallback, resProvider, dayResProvider);
     }
 
     void bind(CalendarMonth month) {
         if (title != null) {
-            title.setText(month.getReadableMonthName());
+            String txt = monthResProvider.showYearAlways() ? month.getMonthNameWithYear() : month.getReadableMonthName();
+            title.setText(applyCase(txt));
         }
         for (int i = 0; i <= weeks.length - 1; i++) {
             weeks[i].display(i, month, filterWeekDays(i, month));
         }
+    }
+
+    private String applyCase(@NonNull String string) {
+        return textAllCaps ? string.toUpperCase() : string;
     }
 
     CalendarDay[] filterWeekDays(int weekOfMonth, CalendarMonth calendarMonth) {

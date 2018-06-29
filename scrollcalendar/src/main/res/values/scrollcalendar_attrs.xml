@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ScrollCalendar">
-        <!--Text Color-->
-        <attr name="fontColor" format="color" />
-        <attr name="disabledTextColor" format="color" />
-        <attr name="unavailableTextColor" format="color" />
-        <attr name="selectedTextColor" format="color" />
-        <attr name="currentDayTextColor" format="color" />
-        <attr name="disabledBackgroundColor" format="color" />
-        <attr name="backgroundColor" format="color" />
-        <!--Drawable-->
-        <attr name="currentDayBackground" format="reference" />
-        <attr name="unavailableBackground" format="reference" />
-        <attr name="selectedBackground" format="reference" />
-        <attr name="selectedBackgroundBeginning" format="reference" />
-        <attr name="selectedBackgroundMiddle" format="reference" />
-        <attr name="selectedBackgroundEnd" format="reference" />
-        <!--font-->
         <attr name="customFont" format="string" />
-        <attr name="fontSize" format="dimension" />
+        <!--Text Color-->
+        <attr name="dayStyle" format="reference" />
+        <!--styles-->
+        <attr name="currentDayStyle" format="reference" />
+        <attr name="legendSeparatorStyle" format="reference" />
+        <attr name="monthTitleStyle" format="reference" />
+        <attr name="legendItemStyle" format="reference" />
+        <attr name="disabledItemStyle" format="reference" />
+        <attr name="unavailableItemStyle" format="reference" />
+        <attr name="selectedItemStyle" format="reference" />
+        <attr name="selectedMiddleItemStyle" format="reference" />
+        <attr name="selectedEndItemStyle" format="reference" />
+        <attr name="selectedBeginningItemStyle" format="reference" />
+        <!--settings-->
+        <attr name="endlessTop" format="boolean" />
+        <attr name="showYearAlways" format="boolean" />
+        <attr name="roundLineBreaks" format="boolean" />
         <!--adapter-->
         <attr name="adapter" format="enum">
             <enum name="none" value="0" />
             <enum name="date" value="1" />
             <enum name="range" value="2" />
         </attr>
-        <!--settings-->
-        <attr name="endlessTop" format="boolean" />
-
     </declare-styleable>
 
     <attr name="scrollCalendarStyleAttr" format="reference" />

@@ -1,10 +1,12 @@
-package com.rafalmanka.example;
+package com.rafalmanka.example.example4;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.rafalmanka.example.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +15,7 @@ import java.util.Locale;
 import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultRangeScrollCalendarAdapter;
+import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 
 
 public class DefaultRangeAdapterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -36,7 +39,7 @@ public class DefaultRangeAdapterActivity extends AppCompatActivity implements Vi
         if (adapter instanceof DefaultRangeScrollCalendarAdapter) {
             DefaultRangeScrollCalendarAdapter defaultAdapter = (DefaultRangeScrollCalendarAdapter) adapter;
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            Date from = defaultAdapter.getFrom();
+            Date from = defaultAdapter.getStartDate();
             String text = "";
             if (from == null) {
                 text += "?";
@@ -44,7 +47,7 @@ public class DefaultRangeAdapterActivity extends AppCompatActivity implements Vi
                 text += format.format(from);
             }
             text += " - ";
-            Date until = defaultAdapter.getUntil();
+            Date until = defaultAdapter.getEndDate();
             if (until == null) {
                 text += "?";
             } else {

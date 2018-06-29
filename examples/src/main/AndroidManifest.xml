@@ -18,23 +18,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DateActivity"
+            android:name=".example1.DateActivity"
             android:parentActivityName=".NavigationActivity"
             tools:targetApi="jelly_bean" />
         <activity
-            android:name=".RangeActivity"
+            android:name=".example2.RangeActivity"
             android:parentActivityName=".NavigationActivity"
             tools:targetApi="jelly_bean" />
         <activity
-            android:name=".DefaultAdapterActivity"
+            android:name=".example3.DefaultAdapterActivity"
             android:label="@string/title_default_adapter"
             android:parentActivityName=".NavigationActivity"
             android:theme="@style/AppTheme.NoTheme"
             tools:ignore="UnusedAttribute" />
         <activity
-            android:name=".DefaultRangeAdapterActivity"
+            android:name=".example4.DefaultRangeAdapterActivity"
             android:label="@string/title_activity_default_adapter_range"
             android:parentActivityName=".NavigationActivity"
+            tools:ignore="UnusedAttribute" />
+        <activity
+            android:name=".example5.RedLayoutActivity"
+            android:label="@string/title_activity_red_layout"
+            android:parentActivityName=".NavigationActivity"
+            android:theme="@style/AppThemeRed"
             tools:ignore="UnusedAttribute" />
     </application>
 
