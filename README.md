@@ -36,50 +36,89 @@ Define layout in your xml file.
     <item name="scrollCalendarStyleAttr">@style/MyScrollCalendarStyle</item>
 </style>
 
-<style name="MyScrollCalendarStyle" parent="@style/ScrollCalendarStyle">
-    <item name="fontColor">@android:color/black</item>
-    <item name="backgroundColor">@android:color/transparent</item>
-    <item name="fontSize">18dp</item>
-
-    <item name="currentDayBackground">@drawable/circle_outline</item>
-    <item name="currentDayTextColor">@android:color/darker_gray</item>
-    <item name="disabledBackgroundColor">@android:color/transparent</item>
-    <item name="disabledTextColor">@android:color/darker_gray</item>
-    <item name="selectedBackground">@drawable/circle_full</item>
-    <item name="selectedBackgroundBeginning">@drawable/range_start</item>
-    <item name="selectedBackgroundEnd">@drawable/range_end</item>
-    <item name="selectedBackgroundMiddle">@drawable/range_middle</item>
-    <item name="selectedTextColor">@android:color/white</item>
-    <item name="unavailableBackground">@drawable/strikethrough</item>
-    <item name="unavailableTextColor">@android:color/darker_gray</item>
-    <item name="adapter">date</item>
+<style name="MyScrollCalendarStyle">
+    <item name="legendSeparatorStyle">@style/MyLegendSeparatorStyle</item>
+    <item name="currentDayStyle">@style/MyCurrentDayStyle</item>
+    <item name="disabledItemStyle">@style/MyDisabledItemStyle</item>
+    <item name="unavailableItemStyle">@style/MyUnavailableItemStyle</item>
+    <item name="selectedItemStyle">@style/MySelectedItemStyle</item>
+     <item name="selectedBeginningItemStyle">@style/MySelectedItemBeginningStyle</item>
+    <item name="selectedMiddleItemStyle">@style/MySelectedItemMiddleStyle</item>
+    <item name="selectedEndItemStyle">@style/MySelectedItemEndStyle</item>
+    <item name="legendItemStyle">@style/MyLegendItemStyle</item>
+    <item name="monthTitleStyle">@style/MyMyMonthTitleStyle</item>
+    <item name="dayStyle">@style/MyDayStyle</item>
 </style>
+
+<style name="MyDayStyle">
+    <item name="android:textColor">@android:color/black</item>
+    <item name="android:background">@android:color/transparent</item>
+</style>
+
+<style name="MyDisabledItemStyle">
+    <item name="android:textColor">@android:color/darker_gray</item>
+    <item name="android:background">@android:color/transparent</item>
+</style>
+
+<style name="MyUnavailableItemStyle">
+    <item name="android:textColor">@android:color/darker_gray</item>
+    <item name="android:background">@drawable/scrollcalendar_strikethrough</item>
+</style>
+
+<style name="MyLegendSeparatorStyle">
+    <item name="android:background">@android:color/darker_gray</item>
+    <item name="android:height">1dp</item>
+</style>
+
+<style name="MyMonthTitleStyle">
+    <item name="android:textAllCaps">false</item>
+    <item name="android:gravity">left</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">@android:color/black</item>
+</style>
+
+<style name="MyCurrentDayStyle">
+    <item name="android:background">@drawable/scrollcalendar_circle_outline</item>
+    <item name="android:textColor">@android:color/black</item>
+</style>
+
+<style name="MySelectedItemStyle">
+    <item name="android:background">@drawable/scrollcalendar_circle_full</item>
+    <item name="android:textColor">@android:color/white</item>
+</style>
+
+<style name="MySelectedItemMiddleStyle">
+    <item name="android:background">@drawable/scrollcalendar_range_middle</item>
+    <item name="android:textColor">@android:color/white</item>
+</style>
+
+<style name="MyLegendItemStyle">
+    <item name="android:gravity">center</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:padding">10dp</item>
+    <item name="android:textColor">@android:color/black</item>
+</style>
+
+<style name="MySelectedItemEndStyle">
+    <item name="android:background">@drawable/scrollcalendar_range_end</item>
+    <item name="android:textColor">@android:color/white</item>
+</style>
+
+<style name="MySelectedItemBeginningStyle">
+    <item name="android:background">@drawable/scrollcalendar_range_start</item>
+    <item name="android:textColor">@android:color/white</item>
+</style>
+
 ```
 
 #### Styling in layout.xml
 If for some reason you prefer to style directly in your layout file, you
-are free to do so. Here are all of the attributes you can use.
+are free to do so. set the styles for given element inside of the xml layout directly.
 
 ```xml
 <pl.rafman.scrollcalendar.ScrollCalendar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        scrollcalendar:adapter="date"
-        scrollcalendar:backgroundColor="@android:color/transparent"
-        scrollcalendar:currentDayBackground="@drawable/scrollcalendar_circle_outline"
-        scrollcalendar:currentDayTextColor="@android:color/darker_gray"
-        scrollcalendar:customFont="fonts/montserrat-light.otf"
-        scrollcalendar:disabledBackgroundColor="@android:color/transparent"
-        scrollcalendar:disabledTextColor="@android:color/darker_gray"
-        scrollcalendar:fontColor="@android:color/black"
-        scrollcalendar:fontSize="18dp"
-        scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
-        scrollcalendar:selectedBackgroundBeginning="@drawable/scrollcalendar_range_start"
-        scrollcalendar:selectedBackgroundEnd="@drawable/scrollcalendar_range_end"
-        scrollcalendar:selectedBackgroundMiddle="@drawable/scrollcalendar_range_middle"
-        scrollcalendar:selectedTextColor="@android:color/white"
-        scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
-        scrollcalendar:unavailableTextColor="@android:color/darker_gray" />
+        android:layout_height="match_parent" />
 ```
 
 ### Default adapters
