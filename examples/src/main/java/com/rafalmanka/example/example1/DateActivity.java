@@ -3,6 +3,8 @@ package com.rafalmanka.example.example1;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.rafalmanka.example.R;
@@ -20,7 +22,7 @@ public class DateActivity extends AppCompatActivity {
 
     @Nullable
     private Calendar selected;
-
+    ScrollCalendar scrollCalendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class DateActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.title);
         title.setText(R.string.date_activity_title);
         //
-        ScrollCalendar scrollCalendar = findViewById(R.id.scrollCalendar);
+          scrollCalendar = findViewById(R.id.scrollCalendar);
         if (scrollCalendar == null) {
             return;
         }
@@ -56,6 +58,19 @@ public class DateActivity extends AppCompatActivity {
                 return doShouldAddPreviousMonth(firstDisplayedYear, firstDisplayedMonth);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_clear, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        selected = null;
+        scrollCalendar.refresh();
+        return super.onOptionsItemSelected(item);
     }
 
     @State
