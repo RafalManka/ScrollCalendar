@@ -23,6 +23,7 @@ public class DateActivity extends AppCompatActivity {
     @Nullable
     private Calendar selected;
     ScrollCalendar scrollCalendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class DateActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.title);
         title.setText(R.string.date_activity_title);
         //
-          scrollCalendar = findViewById(R.id.scrollCalendar);
+        scrollCalendar = findViewById(R.id.scrollCalendar);
         if (scrollCalendar == null) {
             return;
         }
@@ -68,8 +69,10 @@ public class DateActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        selected = null;
-        scrollCalendar.refresh();
+        if (item.getItemId() == R.id.clear) {
+            selected = null;
+            scrollCalendar.refresh();
+        }
         return super.onOptionsItemSelected(item);
     }
 
