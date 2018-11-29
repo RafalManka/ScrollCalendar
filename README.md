@@ -200,34 +200,30 @@ Each state can be expressed by applying specific drawable background and
 a text color.
 * CalendarDay.DEFAULT - Regular day with no background
 ```
-scrollcalendar:fontColor="@android:color/black"
+scrollcalendar:dayStyle="@style/DayStyle"
 ```
 * CalendarDay.DISABLED - When you want to indicate that the date
 is not available.
 ```
-scrollcalendar:disabledBackgroundColor="@android:color/transparent"
-scrollcalendar:disabledTextColor="@android:color/darker_gray"
+scrollcalendar:disabledItemStyle="@style/DisabledItemStyle"
 ```
 * CalendarDay.TODAY - for expressing current date
 ```
-scrollcalendar:currentDayBackground="@drawable/scrollcalendar_circle_outline"
-scrollcalendar:currentDayTextColor="@android:color/darker_gray"
+scrollcalendar:currentDayStyle="@style/CurrentDayStyle"
 ```
 * CalendarDay.UNAVAILABLE - when day is not available take, or invalid.
 ```
-scrollcalendar:unavailableBackground="@drawable/scrollcalendar_strikethrough"
-scrollcalendar:unavailableTextColor="@android:color/darker_gray"
+scrollcalendar:unavailableItemStyle="@style/UnavailableItemStyle"
 ```
 * CalendarDay.SELECTED - When a day is selected. In order to display ranges properly you need
 to set Beginning, middle and end drawables according to your style.
 Proper drawables will be used automatically when two or more selected
 dates are placed next to each other.
 ```
-scrollcalendar:selectedBackground="@drawable/scrollcalendar_circle_full"
-scrollcalendar:selectedBackgroundBeginning="@drawable/scrollcalendar_range_start"
-scrollcalendar:selectedBackgroundEnd="@drawable/scrollcalendar_range_end"
-scrollcalendar:selectedBackgroundMiddle="@drawable/scrollcalendar_range_middle"
-scrollcalendar:selectedTextColor="@android:color/white"
+scrollcalendar:selectedItemStyle="@style/SelectedItemStyle"
+scrollcalendar:selectedBeginningItemStyle="@style/OrangeSelectedItemBeginningStyle"
+scrollcalendar:selectedEndItemStyle="@style/OrangeSelectedItemEndStyle"
+scrollcalendar:selectedMiddleItemStyle="@style/OrangeSelectedItemMiddleStyle"
 ```
 
 ## Contributing
