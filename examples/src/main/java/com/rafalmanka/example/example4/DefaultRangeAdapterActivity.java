@@ -16,6 +16,7 @@ import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultRangeScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
+import pl.rafman.scrollcalendar.contract.SubTitleWatcher;
 
 
 public class DefaultRangeAdapterActivity extends AppCompatActivity implements View.OnClickListener {
