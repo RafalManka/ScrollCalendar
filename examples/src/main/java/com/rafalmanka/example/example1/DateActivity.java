@@ -1,6 +1,7 @@
 package com.rafalmanka.example.example1;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 public class DateActivity extends AppCompatActivity {
 
@@ -46,6 +48,11 @@ public class DateActivity extends AppCompatActivity {
             @Override
             public int getStateForDate(int year, int month, int day) {
                 return doGetStateForDate(year, month, day);
+            }
+
+            @Override
+            public void onDateTextSet(@NonNull SquareTextView tvDate, int year, int month, int day) {
+                // do nothing
             }
         });
         scrollCalendar.setMonthScrollListener(new MonthScrollListener() {

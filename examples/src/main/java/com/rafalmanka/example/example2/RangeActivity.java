@@ -1,8 +1,14 @@
 package com.rafalmanka.example.example2;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.widget.TextView;
 
 import com.rafalmanka.example.R;
@@ -49,17 +55,23 @@ public class RangeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDateTextSet(SquareTextView textView, int year, int month, int day) {
-                String txt = textView.getText().toString() + "\n" + doGetSubtitleForDate(year, month, day);
-                textView.setText(txt);
-
+            public void onDateTextSet(@NonNull SquareTextView textView, int year, int month, int day) {
+                String topText = textView.getText().toString();
+                String allText = topText + doGetSubtitleForDate(year, month, day);
+                SpannableString spannable = new SpannableString(allText);
+                spannable.setSpan(
+                        new RelativeSizeSpan(0.7f),
+                        /* start index */ topText.length(), /* end index */ allText.length(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                );
+                textView.setText(spannable);
             }
         });
     }
 
     //Get the subtitle for the given date
     private String doGetSubtitleForDate(int year, int month, int day) {
-        return "";
+        return "\n" + "100$";
     }
 
     @State

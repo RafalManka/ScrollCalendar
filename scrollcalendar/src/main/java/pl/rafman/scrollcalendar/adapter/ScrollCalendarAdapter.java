@@ -191,8 +191,10 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     @Override
-    public void onDateTextSet(SquareTextView tvDate, int day) {
-
+    public void onDateTextSet(@NonNull SquareTextView textView, int year, int month, int day) {
+        if (dateWatcher != null) {
+            dateWatcher.onDateTextSet(textView, year, month, day);
+        }
     }
 
     protected void onCalendarDayClicked(int year, int month, int day) {

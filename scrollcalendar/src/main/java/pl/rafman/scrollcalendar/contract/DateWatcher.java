@@ -1,5 +1,7 @@
 package pl.rafman.scrollcalendar.contract;
 
+import android.support.annotation.NonNull;
+
 import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 /**
@@ -8,5 +10,6 @@ import pl.rafman.scrollcalendar.widgets.SquareTextView;
 public interface DateWatcher {
     @State
     int getStateForDate(int year, int month, int day);
-    void onDateTextSet(SquareTextView tvDate, int year, int month, int day);
+
+    void onDateTextSet(@NonNull SquareTextView tvDate, int year, int month, int day);
 }

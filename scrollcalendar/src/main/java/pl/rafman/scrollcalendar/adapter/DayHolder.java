@@ -66,7 +66,9 @@ class DayHolder implements View.OnClickListener {
         } else {
             textView.setVisibility(View.VISIBLE);
             textView.setText(String.valueOf(calendarDay.getDay()));
-            calendarCallback.onDateTextSet(textView, calendarDay.getDay());
+            if (calendarMonth != null) {
+                calendarCallback.onDateTextSet(textView, calendarMonth.getYear(), calendarMonth.getMonth(), calendarDay.getDay());
+            }
         }
     }
 
