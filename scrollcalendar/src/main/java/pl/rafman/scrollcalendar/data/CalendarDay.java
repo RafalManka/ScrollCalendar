@@ -18,14 +18,27 @@ public class CalendarDay implements Serializable {
     public static final int LAST_SELECTED = 6;
     public static final int ONLY_SELECTED = 7;
     public static final int[] SELECTED_STATES = {SELECTED, FIRST_SELECTED, LAST_SELECTED};
-
-
+    private final int day;
     @State
     private int state = DEFAULT;
-    private final int day;
+    private String subTitle;
+    private int subTitleLength;
 
     CalendarDay(int day) {
         this.day = day;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle == null ? "" : subTitle.trim();
+        this.subTitleLength = this.subTitle.length();
+    }
+
+    public int getSubTitleLength() {
+        return subTitleLength;
     }
 
     @State
@@ -47,6 +60,7 @@ public class CalendarDay implements Serializable {
         return "CalendarDay{" +
                 "state=" + state +
                 ", scrollcalendar_day=" + day +
+                ", scrollcalendar_subtitle=" + subTitle +
                 '}';
     }
 

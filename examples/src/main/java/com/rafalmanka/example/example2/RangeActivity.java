@@ -13,6 +13,7 @@ import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
+import pl.rafman.scrollcalendar.contract.SubTitleWatcher;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 
 
@@ -47,6 +48,17 @@ public class RangeActivity extends AppCompatActivity {
                 return doGetStateForDate(year, month, day);
             }
         });
+        scrollCalendar.setSubtitleProvider(new SubTitleWatcher() {
+            @Override
+            public String getSubTitleForDate(int year, int month, int day) {
+                return doGetSubtitleForDate(year, month, day);
+            }
+        });
+    }
+
+    //Get the subtitle for the given date
+    private String doGetSubtitleForDate(int year, int month, int day) {
+        return "";
     }
 
     @State

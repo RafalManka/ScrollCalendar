@@ -20,6 +20,7 @@ import pl.rafman.scrollcalendar.adapter.example.DefaultRangeScrollCalendarAdapte
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
+import pl.rafman.scrollcalendar.contract.SubTitleWatcher;
 import pl.rafman.scrollcalendar.style.DayResProviderImpl;
 import pl.rafman.scrollcalendar.style.MonthResProviderImpl;
 import pl.rafman.scrollcalendar.values.Defaults;
@@ -121,6 +122,15 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     public void setDateWatcher(@Nullable final DateWatcher dateWatcher) {
         getAdapter().setDateWatcher(dateWatcher);
+    }
+
+    /**
+     * Sets subtitle watcher for the calendar
+     * @param subTitleWatcher Provide a subtitle watcher and implement the method which takes year, month and day
+     *                        and returns a string "subtitle" which can be used as a label
+     */
+    public void setSubtitleProvider(@Nullable final SubTitleWatcher subTitleWatcher) {
+        getAdapter().setSubTitleWatcher(subTitleWatcher);
     }
 
     public void setMonthScrollListener(@Nullable final MonthScrollListener monthScrollListener) {
