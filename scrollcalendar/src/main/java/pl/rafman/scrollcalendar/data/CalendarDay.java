@@ -18,9 +18,11 @@ public class CalendarDay implements Serializable {
     public static final int LAST_SELECTED = 6;
     public static final int ONLY_SELECTED = 7;
     public static final int[] SELECTED_STATES = {SELECTED, FIRST_SELECTED, LAST_SELECTED};
-    private final int day;
+
+
     @State
     private int state = DEFAULT;
+    private final int day;
 
     CalendarDay(int day) {
         this.day = day;

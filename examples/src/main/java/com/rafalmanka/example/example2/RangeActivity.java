@@ -1,13 +1,11 @@
 package com.rafalmanka.example.example2;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.widget.TextView;
 
@@ -20,7 +18,6 @@ import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
-import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 
 public class RangeActivity extends AppCompatActivity {
@@ -55,9 +52,9 @@ public class RangeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDateTextSet(@NonNull SquareTextView textView, int year, int month, int day) {
+            public void onDateTextSet(@NonNull TextView textView, int year, int month, int day) {
                 String topText = textView.getText().toString();
-                String allText = topText + doGetSubtitleForDate(year, month, day);
+                String allText = topText + "\n100$";
                 SpannableString spannable = new SpannableString(allText);
                 spannable.setSpan(
                         new RelativeSizeSpan(0.7f),
@@ -67,11 +64,6 @@ public class RangeActivity extends AppCompatActivity {
                 textView.setText(spannable);
             }
         });
-    }
-
-    //Get the subtitle for the given date
-    private String doGetSubtitleForDate(int year, int month, int day) {
-        return "\n" + "100$";
     }
 
     @State

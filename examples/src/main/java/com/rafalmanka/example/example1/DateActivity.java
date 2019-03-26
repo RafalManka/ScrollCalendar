@@ -18,7 +18,6 @@ import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
-import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 public class DateActivity extends AppCompatActivity {
 
@@ -51,7 +50,7 @@ public class DateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDateTextSet(@NonNull SquareTextView tvDate, int year, int month, int day) {
+            public void onDateTextSet(@NonNull TextView tvDate, int year, int month, int day) {
                 // do nothing
             }
         });
