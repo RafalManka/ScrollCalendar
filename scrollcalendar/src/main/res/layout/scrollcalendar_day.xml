@@ -1,34 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<pl.rafman.scrollcalendar.widgets.SquareTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="0dp"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:layout_weight="1"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingStart="5dp"
-    android:paddingEnd="5dp"
-    tools:layout_width="wrap_content">
-
-    <pl.rafman.scrollcalendar.widgets.SquareTextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        tools:text="Ni"
-        tools:textSize="20sp" />
-
-    <pl.rafman.scrollcalendar.widgets.SquareTextView
-        android:id="@+id/subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLength="6"
-        android:maxLines="1"
-        android:textSize="12sp"
-        tools:text="2900$"
-        tools:textSize="12sp" />
-</LinearLayout>
+    tools:textSize="22sp" />

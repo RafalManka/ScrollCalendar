@@ -25,11 +25,7 @@ class DayHolder implements View.OnClickListener {
     @NonNull
     private final ClickCallback calendarCallback;
     @Nullable
-    private View dayView;
-    @Nullable
-    private SquareTextView tvDate;
-    @Nullable
-    private SquareTextView tvSubTitle;
+    private SquareTextView textView;
 
     @Nullable
     private CalendarMonth calendarMonth;
@@ -43,13 +39,12 @@ class DayHolder implements View.OnClickListener {
     }
 
     public View layout(LinearLayout parent) {
-        if (dayView == null) {
-            dayView = LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
-            dayView.setOnClickListener(this);
-            tvDate = dayView.findViewById(R.id.date);
-            tvSubTitle = dayView.findViewById(R.id.subtitle);
+        if (textView == null) {
+            textView = (SquareTextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
+            textView.setOnClickListener(this);
+
         }
-        return dayView;
+        return textView;
     }
 
     void display(@Nullable CalendarMonth calendarMonth, @Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
@@ -62,18 +57,16 @@ class DayHolder implements View.OnClickListener {
 
 
     private void setupVisibility(@Nullable CalendarDay calendarDay) {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
         if (calendarDay == null) {
-            dayView.setVisibility(View.INVISIBLE);
+            textView.setVisibility(View.INVISIBLE);
         } else {
-            dayView.setVisibility(View.VISIBLE);
-            tvDate.setText(String.valueOf(calendarDay.getDay()));
-            tvSubTitle.setText(calendarDay.getSubTitle());
-            tvSubTitle.setVisibility(calendarDay.getSubTitleLength() == 0 ?
-                    View.GONE : View.VISIBLE);
+            textView.setVisibility(View.VISIBLE);
+            textView.setText(String.valueOf(calendarDay.getDay()));
+            calendarCallback.onDateTextSet(textView, calendarDay.getDay());
         }
     }
 
@@ -110,118 +103,104 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForOnlySelectedDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
-        tvDate.setTextColor(resProvider.getSelectedDayTextColor());
-        tvSubTitle.setTextColor(resProvider.getSelectedDayTextColor());
-        dayView.setBackgroundResource(resProvider.getSelectedDayBackground());
+        textView.setTextColor(resProvider.getSelectedDayTextColor());
+        textView.setBackgroundResource(resProvider.getSelectedDayBackground());
     }
 
     private void setupForDefaultDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
-        tvDate.setTextColor(resProvider.getDayTextColor());
-        tvSubTitle.setTextColor(resProvider.getDayTextColor());
-        dayView.setBackgroundColor(resProvider.getDayBackground());
+        textView.setTextColor(resProvider.getDayTextColor());
+        textView.setBackgroundColor(resProvider.getDayBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForTodayDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
-        tvDate.setTextColor(resProvider.getCurrentDayTextColor());
-        tvSubTitle.setTextColor(resProvider.getCurrentDayTextColor());
-        dayView.setBackgroundResource(resProvider.getCurrentDayBackground());
+        textView.setTextColor(resProvider.getCurrentDayTextColor());
+        textView.setBackgroundResource(resProvider.getCurrentDayBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForDisabledDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
-        tvDate.setTextColor(resProvider.getDisabledTextColor());
-        tvSubTitle.setTextColor(resProvider.getDisabledTextColor());
-        dayView.setBackgroundColor(resProvider.getDisabledBackground());
+        textView.setTextColor(resProvider.getDisabledTextColor());
+        textView.setBackgroundColor(resProvider.getDisabledBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForUnavailableDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
-        tvDate.setTextColor(resProvider.getUnavailableTextColor());
-        tvSubTitle.setTextColor(resProvider.getUnavailableTextColor());
-        dayView.setBackgroundResource(resProvider.getUnavailableBackground());
+        textView.setTextColor(resProvider.getUnavailableTextColor());
+        textView.setBackgroundResource(resProvider.getUnavailableBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForFirstSelectedDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
-        tvDate.setTextColor(resProvider.getSelectedBeginningDayTextColor());
-        tvSubTitle.setTextColor(resProvider.getSelectedBeginningDayTextColor());
-        dayView.setBackgroundResource(resProvider.getSelectedBeginningDayBackground());
+        textView.setTextColor(resProvider.getSelectedBeginningDayTextColor());
+        textView.setBackgroundResource(resProvider.getSelectedBeginningDayBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForLastSelectedDate() {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
-        tvDate.setTextColor(resProvider.getSelectedEndDayTextColor());
-        tvSubTitle.setTextColor(resProvider.getSelectedEndDayTextColor());
-        dayView.setBackgroundResource(resProvider.getSelectedEndDayBackground());
+        textView.setTextColor(resProvider.getSelectedEndDayTextColor());
+        textView.setBackgroundResource(resProvider.getSelectedEndDayBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForSelectedDate(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
-        if (dayView == null || tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
         if (!resProvider.softLineBreaks()) {
-            tvDate.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-            tvSubTitle.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-            dayView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
+            textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
+            textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
             return;
         }
 
         if (hasNoNeighbours(previousDay, nextDay)) {
-            tvDate.setTextColor(resProvider.getSelectedDayTextColor());
-            tvSubTitle.setTextColor(resProvider.getSelectedDayTextColor());
-            dayView.setBackgroundResource(resProvider.getSelectedDayBackground());
+            textView.setTextColor(resProvider.getSelectedDayTextColor());
+            textView.setBackgroundResource(resProvider.getSelectedDayBackground());
         } else if (isBeginning(previousDay)) {
             if (resProvider.softLineBreaks()) {
-                tvDate.setTextColor(resProvider.getSelectedBeginningDayTextColor());
-                tvSubTitle.setTextColor(resProvider.getSelectedBeginningDayTextColor());
-                dayView.setBackgroundResource(resProvider.getSelectedBeginningDayBackground());
+                textView.setTextColor(resProvider.getSelectedBeginningDayTextColor());
+                textView.setBackgroundResource(resProvider.getSelectedBeginningDayBackground());
             } else {
-                tvDate.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-                tvSubTitle.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-                dayView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
+                textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
+                textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
             }
         } else if (isMiddle(previousDay, nextDay)) {
-            tvDate.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-            tvSubTitle.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-            dayView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
+            textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
+            textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
         } else if (isEnd(nextDay)) {
             if (resProvider.softLineBreaks()) {
-                tvDate.setTextColor(resProvider.getSelectedEndDayTextColor());
-                tvSubTitle.setTextColor(resProvider.getSelectedEndDayTextColor());
-                dayView.setBackgroundResource(resProvider.getSelectedEndDayBackground());
+                textView.setTextColor(resProvider.getSelectedEndDayTextColor());
+                textView.setBackgroundResource(resProvider.getSelectedEndDayBackground());
             } else {
-                tvDate.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-                tvSubTitle.setTextColor(resProvider.getSelectedMiddleDayTextColor());
-                dayView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
+                textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
+                textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
             }
         }
         setFont(resProvider.getCustomFont());
@@ -258,13 +237,12 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setFont(Typeface customFont) {
-        if (tvDate == null || tvSubTitle == null) {
+        if (textView == null) {
             return;
         }
 
         if (customFont != null) {
-            tvDate.setTypeface(customFont);
-            tvSubTitle.setTypeface(customFont);
+            textView.setTypeface(customFont);
         }
     }
 

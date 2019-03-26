@@ -21,24 +21,9 @@ public class CalendarDay implements Serializable {
     private final int day;
     @State
     private int state = DEFAULT;
-    private String subTitle;
-    private int subTitleLength;
 
     CalendarDay(int day) {
         this.day = day;
-    }
-
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle == null ? "" : subTitle.trim();
-        this.subTitleLength = this.subTitle.length();
-    }
-
-    public int getSubTitleLength() {
-        return subTitleLength;
     }
 
     @State
@@ -60,7 +45,6 @@ public class CalendarDay implements Serializable {
         return "CalendarDay{" +
                 "state=" + state +
                 ", scrollcalendar_day=" + day +
-                ", scrollcalendar_subtitle=" + subTitle +
                 '}';
     }
 

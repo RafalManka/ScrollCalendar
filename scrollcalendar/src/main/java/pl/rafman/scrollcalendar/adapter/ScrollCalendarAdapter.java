@@ -13,11 +13,11 @@ import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
-import pl.rafman.scrollcalendar.contract.SubTitleWatcher;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
 import pl.rafman.scrollcalendar.style.MonthResProvider;
+import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -36,7 +36,6 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private OnDateClickListener onDateClickListener;
     @Nullable
     private DateWatcher dateWatcher;
-    private SubTitleWatcher subTitleWatcher;
     private MonthResProvider monthResProvider;
     private DayResProvider dayResProvider;
 
@@ -114,7 +113,6 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private void prepare(CalendarMonth month) {
         for (CalendarDay calendarDay : month.getDays()) {
             calendarDay.setState(makeState(month, calendarDay));
-            calendarDay.setSubTitle(makeSubTitle(month, calendarDay));
         }
     }
 
@@ -132,20 +130,6 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
             return CalendarDay.DEFAULT;
         }
         return dateWatcher.getStateForDate(year, month, day);
-    }
-
-    private String makeSubTitle(CalendarMonth month, CalendarDay calendarDay) {
-        int year = month.getYear();
-        int monthInt = month.getMonth();
-        int day = calendarDay.getDay();
-        return getSubTitleForDate(year, monthInt, day);
-    }
-
-    private String getSubTitleForDate(int year, int month, int day) {
-        if (subTitleWatcher == null) {
-            return "";
-        }
-        return subTitleWatcher.getSubTitleForDate(year, month, day);
     }
 
     private void prependCalendarMonth() {
@@ -197,10 +181,6 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         this.dateWatcher = dateWatcher;
     }
 
-    public void setSubTitleWatcher(@Nullable SubTitleWatcher subTitleWatcher) {
-        this.subTitleWatcher = subTitleWatcher;
-    }
-
     @Override
     public void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay) {
         int year = calendarMonth.getYear();
@@ -208,6 +188,11 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         int day = calendarDay.getDay();
         onCalendarDayClicked(year, month, day);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDateTextSet(SquareTextView tvDate, int day) {
+
     }
 
     protected void onCalendarDayClicked(int year, int month, int day) {

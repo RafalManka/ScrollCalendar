@@ -13,8 +13,8 @@ import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
-import pl.rafman.scrollcalendar.contract.SubTitleWatcher;
 import pl.rafman.scrollcalendar.data.CalendarDay;
+import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 
 public class RangeActivity extends AppCompatActivity {
@@ -47,11 +47,12 @@ public class RangeActivity extends AppCompatActivity {
             public int getStateForDate(int year, int month, int day) {
                 return doGetStateForDate(year, month, day);
             }
-        });
-        scrollCalendar.setSubtitleProvider(new SubTitleWatcher() {
+
             @Override
-            public String getSubTitleForDate(int year, int month, int day) {
-                return doGetSubtitleForDate(year, month, day);
+            public void onDateTextSet(SquareTextView textView, int year, int month, int day) {
+                String txt = textView.getText().toString() + "\n" + doGetSubtitleForDate(year, month, day);
+                textView.setText(txt);
+
             }
         });
     }
