@@ -50,7 +50,7 @@ public class DateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDateTextSet(@NonNull TextView tvDate, int year, int month, int day) {
+            public void onTextViewTextSet(@NonNull TextView tvDate, int year, int month, int day) {
                 // do nothing
             }
         });

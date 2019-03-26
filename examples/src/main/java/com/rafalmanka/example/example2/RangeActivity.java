@@ -52,13 +52,14 @@ public class RangeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDateTextSet(@NonNull TextView textView, int year, int month, int day) {
+            public void onTextViewTextSet(@NonNull TextView textView, int year, int month, int day) {
                 String topText = textView.getText().toString();
                 String allText = topText + "\n100$";
                 SpannableString spannable = new SpannableString(allText);
                 spannable.setSpan(
                         new RelativeSizeSpan(0.7f),
-                        /* start index */ topText.length(), /* end index */ allText.length(),
+                        topText.length(),
+                        allText.length(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 );
                 textView.setText(spannable);
