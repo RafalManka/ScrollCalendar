@@ -10,5 +10,5 @@ public interface DateWatcher {
     @State
     int getStateForDate(int year, int month, int day);
 
-    void onTextViewTextSet(@NonNull TextView tvDate, int year, int month, int day);
+    void onDateTextSet(@NonNull TextView tvDate, int year, int month, int day);
 }

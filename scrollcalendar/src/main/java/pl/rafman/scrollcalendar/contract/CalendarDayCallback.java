@@ -9,8 +9,8 @@ import pl.rafman.scrollcalendar.widgets.SquareTextView;
 /**
  * Created by rafal.manka on 11/09/2017
  */
-public interface ClickCallback {
+public interface CalendarDayCallback {
     void onCalendarDayClicked(@NonNull CalendarMonth calendarMonth, @NonNull CalendarDay calendarDay);
 
-    void onDateTextSet(@NonNull SquareTextView textView, int year, int month, int day);
+    void onCalendarDayTextSet(@NonNull SquareTextView textView, int year, int month, int day);
 }

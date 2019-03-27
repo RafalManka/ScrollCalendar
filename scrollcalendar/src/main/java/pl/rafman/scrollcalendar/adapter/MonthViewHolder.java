@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import pl.rafman.scrollcalendar.R;
-import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.contract.CalendarDayCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
@@ -34,7 +34,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
     private boolean textAllCaps;
 
 
-    private MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+    private MonthViewHolder(@NonNull View rootView, @NonNull CalendarDayCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
         super(rootView);
         this.monthResProvider = monthResProvider;
         LinearLayout monthContainer = rootView.findViewById(R.id.monthContainer);
@@ -63,7 +63,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         title = null;
     }
 
-    static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {
+    static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull CalendarDayCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {
         return new MonthViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_month, parent, false),
                 calendarCallback, resProvider, dayResProvider);

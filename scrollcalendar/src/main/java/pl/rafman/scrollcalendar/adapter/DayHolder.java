@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import pl.rafman.scrollcalendar.R;
-import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.contract.CalendarDayCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
@@ -23,7 +23,7 @@ class DayHolder implements View.OnClickListener {
     private final DayResProvider resProvider;
 
     @NonNull
-    private final ClickCallback calendarCallback;
+    private final CalendarDayCallback calendarCallback;
     @Nullable
     private SquareTextView textView;
 
@@ -33,7 +33,7 @@ class DayHolder implements View.OnClickListener {
     private CalendarDay currentDay;
 
 
-    DayHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
+    DayHolder(@NonNull CalendarDayCallback calendarCallback, @NonNull DayResProvider resProvider) {
         this.calendarCallback = calendarCallback;
         this.resProvider = resProvider;
     }
@@ -67,7 +67,7 @@ class DayHolder implements View.OnClickListener {
             textView.setVisibility(View.VISIBLE);
             textView.setText(String.valueOf(calendarDay.getDay()));
             if (calendarMonth != null) {
-                calendarCallback.onDateTextSet(textView, calendarMonth.getYear(), calendarMonth.getMonth(), calendarDay.getDay());
+                calendarCallback.onCalendarDayTextSet(textView, calendarMonth.getYear(), calendarMonth.getMonth(), calendarDay.getDay());
             }
         }
     }

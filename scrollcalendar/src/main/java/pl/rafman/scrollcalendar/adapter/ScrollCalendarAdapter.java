@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.contract.CalendarDayCallback;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
@@ -22,7 +22,7 @@ import pl.rafman.scrollcalendar.widgets.SquareTextView;
 /**
  * Created by rafal.manka on 10/09/2017
  */
-public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder> implements ClickCallback {
+public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder> implements CalendarDayCallback {
 
     @NonNull
     private final List<CalendarMonth> months = new ArrayList<>();
@@ -191,9 +191,9 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     @Override
-    public void onDateTextSet(@NonNull SquareTextView textView, int year, int month, int day) {
+    public void onCalendarDayTextSet(@NonNull SquareTextView textView, int year, int month, int day) {
         if (dateWatcher != null) {
-            dateWatcher.onTextViewTextSet(textView, year, month, day);
+            dateWatcher.onDateTextSet(textView, year, month, day);
         }
     }
 

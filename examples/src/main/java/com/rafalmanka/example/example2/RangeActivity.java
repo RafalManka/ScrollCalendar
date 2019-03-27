@@ -52,9 +52,10 @@ public class RangeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTextViewTextSet(@NonNull TextView textView, int year, int month, int day) {
+            public void onDateTextSet(@NonNull TextView textView, int year, int month, int day) {
                 String topText = textView.getText().toString();
-                String allText = topText + "\n100$";
+                // example: every third day of month has a subtitle
+                String allText = topText + (day == 3 ? "\n100$" : "");
                 SpannableString spannable = new SpannableString(allText);
                 spannable.setSpan(
                         new RelativeSizeSpan(0.7f),
