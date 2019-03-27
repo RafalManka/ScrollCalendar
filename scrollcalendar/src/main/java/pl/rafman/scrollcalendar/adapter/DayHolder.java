@@ -45,7 +45,6 @@ class DayHolder implements View.OnClickListener {
         if (layoutView == null) {
             layoutView = factory.createView(parent);
             layoutView.setOnClickListener(this);
-
         }
         return layoutView;
     }
@@ -53,17 +52,14 @@ class DayHolder implements View.OnClickListener {
     void display(@Nullable CalendarMonth calendarMonth, @Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         this.calendarMonth = calendarMonth;
         this.currentDay = currentDay;
-
         setupVisibility(currentDay);
         setupStyles(currentDay, previousDay, nextDay);
     }
-
 
     private void setupVisibility(@Nullable CalendarDay calendarDay) {
         if (layoutView == null) {
             return;
         }
-
         if (calendarDay == null) {
             layoutView.setVisibility(View.INVISIBLE);
         } else {
@@ -79,6 +75,9 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupStyles(@Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
+        if (!(layoutView instanceof TextView)) {
+            return;
+        }
         if (currentDay != null) {
             switch (currentDay.getState()) {
                 case CalendarDay.FIRST_SELECTED:
@@ -167,36 +166,30 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForFirstSelectedDate() {
-
         if (!(layoutView instanceof TextView)) {
             return;
         }
         TextView textView = (TextView) layoutView;
-
         textView.setTextColor(resProvider.getSelectedBeginningDayTextColor());
         textView.setBackgroundResource(resProvider.getSelectedBeginningDayBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForLastSelectedDate() {
-
         if (!(layoutView instanceof TextView)) {
             return;
         }
         TextView textView = (TextView) layoutView;
-
         textView.setTextColor(resProvider.getSelectedEndDayTextColor());
         textView.setBackgroundResource(resProvider.getSelectedEndDayBackground());
         setFont(resProvider.getCustomFont());
     }
 
     private void setupForSelectedDate(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
-
         if (!(layoutView instanceof TextView)) {
             return;
         }
         TextView textView = (TextView) layoutView;
-
         if (!resProvider.softLineBreaks()) {
             textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
             textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
@@ -240,7 +233,6 @@ class DayHolder implements View.OnClickListener {
     private boolean isMiddle(CalendarDay previousDay, CalendarDay nextDay) {
         return isSelected(previousDay) && isSelected(nextDay);
     }
-
 
     private boolean hasNoNeighbours(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         return !isSelected(previousDay) && !isSelected(nextDay);
