@@ -10,6 +10,7 @@ import java.util.List;
 
 import pl.rafman.scrollcalendar.contract.CalendarDayCallback;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
+import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
@@ -17,7 +18,6 @@ import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
 import pl.rafman.scrollcalendar.style.MonthResProvider;
-import pl.rafman.scrollcalendar.widgets.SquareTextView;
 
 /**
  * Created by rafal.manka on 10/09/2017
@@ -38,6 +38,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private DateWatcher dateWatcher;
     private MonthResProvider monthResProvider;
     private DayResProvider dayResProvider;
+    private DayViewFactory factory;
 
     public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
         this.monthResProvider = monthResProvider;
@@ -46,18 +47,19 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         this.recyclerView = recyclerView;
     }
 
+    @NonNull
     @Override
-    public MonthViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return MonthViewHolder.create(parent, this, monthResProvider, dayResProvider);
+    public MonthViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return MonthViewHolder.create(parent, this, monthResProvider, dayResProvider, factory);
     }
 
     @Override
-    public void onBindViewHolder(MonthViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MonthViewHolder holder, int position) {
         CalendarMonth month = getItem(position);
         prepare(month);
         holder.bind(month);
@@ -190,17 +192,13 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
         notifyDataSetChanged();
     }
 
-    @Override
-    public void onCalendarDayTextSet(@NonNull SquareTextView textView, int year, int month, int day) {
-        if (dateWatcher != null) {
-            dateWatcher.onDateTextSet(textView, year, month, day);
-        }
-    }
-
     protected void onCalendarDayClicked(int year, int month, int day) {
         if (onDateClickListener != null) {
             onDateClickListener.onCalendarDayClicked(year, month, day);
         }
     }
 
+    public void setFactory(DayViewFactory factory) {
+        this.factory = factory;
+    }
 }

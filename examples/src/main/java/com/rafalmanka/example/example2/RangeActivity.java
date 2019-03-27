@@ -1,12 +1,12 @@
 package com.rafalmanka.example.example2;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
+import android.view.View;
 import android.widget.TextView;
 
 import com.rafalmanka.example.R;
@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
+import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
@@ -49,21 +50,6 @@ public class RangeActivity extends AppCompatActivity {
             @Override
             public int getStateForDate(int year, int month, int day) {
                 return doGetStateForDate(year, month, day);
-            }
-
-            @Override
-            public void onDateTextSet(@NonNull TextView textView, int year, int month, int day) {
-                String topText = textView.getText().toString();
-                // example: every third day of month has a subtitle
-                String allText = topText + (day == 3 ? "\n100$" : "");
-                SpannableString spannable = new SpannableString(allText);
-                spannable.setSpan(
-                        new RelativeSizeSpan(0.7f),
-                        topText.length(),
-                        allText.length(),
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                );
-                textView.setText(spannable);
             }
         });
     }

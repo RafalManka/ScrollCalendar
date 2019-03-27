@@ -3,12 +3,12 @@ package pl.rafman.scrollcalendar.adapter;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.CalendarDayCallback;
+import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
@@ -19,32 +19,35 @@ import pl.rafman.scrollcalendar.widgets.SquareTextView;
  */
 class DayHolder implements View.OnClickListener {
 
-
     private final DayResProvider resProvider;
 
     @NonNull
     private final CalendarDayCallback calendarCallback;
     @Nullable
-    private SquareTextView textView;
+    private View layoutView;
 
     @Nullable
     private CalendarMonth calendarMonth;
     @Nullable
     private CalendarDay currentDay;
 
+    @NonNull
+    private final DayViewFactory factory;
 
-    DayHolder(@NonNull CalendarDayCallback calendarCallback, @NonNull DayResProvider resProvider) {
+    DayHolder(@NonNull CalendarDayCallback calendarCallback, @NonNull DayResProvider resProvider, DayViewFactory factory) {
         this.calendarCallback = calendarCallback;
         this.resProvider = resProvider;
+        this.factory = factory != null ? factory : new DayViewFactory() {
+        };
     }
 
     public View layout(LinearLayout parent) {
-        if (textView == null) {
-            textView = (SquareTextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_day, parent, false);
-            textView.setOnClickListener(this);
+        if (layoutView == null) {
+            layoutView = factory.createView(parent);
+            layoutView.setOnClickListener(this);
 
         }
-        return textView;
+        return layoutView;
     }
 
     void display(@Nullable CalendarMonth calendarMonth, @Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
@@ -57,17 +60,20 @@ class DayHolder implements View.OnClickListener {
 
 
     private void setupVisibility(@Nullable CalendarDay calendarDay) {
-        if (textView == null) {
+        if (layoutView == null) {
             return;
         }
 
         if (calendarDay == null) {
-            textView.setVisibility(View.INVISIBLE);
+            layoutView.setVisibility(View.INVISIBLE);
         } else {
-            textView.setVisibility(View.VISIBLE);
-            textView.setText(String.valueOf(calendarDay.getDay()));
+            layoutView.setVisibility(View.VISIBLE);
+            if (layoutView instanceof SquareTextView) {
+                TextView textView = (TextView) layoutView;
+                textView.setText(String.valueOf(calendarDay.getDay()));
+            }
             if (calendarMonth != null) {
-                calendarCallback.onCalendarDayTextSet(textView, calendarMonth.getYear(), calendarMonth.getMonth(), calendarDay.getDay());
+                factory.setupView(layoutView, calendarMonth.getYear(), calendarMonth.getMonth(), calendarDay.getDay());
             }
         }
     }
@@ -105,17 +111,19 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForOnlySelectedDate() {
-        if (textView == null) {
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
         textView.setTextColor(resProvider.getSelectedDayTextColor());
         textView.setBackgroundResource(resProvider.getSelectedDayBackground());
     }
 
     private void setupForDefaultDate() {
-        if (textView == null) {
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         textView.setTextColor(resProvider.getDayTextColor());
         textView.setBackgroundColor(resProvider.getDayBackground());
@@ -123,9 +131,11 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForTodayDate() {
-        if (textView == null) {
+
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         textView.setTextColor(resProvider.getCurrentDayTextColor());
         textView.setBackgroundResource(resProvider.getCurrentDayBackground());
@@ -133,9 +143,11 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForDisabledDate() {
-        if (textView == null) {
+
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         textView.setTextColor(resProvider.getDisabledTextColor());
         textView.setBackgroundColor(resProvider.getDisabledBackground());
@@ -143,9 +155,11 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForUnavailableDate() {
-        if (textView == null) {
+
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         textView.setTextColor(resProvider.getUnavailableTextColor());
         textView.setBackgroundResource(resProvider.getUnavailableBackground());
@@ -153,9 +167,11 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForFirstSelectedDate() {
-        if (textView == null) {
+
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         textView.setTextColor(resProvider.getSelectedBeginningDayTextColor());
         textView.setBackgroundResource(resProvider.getSelectedBeginningDayBackground());
@@ -163,9 +179,11 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForLastSelectedDate() {
-        if (textView == null) {
+
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         textView.setTextColor(resProvider.getSelectedEndDayTextColor());
         textView.setBackgroundResource(resProvider.getSelectedEndDayBackground());
@@ -173,9 +191,12 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setupForSelectedDate(@Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
-        if (textView == null) {
+
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
+
         if (!resProvider.softLineBreaks()) {
             textView.setTextColor(resProvider.getSelectedMiddleDayTextColor());
             textView.setBackgroundResource(resProvider.getSelectedMiddleDayBackground());
@@ -226,11 +247,11 @@ class DayHolder implements View.OnClickListener {
     }
 
     private boolean isSelected(@Nullable CalendarDay previousDay) {
-        return previousDay != null && equalsAny(previousDay.getState(), CalendarDay.SELECTED_STATES);
+        return previousDay != null && equalsAny(previousDay.getState());
     }
 
-    private boolean equalsAny(int state, int[] ints) {
-        for (int anInt : ints) {
+    private boolean equalsAny(int state) {
+        for (int anInt : CalendarDay.SELECTED_STATES) {
             if (anInt == state) {
                 return true;
             }
@@ -239,9 +260,10 @@ class DayHolder implements View.OnClickListener {
     }
 
     private void setFont(Typeface customFont) {
-        if (textView == null) {
+        if (!(layoutView instanceof TextView)) {
             return;
         }
+        TextView textView = (TextView) layoutView;
 
         if (customFont != null) {
             textView.setTypeface(customFont);

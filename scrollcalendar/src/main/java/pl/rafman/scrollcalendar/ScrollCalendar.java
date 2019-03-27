@@ -18,6 +18,7 @@ import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultDateScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultRangeScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
+import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.style.DayResProviderImpl;
@@ -292,5 +293,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         }
     }
 
-
+    public void setViewFactory(DayViewFactory factory) {
+        getAdapter().setFactory(factory);
+    }
 }
