@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import pl.rafman.scrollcalendar.contract.CalendarDayCallback;
+import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
@@ -22,7 +22,7 @@ class DayHolder implements View.OnClickListener {
     private final DayResProvider resProvider;
 
     @NonNull
-    private final CalendarDayCallback calendarCallback;
+    private final ClickCallback calendarCallback;
     @Nullable
     private View layoutView;
 
@@ -34,7 +34,7 @@ class DayHolder implements View.OnClickListener {
     @NonNull
     private final DayViewFactory factory;
 
-    DayHolder(@NonNull CalendarDayCallback calendarCallback, @NonNull DayResProvider resProvider, DayViewFactory factory) {
+    DayHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider, DayViewFactory factory) {
         this.calendarCallback = calendarCallback;
         this.resProvider = resProvider;
         this.factory = factory != null ? factory : new DayViewFactory() {
