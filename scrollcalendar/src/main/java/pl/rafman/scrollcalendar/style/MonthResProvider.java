@@ -6,7 +6,7 @@ public interface MonthResProvider {
     @ColorInt
     int getTextColor();
 
-    float gatTextSize();
+    float getTextSize();
 
     int getGravity();
 

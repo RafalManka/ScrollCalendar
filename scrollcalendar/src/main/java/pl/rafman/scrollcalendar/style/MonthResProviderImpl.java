@@ -65,7 +65,7 @@ public class MonthResProviderImpl implements MonthResProvider {
     }
 
     @Override
-    public float gatTextSize() {
+    public float getTextSize() {
         return textSize;
     }
 

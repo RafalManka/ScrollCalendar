@@ -53,7 +53,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
             return;
         }
         title.setTextColor(resProvider.getTextColor());
-        title.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.gatTextSize());
+        title.setTextSize(TypedValue.COMPLEX_UNIT_PX, resProvider.getTextSize());
         title.setGravity(resProvider.getGravity());
         title.setTypeface(title.getTypeface(), resProvider.getTextStyle());
         textAllCaps = resProvider.getTextAllCaps();
