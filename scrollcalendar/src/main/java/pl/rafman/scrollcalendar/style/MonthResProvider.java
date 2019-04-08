@@ -13,5 +13,7 @@ public interface MonthResProvider {
     boolean getTextAllCaps();
 
     boolean showYearAlways();
+
+    int getTextStyle();
 }
 

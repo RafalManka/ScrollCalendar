@@ -2,6 +2,7 @@ package pl.rafman.scrollcalendar.style;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -16,6 +17,7 @@ public class MonthResProviderImpl implements MonthResProvider {
             android.R.attr.textSize,
             android.R.attr.gravity,
             android.R.attr.textAllCaps,
+            android.R.attr.textStyle,
     };
 
     static {
@@ -26,6 +28,7 @@ public class MonthResProviderImpl implements MonthResProvider {
     private int textColor;
     private int textSize;
     private int gravity;
+    private int textStyle;
     private boolean textAllCaps;
     private boolean showYearAlways;
 
@@ -44,6 +47,9 @@ public class MonthResProviderImpl implements MonthResProvider {
                     break;
                 case android.R.attr.textAllCaps:
                     textAllCaps = typedArray.getBoolean(i, false);
+                    break;
+                case android.R.attr.textStyle:
+                    textStyle = typedArray.getInt(i, Typeface.NORMAL);
                     break;
                 default:
                     break;
@@ -77,4 +83,10 @@ public class MonthResProviderImpl implements MonthResProvider {
     public boolean showYearAlways() {
         return showYearAlways;
     }
+
+    @Override
+    public int getTextStyle() {
+        return textStyle;
+    }
+
 }
