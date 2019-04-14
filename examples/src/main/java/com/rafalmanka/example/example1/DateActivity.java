@@ -1,10 +1,16 @@
 package com.rafalmanka.example.example1;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rafalmanka.example.R;
@@ -13,6 +19,7 @@ import java.util.Calendar;
 
 import pl.rafman.scrollcalendar.ScrollCalendar;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
+import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
 import pl.rafman.scrollcalendar.contract.OnDateClickListener;
 import pl.rafman.scrollcalendar.contract.State;
@@ -39,6 +46,26 @@ public class DateActivity extends AppCompatActivity {
             @Override
             public void onCalendarDayClicked(int year, int month, int day) {
                 doOnCalendarDayClicked(year, month, day);
+            }
+        });
+        scrollCalendar.setViewFactory(new DayViewFactory() {
+
+            @Override
+            public void setupView(View view, int year, int month, int day) {
+                if (view instanceof TextView) {
+                    TextView textView = (TextView) view;
+                    String topText = textView.getText().toString();
+                    // example: every third day of month has a subtitle
+                    String allText = topText + (day == 4 ? "\n100$" : "");
+                    SpannableString spannable = new SpannableString(allText);
+                    spannable.setSpan(
+                            new RelativeSizeSpan(0.7f),
+                            topText.length(),
+                            allText.length(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    );
+                    textView.setText(spannable);
+                }
             }
         });
         scrollCalendar.setDateWatcher(new DateWatcher() {

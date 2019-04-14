@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.contract.DayViewFactory;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
@@ -22,9 +23,9 @@ class WeekHolder {
     @Nullable
     private LinearLayout container;
 
-    WeekHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
+    WeekHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider, DayViewFactory factory) {
         for (int i = 0; i < days.length; i++) {
-            days[i] = new DayHolder(calendarCallback, resProvider);
+            days[i] = new DayHolder(calendarCallback, resProvider, factory);
         }
     }
 

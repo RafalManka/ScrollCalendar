@@ -6,4 +6,5 @@ package pl.rafman.scrollcalendar.contract;
 public interface DateWatcher {
     @State
     int getStateForDate(int year, int month, int day);
+
 }
