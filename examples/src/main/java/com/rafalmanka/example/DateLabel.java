@@ -3,11 +3,12 @@ package com.rafalmanka.example;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

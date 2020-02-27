@@ -1,6 +1,6 @@
 package pl.rafman.scrollcalendar.values;
 
-import android.support.annotation.StyleableRes;
+import androidx.annotation.StyleableRes;
 
 import pl.rafman.scrollcalendar.R;
 

@@ -1,10 +1,11 @@
 package com.rafalmanka.example.example3;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.rafalmanka.example.R;
 import com.rafalmanka.example.example4.DefaultRangeAdapterActivity;
