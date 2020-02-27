@@ -161,9 +161,13 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         for (int i = 0; i < attrs.length; i++) {
             switch (attrs[i]) {
                 case android.R.attr.background: {
-                    int resource = typedArray.getResourceId(i, 0);
-                    if (resource != 0) {
-                        separator.setBackgroundResource(resource);
+                    int resourceId = typedArray.getResourceId(i, 0);
+                    if (resourceId != 0) {
+                        separator.setBackgroundResource(resourceId);
+                    } else {
+                        int color = typedArray.getColor(i, 0);
+                        separator.setBackgroundColor(color);
+
                     }
                     break;
                 }
