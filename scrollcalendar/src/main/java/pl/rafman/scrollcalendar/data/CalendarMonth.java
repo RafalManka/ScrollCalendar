@@ -1,6 +1,6 @@
 package pl.rafman.scrollcalendar.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.text.DateFormatSymbols;

@@ -1,6 +1,6 @@
 package pl.rafman.scrollcalendar.contract;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;

@@ -1,8 +1,8 @@
 package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 
 /**
  * Created by rafal.manka on 11/09/2017

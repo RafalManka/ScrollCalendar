@@ -3,12 +3,12 @@ package pl.rafman.scrollcalendar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -161,9 +161,13 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         for (int i = 0; i < attrs.length; i++) {
             switch (attrs[i]) {
                 case android.R.attr.background: {
-                    int resource = typedArray.getResourceId(i, 0);
-                    if (resource != 0) {
-                        separator.setBackgroundResource(resource);
+                    int resourceId = typedArray.getResourceId(i, 0);
+                    if (resourceId != 0) {
+                        separator.setBackgroundResource(resourceId);
+                    } else {
+                        int color = typedArray.getColor(i, 0);
+                        separator.setBackgroundColor(color);
+
                     }
                     break;
                 }

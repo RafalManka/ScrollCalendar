@@ -1,6 +1,6 @@
 package pl.rafman.scrollcalendar.style;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 public interface MonthResProvider {
     @ColorInt
