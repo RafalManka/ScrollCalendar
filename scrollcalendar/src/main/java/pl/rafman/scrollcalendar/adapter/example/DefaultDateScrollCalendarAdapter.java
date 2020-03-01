@@ -1,5 +1,6 @@
 package pl.rafman.scrollcalendar.adapter.example;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
