@@ -151,7 +151,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(getAdapter());
     }
 
@@ -199,9 +199,10 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         return adapter;
     }
 
-    private ScrollCalendarAdapter createAdapter() {
+    protected  ScrollCalendarAdapter createAdapter() {
         MonthResProviderImpl monthResProvider = new MonthResProviderImpl(getContext(), this);
         DayResProviderImpl dayResProvider = new DayResProviderImpl(getContext(), this);
+
         switch (defaultAdapter) {
             case 1:
                 return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider);

@@ -1,14 +1,15 @@
 package pl.rafman.scrollcalendar.adapter;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +25,7 @@ import pl.rafman.scrollcalendar.style.MonthResProvider;
 /**
  * Created by rafal.manka on 10/09/2017
  */
-class MonthViewHolder extends RecyclerView.ViewHolder {
+public class MonthViewHolder extends RecyclerView.ViewHolder {
 
     @Nullable
     private final TextView title;
@@ -34,7 +35,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
     private boolean textAllCaps;
 
 
-    private MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+    public MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
         super(rootView);
         this.monthResProvider = monthResProvider;
         LinearLayout monthContainer = rootView.findViewById(R.id.monthContainer);
@@ -42,10 +43,14 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         setupTitleAppearance(monthResProvider);
 
         for (int i = 0; i < weeks.length; i++) {
-            WeekHolder holder = new WeekHolder(calendarCallback, dayResProvider);
+            WeekHolder holder = createWeekHolder(calendarCallback, dayResProvider);
             weeks[i] = holder;
             monthContainer.addView(holder.layout(monthContainer));
         }
+    }
+
+    protected WeekHolder createWeekHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
+        return new WeekHolder(calendarCallback, resProvider);
     }
 
     private void setupTitleAppearance(@NonNull MonthResProvider resProvider) {
@@ -64,7 +69,7 @@ class MonthViewHolder extends RecyclerView.ViewHolder {
         title = null;
     }
 
-    static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {
+    public static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {
         return new MonthViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_month, parent, false),
                 calendarCallback, resProvider, dayResProvider);
