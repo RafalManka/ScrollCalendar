@@ -3,15 +3,16 @@ package pl.rafman.scrollcalendar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
@@ -150,7 +151,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(getAdapter());
     }
 
