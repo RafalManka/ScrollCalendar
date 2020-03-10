@@ -91,7 +91,6 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
 
     CalendarDay[] filterWeekDays(int weekOfMonth, CalendarMonth calendarMonth) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setFirstDayOfWeek(Calendar.SUNDAY);
         calendar.set(Calendar.YEAR, calendarMonth.getYear());
         calendar.set(Calendar.MONTH, calendarMonth.getMonth());
         calendar.set(Calendar.DAY_OF_MONTH, 1);
