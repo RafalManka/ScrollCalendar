@@ -12,8 +12,7 @@ import java.util.Calendar;
 
 public class CalendarMonth implements Serializable {
 
-    private static final String[] months = new DateFormatSymbols().getMonths();
-
+    private final String[] months = new DateFormatSymbols().getMonths();
     private final int year;
     private final int month;
     @NonNull
