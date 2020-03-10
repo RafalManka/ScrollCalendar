@@ -1,11 +1,5 @@
 package pl.rafman.scrollcalendar.adapter;
 
-<<<<<<< HEAD
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-=======
->>>>>>> 19419b1b5f390dba9cd8ddedea1336892cc9c3c7
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +21,7 @@ import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
 import pl.rafman.scrollcalendar.style.MonthResProvider;
+
 
 /**
  * Created by rafal.manka on 10/09/2017
