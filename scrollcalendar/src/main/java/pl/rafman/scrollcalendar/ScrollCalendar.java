@@ -3,15 +3,6 @@ package pl.rafman.scrollcalendar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-<<<<<<< HEAD
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-=======
->>>>>>> 19419b1b5f390dba9cd8ddedea1336892cc9c3c7
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;

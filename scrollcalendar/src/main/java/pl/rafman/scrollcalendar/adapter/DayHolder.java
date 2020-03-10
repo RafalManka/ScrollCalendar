@@ -1,11 +1,6 @@
 package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
-<<<<<<< HEAD
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-=======
->>>>>>> 19419b1b5f390dba9cd8ddedea1336892cc9c3c7
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
