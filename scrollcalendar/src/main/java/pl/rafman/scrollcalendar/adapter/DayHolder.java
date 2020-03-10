@@ -1,14 +1,21 @@
 package pl.rafman.scrollcalendar.adapter;
 
 import android.graphics.Typeface;
+<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+=======
+>>>>>>> 19419b1b5f390dba9cd8ddedea1336892cc9c3c7
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
+import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
@@ -17,15 +24,15 @@ import pl.rafman.scrollcalendar.widgets.SquareTextView;
 /**
  * Created by rafal.manka on 10/09/2017
  */
-class DayHolder implements View.OnClickListener {
+public class DayHolder implements View.OnClickListener {
 
 
-    private final DayResProvider resProvider;
+    protected final DayResProvider resProvider;
 
     @NonNull
     private final ClickCallback calendarCallback;
     @Nullable
-    private SquareTextView textView;
+    protected SquareTextView textView;
 
     @Nullable
     private CalendarMonth calendarMonth;
@@ -33,7 +40,7 @@ class DayHolder implements View.OnClickListener {
     private CalendarDay currentDay;
 
 
-    DayHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
+    public DayHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
         this.calendarCallback = calendarCallback;
         this.resProvider = resProvider;
     }
@@ -71,33 +78,37 @@ class DayHolder implements View.OnClickListener {
 
     private void setupStyles(@Nullable CalendarDay currentDay, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
         if (currentDay != null) {
-            switch (currentDay.getState()) {
-                case CalendarDay.FIRST_SELECTED:
-                    setupForFirstSelectedDate();
-                    break;
-                case CalendarDay.ONLY_SELECTED:
-                    setupForOnlySelectedDate();
-                    break;
-                case CalendarDay.LAST_SELECTED:
-                    setupForLastSelectedDate();
-                    break;
-                case CalendarDay.SELECTED:
-                    setupForSelectedDate(previousDay, nextDay);
-                    break;
-                case CalendarDay.UNAVAILABLE:
-                    setupForUnavailableDate();
-                    break;
-                case CalendarDay.DISABLED:
-                    setupForDisabledDate();
-                    break;
-                case CalendarDay.TODAY:
-                    setupForTodayDate();
-                    break;
-                case CalendarDay.DEFAULT:
-                default:
-                    setupForDefaultDate();
-                    break;
-            }
+            setupStyleForDayState(currentDay.getState(), previousDay, nextDay);
+        }
+    }
+
+    protected void setupStyleForDayState(@State int state, @Nullable CalendarDay previousDay, @Nullable CalendarDay nextDay) {
+        switch (state) {
+            case CalendarDay.FIRST_SELECTED:
+                setupForFirstSelectedDate();
+                break;
+            case CalendarDay.ONLY_SELECTED:
+                setupForOnlySelectedDate();
+                break;
+            case CalendarDay.LAST_SELECTED:
+                setupForLastSelectedDate();
+                break;
+            case CalendarDay.SELECTED:
+                setupForSelectedDate(previousDay, nextDay);
+                break;
+            case CalendarDay.UNAVAILABLE:
+                setupForUnavailableDate();
+                break;
+            case CalendarDay.DISABLED:
+                setupForDisabledDate();
+                break;
+            case CalendarDay.TODAY:
+                setupForTodayDate();
+                break;
+            case CalendarDay.DEFAULT:
+            default:
+                setupForDefaultDate();
+                break;
         }
     }
 
@@ -235,7 +246,7 @@ class DayHolder implements View.OnClickListener {
         return false;
     }
 
-    private void setFont(Typeface customFont) {
+    protected void setFont(Typeface customFont) {
         if (textView == null) {
             return;
         }

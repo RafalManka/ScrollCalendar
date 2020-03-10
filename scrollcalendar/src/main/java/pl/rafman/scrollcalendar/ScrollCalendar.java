@@ -3,15 +3,25 @@ package pl.rafman.scrollcalendar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+=======
+>>>>>>> 19419b1b5f390dba9cd8ddedea1336892cc9c3c7
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
@@ -150,7 +160,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
     private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(getAdapter());
     }
 
@@ -161,9 +171,13 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         for (int i = 0; i < attrs.length; i++) {
             switch (attrs[i]) {
                 case android.R.attr.background: {
-                    int resource = typedArray.getResourceId(i, 0);
-                    if (resource != 0) {
-                        separator.setBackgroundResource(resource);
+                    int resourceId = typedArray.getResourceId(i, 0);
+                    if (resourceId != 0) {
+                        separator.setBackgroundResource(resourceId);
+                    } else {
+                        int color = typedArray.getColor(i, 0);
+                        separator.setBackgroundColor(color);
+
                     }
                     break;
                 }
@@ -194,9 +208,10 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         return adapter;
     }
 
-    private ScrollCalendarAdapter createAdapter() {
+    protected  ScrollCalendarAdapter createAdapter() {
         MonthResProviderImpl monthResProvider = new MonthResProviderImpl(getContext(), this);
         DayResProviderImpl dayResProvider = new DayResProviderImpl(getContext(), this);
+
         switch (defaultAdapter) {
             case 1:
                 return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider);

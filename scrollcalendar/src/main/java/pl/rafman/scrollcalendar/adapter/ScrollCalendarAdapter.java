@@ -1,9 +1,16 @@
 package pl.rafman.scrollcalendar.adapter;
 
+<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+=======
+>>>>>>> 19419b1b5f390dba9cd8ddedea1336892cc9c3c7
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +42,8 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private OnDateClickListener onDateClickListener;
     @Nullable
     private DateWatcher dateWatcher;
-    private MonthResProvider monthResProvider;
-    private DayResProvider dayResProvider;
+    protected MonthResProvider monthResProvider;
+    protected DayResProvider dayResProvider;
 
     public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
         this.monthResProvider = monthResProvider;
