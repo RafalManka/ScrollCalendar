@@ -1,6 +1,9 @@
 package pl.rafman.scrollcalendar.adapter;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb3433ece0e266fa126a4cc69be859dbcd2623df
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,6 +22,7 @@ import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
 import pl.rafman.scrollcalendar.style.MonthResProvider;
+
 
 /**
  * Created by rafal.manka on 10/09/2017

@@ -22,6 +22,7 @@ import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
 import pl.rafman.scrollcalendar.style.MonthResProvider;
 
+
 /**
  * Created by rafal.manka on 10/09/2017
  */

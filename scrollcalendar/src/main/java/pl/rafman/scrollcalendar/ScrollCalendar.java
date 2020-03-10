@@ -199,7 +199,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         return adapter;
     }
 
-    protected  ScrollCalendarAdapter createAdapter() {
+    protected ScrollCalendarAdapter createAdapter() {
         MonthResProviderImpl monthResProvider = new MonthResProviderImpl(getContext(), this);
         DayResProviderImpl dayResProvider = new DayResProviderImpl(getContext(), this);
 
