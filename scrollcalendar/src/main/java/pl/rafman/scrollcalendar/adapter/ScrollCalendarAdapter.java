@@ -1,9 +1,5 @@
 package pl.rafman.scrollcalendar.adapter;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fb3433ece0e266fa126a4cc69be859dbcd2623df
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
