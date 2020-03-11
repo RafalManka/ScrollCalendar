@@ -22,6 +22,7 @@ import pl.rafman.scrollcalendar.data.CalendarMonth;
 import pl.rafman.scrollcalendar.style.DayResProvider;
 import pl.rafman.scrollcalendar.style.MonthResProvider;
 
+
 /**
  * Created by rafal.manka on 10/09/2017
  */
@@ -91,7 +92,6 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
 
     CalendarDay[] filterWeekDays(int weekOfMonth, CalendarMonth calendarMonth) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setFirstDayOfWeek(Calendar.SUNDAY);
         calendar.set(Calendar.YEAR, calendarMonth.getYear());
         calendar.set(Calendar.MONTH, calendarMonth.getMonth());
         calendar.set(Calendar.DAY_OF_MONTH, 1);

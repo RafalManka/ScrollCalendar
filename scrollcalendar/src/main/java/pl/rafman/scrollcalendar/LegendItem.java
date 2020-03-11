@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,7 +25,7 @@ import pl.rafman.scrollcalendar.adapter.ResProvider;
  */
 public class LegendItem {
 
-    private static final char[] days;
+    private final char[] days;
 
     private static final int[] attrs = {
             android.R.attr.textColor,
@@ -33,10 +34,24 @@ public class LegendItem {
             android.R.attr.gravity
     };
 
-    static {
+    private final int dayOfWeek;
+
+    @Nullable
+    private TextView textView;
+
+    public LegendItem(int dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+
         Arrays.sort(attrs);
         //
-        String[] original = new DateFormatSymbols().getWeekdays();
+        String[] weekdays = new DateFormatSymbols().getWeekdays();
+        String[] original = new String[7];
+
+        int firstDay = Calendar.getInstance().getFirstDayOfWeek();
+
+        for (int i = 0; i < 7; i++) {
+            original[i] = weekdays[((firstDay+i-1)%7)+1];
+        }
         List<Character> characters = new ArrayList<>();
         for (String s : original) {
             if (s != null && !s.isEmpty()) {
@@ -47,15 +62,6 @@ public class LegendItem {
         for (int i = 0; i < days.length; i++) {
             days[i] = characters.get(i);
         }
-    }
-
-    private final int dayOfWeek;
-
-    @Nullable
-    private TextView textView;
-
-    public LegendItem(int dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
     }
 
 
