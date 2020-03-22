@@ -11,7 +11,7 @@ Airbnb app.
 
 ## Installing
 
-Improt the library into gradle
+Import the library into gradle
 
 ```
 implementation ('pl.rafman.widgets:scroll-calendar:3.1.0')
