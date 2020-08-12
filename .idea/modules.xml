@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/examples/examples.iml" filepath="$PROJECT_DIR$/examples/examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/github-scroll-calendar.iml" filepath="$PROJECT_DIR$/.idea/modules/github-scroll-calendar.iml" group="scroll-calendar" />
       <module fileurl="file://$PROJECT_DIR$/scroll-calendar.iml" filepath="$PROJECT_DIR$/scroll-calendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/scroll-calendar-examples.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/scroll-calendar-examples.iml" group="scroll-calendar/examples" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollcalendar/scroll-calendar-scrollcalendar.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollcalendar/scroll-calendar-scrollcalendar.iml" group="scroll-calendar/scrollcalendar" />
       <module fileurl="file://$PROJECT_DIR$/scrollcalendar/scrollcalendar.iml" filepath="$PROJECT_DIR$/scrollcalendar/scrollcalendar.iml" />
     </modules>
   </component>
