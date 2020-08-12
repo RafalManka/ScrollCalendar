@@ -1,14 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
-
-publish {
-    userOrg = "rafalmanka"
-    groupId = "pl.rafman.widgets"
-    artifactId = "scroll-calendar"
-    publishVersion = "3.1.1"
-    desc = "Scroll Calendar widget"
-    website = "https://github.com/RafalManka/ScrollCalendar"
-}
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 29
@@ -36,4 +28,114 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+}
+
+ext {
+    // This should be same as you've created in bintray
+    bintrayRepo = 'maven'
+
+    // Name which will be visible on bintray
+    bintrayName = 'scroll-calendar'
+    // Library Details
+    publishedGroupId = 'pl.rafman.widgets'
+    libraryName = 'scroll-calendar'
+    artifact = 'scroll-calendar'
+    libraryDescription = 'Scroll Calendar widget'
+    libraryVersion = '3.1.1'
+
+    // Repository Link (For e.g. GitHub repo)
+    siteUrl = 'https://github.com/RafalManka/ScrollCalendar'
+    gitUrl = 'https://github.com/RafalManka/ScrollCalendar.git'
+    githubRepository= 'RafalManka/ScrollCalendar'
+
+    // Developer Details
+    developerId = 'rafalmanka'
+    developerName = 'Rafal Manka'
+    developerEmail = 'rafal@manka.info'
+
+    // License Details
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+version = libraryVersion
+// This is mandatory
+group = publishedGroupId
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                groupId publishedGroupId
+                artifactId = artifact
+                name libraryName
+                description = libraryDescription
+                url siteUrl
+
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+// Avoid Kotlin docs error
+tasks.withType(Javadoc) {
+    enabled = false
+}
+
+// Remove javadoc related tasks
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// https://github.com/bintray/gradle-bintray-plugin
+bintray {
+    user = '*****'
+    key = '****'
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+    }
 }
