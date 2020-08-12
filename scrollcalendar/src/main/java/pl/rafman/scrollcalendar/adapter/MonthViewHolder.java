@@ -30,6 +30,7 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
 
     @Nullable
     private final TextView title;
+    private final View space;
     private MonthResProvider monthResProvider;
 
     private final WeekHolder[] weeks = new WeekHolder[7];
@@ -42,12 +43,23 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
         LinearLayout monthContainer = rootView.findViewById(R.id.monthContainer);
         title = rootView.findViewById(R.id.title);
         setupTitleAppearance(monthResProvider);
+        space = rootView.findViewById(R.id.spaceBetweenMonths);
+        setupSpaceBetweenMonths(space, monthResProvider);
 
         for (int i = 0; i < weeks.length; i++) {
             WeekHolder holder = createWeekHolder(calendarCallback, dayResProvider);
             weeks[i] = holder;
             monthContainer.addView(holder.layout(monthContainer));
         }
+    }
+
+    private void setupSpaceBetweenMonths(View space, MonthResProvider resProvider) {
+        if (space == null) {
+            return;
+        }
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) space.getLayoutParams();
+        params.height = resProvider.getSpaceBetweenMonths();
+        space.setLayoutParams(params);
     }
 
     protected WeekHolder createWeekHolder(@NonNull ClickCallback calendarCallback, @NonNull DayResProvider resProvider) {
@@ -68,6 +80,7 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
     MonthViewHolder(View rootView) {
         super(rootView);
         title = null;
+        space = null;
     }
 
     public static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {

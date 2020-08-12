@@ -15,5 +15,7 @@ public interface MonthResProvider {
     boolean showYearAlways();
 
     int getTextStyle();
+
+    int getSpaceBetweenMonths();
 }
 
