@@ -18,6 +18,7 @@ public class MonthResProviderImpl implements MonthResProvider {
             android.R.attr.gravity,
             android.R.attr.textAllCaps,
             android.R.attr.textStyle,
+            android.R.attr.spacing
     };
 
     static {
@@ -31,6 +32,7 @@ public class MonthResProviderImpl implements MonthResProvider {
     private int textStyle;
     private boolean textAllCaps;
     private boolean showYearAlways;
+    private int spaceBetweenMonths;
 
     public MonthResProviderImpl(Context context, ResProvider resProvider) {
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(resProvider.getMonthTitleStyle(), attrs);
@@ -51,6 +53,8 @@ public class MonthResProviderImpl implements MonthResProvider {
                 case android.R.attr.textStyle:
                     textStyle = typedArray.getInt(i, Typeface.NORMAL);
                     break;
+                case android.R.attr.spacing:
+                    spaceBetweenMonths = typedArray.getDimensionPixelSize(i, 20);
                 default:
                     break;
             }
@@ -88,5 +92,8 @@ public class MonthResProviderImpl implements MonthResProvider {
     public int getTextStyle() {
         return textStyle;
     }
+
+    @Override
+    public int getSpaceBetweenMonths() { return spaceBetweenMonths; }
 
 }
