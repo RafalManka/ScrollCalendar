@@ -24,7 +24,7 @@ public class CalendarDay implements Serializable {
     private int state = DEFAULT;
     private final int day;
 
-    CalendarDay(int day) {
+    public CalendarDay(int day) {
         this.day = day;
     }
 

@@ -25,6 +25,15 @@
             <enum name="date" value="1" />
             <enum name="range" value="2" />
         </attr>
+        <attr name="firstDayOfWeek" format="enum">
+            <enum name="sunday" value="1" />
+            <enum name="monday" value="2" />
+            <enum name="tuesday" value="3" />
+            <enum name="wednesday" value="4" />
+            <enum name="thursday" value="5" />
+            <enum name="friday" value="6" />
+            <enum name="saturday" value="7" />
+        </attr>
     </declare-styleable>
 
     <attr name="scrollCalendarStyleAttr" format="reference" />

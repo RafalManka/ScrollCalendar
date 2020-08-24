@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
+
 /**
  * Created by rafal.manka on 10/09/2017
  */
@@ -17,20 +19,22 @@ public class CalendarMonth implements Serializable {
     private final int month;
     @NonNull
     private final CalendarDay[] days;
+    private final CalendarProvider calendarProvider;
 
-    public CalendarMonth(int year, int month) {
-        this(year, month, makeDays(year, month));
+    public CalendarMonth(CalendarProvider calendarProvider, int year, int month) {
+        this(calendarProvider, year, month, makeDays(calendarProvider, year, month));
     }
 
-    private CalendarMonth(int year, int month, @NonNull CalendarDay[] days) {
+    private CalendarMonth(CalendarProvider calendarProvider, int year, int month, @NonNull CalendarDay[] days) {
+        this.calendarProvider = calendarProvider;
         this.year = year;
         this.month = month;
         this.days = days;
     }
 
     @NonNull
-    static CalendarDay[] makeDays(int year, int month) {
-        Calendar calendar = Calendar.getInstance();
+    static CalendarDay[] makeDays(CalendarProvider calendarProvider, int year, int month) {
+        Calendar calendar = calendarProvider.getCalendar();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -65,25 +69,25 @@ public class CalendarMonth implements Serializable {
 
     public CalendarMonth previous() {
         if (month == Calendar.JANUARY) {
-            return new CalendarMonth(year - 1, Calendar.DECEMBER);
+            return new CalendarMonth(calendarProvider, year - 1, Calendar.DECEMBER);
         } else {
-            return new CalendarMonth(year, month - 1);
+            return new CalendarMonth(calendarProvider, year, month - 1);
         }
     }
 
     public CalendarMonth next() {
         if (month == Calendar.DECEMBER) {
-            return new CalendarMonth(year + 1, Calendar.JANUARY);
+            return new CalendarMonth(calendarProvider, year + 1, Calendar.JANUARY);
         } else {
-            return new CalendarMonth(year, month + 1);
+            return new CalendarMonth(calendarProvider, year, month + 1);
         }
     }
 
-    public static CalendarMonth now() {
-        Calendar calendar = Calendar.getInstance();
+    public static CalendarMonth now(CalendarProvider calendarProvider) {
+        Calendar calendar = calendarProvider.getCalendar();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
-        return new CalendarMonth(year, month);
+        return new CalendarMonth(calendarProvider, year, month);
     }
 
     @NonNull
@@ -100,7 +104,7 @@ public class CalendarMonth implements Serializable {
     }
 
     private boolean isaCurrentYear() {
-        return year == Calendar.getInstance().get(Calendar.YEAR);
+        return year == calendarProvider.getCalendar().get(Calendar.YEAR);
     }
 
     private String getMonthForInt(int num) {
