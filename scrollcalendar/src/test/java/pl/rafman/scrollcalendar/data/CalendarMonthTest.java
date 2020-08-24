@@ -7,6 +7,8 @@ import org.junit.Test;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
+
 import static junit.framework.Assert.assertEquals;
 
 /**
@@ -14,9 +16,16 @@ import static junit.framework.Assert.assertEquals;
  */
 public class CalendarMonthTest {
 
+    CalendarProvider calendarProvider = new CalendarProvider() {
+        @Override
+        public Calendar getCalendar() {
+            return Calendar.getInstance();
+        }
+    };
+
     @Test
     public void shouldWorkOnLeapYear() throws Exception {
-        CalendarDay[] days = CalendarMonth.makeDays(2000, 1);
+        CalendarDay[] days = CalendarMonth.makeDays(calendarProvider, 2000, 1);
         assertEquals(29, days.length);
         assertEquals(1, days[0].getDay());
         assertEquals(20, days[19].getDay());
@@ -25,13 +34,13 @@ public class CalendarMonthTest {
 
     @Test
     public void shouldWorkOnJanuary() throws Exception {
-        CalendarDay[] days = CalendarMonth.makeDays(2000, 0);
+        CalendarDay[] days = CalendarMonth.makeDays(calendarProvider, 2000, 0);
         assertEquals(31, days.length);
     }
 
     @Test
     public void shouldWorkOnApril() throws Exception {
-        CalendarDay[] days = CalendarMonth.makeDays(2000, 3);
+        CalendarDay[] days = CalendarMonth.makeDays(calendarProvider, 2000, 3);
         assertEquals(30, days.length);
     }
 

@@ -3,6 +3,7 @@ package pl.rafman.scrollcalendar.adapter;
 import android.annotation.SuppressLint;
 import android.view.View;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.data.CalendarMonth;
 
@@ -53,7 +54,13 @@ public class MonthViewHolderTest {
 
         MonthViewHolder cm = new MonthViewHolder(Mockito.mock(View.class));
 
-        CalendarMonth calendarMonth = new CalendarMonth(2017, 10);
+        CalendarMonth calendarMonth = new CalendarMonth(new CalendarProvider() {
+
+            @Override
+            public Calendar getCalendar() {
+                return Calendar.getInstance();
+            }
+        }, 2017, 10);
         CalendarDay[] w1 = cm.filterWeekDays(0, calendarMonth);
         assertEquals(0, w1.length);
 
