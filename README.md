@@ -14,7 +14,7 @@ Airbnb app.
 Import the library into gradle
 
 ```
-implementation ('pl.rafman.widgets:scroll-calendar:3.1.0')
+implementation ('pl.rafman.widgets:scroll-calendar:3.1.2')
 ```
 
 ### Getting Started
@@ -222,6 +222,14 @@ scrollcalendar:selectedItemStyle="@style/SelectedItemStyle"
 scrollcalendar:selectedBeginningItemStyle="@style/OrangeSelectedItemBeginningStyle"
 scrollcalendar:selectedEndItemStyle="@style/OrangeSelectedItemEndStyle"
 scrollcalendar:selectedMiddleItemStyle="@style/OrangeSelectedItemMiddleStyle"
+```
+
+## First day of the week
+
+You can configure first day of the week by setting this variable in xml;
+
+```
+firstDayOfWeek="sunday|monday|tuesday|wednesday|thursday|friday|saturday"
 ```
 
 ## Contributing
