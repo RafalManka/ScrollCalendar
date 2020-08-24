@@ -14,6 +14,8 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Calendar;
+
 import pl.rafman.scrollcalendar.adapter.ResProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.adapter.example.DefaultDateScrollCalendarAdapter;
@@ -29,7 +31,7 @@ import pl.rafman.scrollcalendar.values.Keys;
 /**
  * Created by rafal.manka on 10/09/2017
  */
-public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
+public class ScrollCalendar extends LinearLayoutCompat implements ResProvider, CalendarProvider {
 
     @Nullable
     private String customFont;
@@ -59,6 +61,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
     private int dayStyle;
 
     private int defaultAdapter;
+    private int firstDayOfWeek;
     private boolean showYearAlways;
     private boolean softLineBreaks;
 
@@ -85,7 +88,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         setOrientation(VERTICAL);
         inflate(context, R.layout.scrollcalendar_calendar, this);
         for (int i = 0; i < legend.length; i++) {
-            legend[i] = new LegendItem(i + 1);
+            legend[i] = new LegendItem(i + 1, this);
         }
     }
 
@@ -94,6 +97,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
                 .obtainStyledAttributes(attrs, R.styleable.ScrollCalendar, R.attr.scrollCalendarStyleAttr, R.style.ScrollCalendarStyle);
         selectedItemStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_selectedItemStyle, 0);
         defaultAdapter = typedArray.getInt(Keys.ADAPTER, Defaults.ADAPTER);
+        firstDayOfWeek = typedArray.getInt(R.styleable.ScrollCalendar_firstDayOfWeek, -1);
         customFont = typedArray.getString(Keys.CUSTOM_FONT);
         monthTitleStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_monthTitleStyle, 0);
         legendItemStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_legendItemStyle, 0);
@@ -205,12 +209,12 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
 
         switch (defaultAdapter) {
             case 1:
-                return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider);
+                return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider, this);
             case 2:
-                return new DefaultRangeScrollCalendarAdapter(monthResProvider, dayResProvider);
+                return new DefaultRangeScrollCalendarAdapter(monthResProvider, dayResProvider, this);
             case 0:
             default:
-                return new ScrollCalendarAdapter(monthResProvider, dayResProvider);
+                return new ScrollCalendarAdapter(monthResProvider, dayResProvider, this);
         }
     }
 
@@ -298,5 +302,12 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider {
         }
     }
 
-
+    @Override
+    public Calendar getCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        if(firstDayOfWeek != -1) {
+            calendar.setFirstDayOfWeek(firstDayOfWeek);
+        }
+        return calendar;
+    }
 }

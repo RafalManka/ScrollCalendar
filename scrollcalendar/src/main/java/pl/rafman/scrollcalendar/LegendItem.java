@@ -39,7 +39,7 @@ public class LegendItem {
     @Nullable
     private TextView textView;
 
-    public LegendItem(int dayOfWeek) {
+    public LegendItem(int dayOfWeek, CalendarProvider calendarProvider) {
         this.dayOfWeek = dayOfWeek;
 
         Arrays.sort(attrs);
@@ -47,7 +47,7 @@ public class LegendItem {
         String[] weekdays = new DateFormatSymbols().getWeekdays();
         String[] original = new String[7];
 
-        int firstDay = Calendar.getInstance().getFirstDayOfWeek();
+        int firstDay = calendarProvider.getCalendar().getFirstDayOfWeek();
 
         for (int i = 0; i < 7; i++) {
             original[i] = weekdays[((firstDay+i-1)%7)+1];

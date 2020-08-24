@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.contract.DateWatcher;
 import pl.rafman.scrollcalendar.contract.MonthScrollListener;
@@ -39,11 +40,13 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     private DateWatcher dateWatcher;
     protected MonthResProvider monthResProvider;
     protected DayResProvider dayResProvider;
+    protected CalendarProvider calendarProvider;
 
-    public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+    public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider) {
         this.monthResProvider = monthResProvider;
         this.dayResProvider = dayResProvider;
-        months.add(CalendarMonth.now());
+        this.calendarProvider = calendarProvider;
+        months.add(CalendarMonth.now(calendarProvider));
     }
 
     @Override
@@ -54,7 +57,7 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     @Override
     public MonthViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return MonthViewHolder.create(parent, this, monthResProvider, dayResProvider);
+        return MonthViewHolder.create(parent, this, monthResProvider, dayResProvider, calendarProvider);
     }
 
     @Override
