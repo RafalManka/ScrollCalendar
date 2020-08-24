@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import java.util.Calendar;
 import java.util.Date;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.contract.State;
 import pl.rafman.scrollcalendar.data.CalendarDay;
@@ -18,9 +19,11 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
     private Calendar from;
     @Nullable
     private Calendar until;
+    protected CalendarProvider calendarProvider;
 
-    public DefaultRangeScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
-        super(monthResProvider, dayResProvider);
+    public DefaultRangeScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider) {
+        super(monthResProvider, dayResProvider, calendarProvider);
+        this.calendarProvider = calendarProvider;
     }
 
     @Override
@@ -28,7 +31,7 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
         if (isInThePast(year, month, day)) {
             return;
         }
-        Calendar clickedOn = Calendar.getInstance();
+        Calendar clickedOn = calendarProvider.getCalendar();
         clickedOn.set(Calendar.YEAR, year);
         clickedOn.set(Calendar.MONTH, month);
         clickedOn.set(Calendar.DAY_OF_MONTH, day);

@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import java.util.Calendar;
 import java.util.Date;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
 import pl.rafman.scrollcalendar.adapter.ScrollCalendarAdapter;
 import pl.rafman.scrollcalendar.data.CalendarDay;
 import pl.rafman.scrollcalendar.style.DayResProvider;
@@ -16,14 +17,16 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
 
     @Nullable
     private Calendar selected;
+    protected CalendarProvider calendarProvider;
 
-    public DefaultDateScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
-        super(monthResProvider, dayResProvider);
+    public DefaultDateScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider) {
+        super(monthResProvider, dayResProvider, calendarProvider);
+        this.calendarProvider = calendarProvider;
     }
 
     @Override
     protected void onCalendarDayClicked(int year, int month, int day) {
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = calendarProvider.getCalendar();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
@@ -59,7 +62,7 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
     }
 
     private boolean isInThePast(int year, int month, int day) {
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = calendarProvider.getCalendar();
         calendar.set(Calendar.HOUR_OF_DAY, 1);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
@@ -90,7 +93,7 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
             return false;
         }
         //noinspection UnnecessaryLocalVariable
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = calendarProvider.getCalendar();
         calendar.set(Calendar.YEAR, selected.get(Calendar.YEAR));
         calendar.set(Calendar.MONTH, selected.get(Calendar.MONTH));
         calendar.set(Calendar.DAY_OF_MONTH, selected.get(Calendar.DAY_OF_MONTH));
@@ -110,7 +113,7 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
 
     private boolean isToday(int year, int month, int day) {
         //noinspection UnnecessaryLocalVariable
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = calendarProvider.getCalendar();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);

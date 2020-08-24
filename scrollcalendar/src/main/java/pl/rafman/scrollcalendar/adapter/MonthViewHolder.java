@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import pl.rafman.scrollcalendar.CalendarProvider;
 import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
@@ -34,13 +35,14 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
 
     private final WeekHolder[] weeks = new WeekHolder[7];
     private boolean textAllCaps;
+    private CalendarProvider calendarProvider;
 
-
-    public MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider) {
+    public MonthViewHolder(@NonNull View rootView, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider) {
         super(rootView);
         this.monthResProvider = monthResProvider;
         LinearLayout monthContainer = rootView.findViewById(R.id.monthContainer);
         title = rootView.findViewById(R.id.title);
+        this.calendarProvider = calendarProvider;
         setupTitleAppearance(monthResProvider);
 
         for (int i = 0; i < weeks.length; i++) {
@@ -70,10 +72,10 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
         title = null;
     }
 
-    public static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider) {
+    public static MonthViewHolder create(@NonNull ViewGroup parent, @NonNull ClickCallback calendarCallback, @NonNull MonthResProvider resProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider) {
         return new MonthViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.scrollcalendar_month, parent, false),
-                calendarCallback, resProvider, dayResProvider);
+                calendarCallback, resProvider, dayResProvider, calendarProvider);
     }
 
     void bind(CalendarMonth month) {
@@ -91,7 +93,7 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
     }
 
     CalendarDay[] filterWeekDays(int weekOfMonth, CalendarMonth calendarMonth) {
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = calendarProvider.getCalendar();
         calendar.set(Calendar.YEAR, calendarMonth.getYear());
         calendar.set(Calendar.MONTH, calendarMonth.getMonth());
         calendar.set(Calendar.DAY_OF_MONTH, 1);
