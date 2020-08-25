@@ -310,4 +310,15 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider, C
         }
         return calendar;
     }
+
+    public void setFirstDayOfWeek(int firstDayOfWeek) {
+        this.firstDayOfWeek = firstDayOfWeek;
+        for (int i = 0; i < legend.length; i++) {
+            legend[i] = new LegendItem(i + 1, this);
+        }
+        LinearLayout legendHolder = findViewById(R.id.legend);
+        legendHolder.removeAllViews();
+        setupLegend();
+        adapter.notifyDataSetChanged();
+    }
 }
