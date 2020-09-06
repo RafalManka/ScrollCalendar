@@ -24,6 +24,11 @@ public class DefaultDateScrollCalendarAdapter extends ScrollCalendarAdapter {
         this.calendarProvider = calendarProvider;
     }
 
+    public DefaultDateScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider, boolean addCurrentMonth) {
+        super(monthResProvider, dayResProvider, calendarProvider, addCurrentMonth);
+        this.calendarProvider = calendarProvider;
+    }
+
     @Override
     protected void onCalendarDayClicked(int year, int month, int day) {
         Calendar calendar = calendarProvider.getCalendar();

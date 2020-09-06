@@ -34,7 +34,7 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
     private final View space;
     private MonthResProvider monthResProvider;
 
-    private final WeekHolder[] weeks = new WeekHolder[7];
+    private final WeekHolder[] weeks = new WeekHolder[6]; // max (partial) weeks in month
     private boolean textAllCaps;
     private CalendarProvider calendarProvider;
 
@@ -96,8 +96,8 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
             String txt = monthResProvider.showYearAlways() ? month.getMonthNameWithYear() : month.getReadableMonthName();
             title.setText(applyCase(txt));
         }
-        for (int i = 0; i <= weeks.length - 1; i++) {
-            weeks[i].display(i, month, filterWeekDays(i, month));
+        for (int i = 0; i < weeks.length; i++) {
+            weeks[i].display(i+1, month, filterWeekDays(i+1, month));
         }
     }
 

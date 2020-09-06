@@ -19,6 +19,7 @@
         <attr name="endlessTop" format="boolean" />
         <attr name="showYearAlways" format="boolean" />
         <attr name="roundLineBreaks" format="boolean" />
+        <attr name="addCurrentMonth" format="boolean" />
         <!--adapter-->
         <attr name="adapter" format="enum">
             <enum name="none" value="0" />

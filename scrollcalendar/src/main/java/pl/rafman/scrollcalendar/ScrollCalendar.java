@@ -64,6 +64,7 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider, C
     private int firstDayOfWeek;
     private boolean showYearAlways;
     private boolean softLineBreaks;
+    private boolean addCurrentMonth;
 
     private final LegendItem[] legend = new LegendItem[7];
 
@@ -111,11 +112,19 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider, C
         dayStyle = typedArray.getResourceId(R.styleable.ScrollCalendar_dayStyle, 0);
         showYearAlways = typedArray.getBoolean(R.styleable.ScrollCalendar_showYearAlways, false);
         softLineBreaks = typedArray.getBoolean(R.styleable.ScrollCalendar_roundLineBreaks, true);
+        addCurrentMonth = typedArray.getBoolean(R.styleable.ScrollCalendar_addCurrentMonth, true);
+
         typedArray.recycle();
     }
 
     public void setOnDateClickListener(@Nullable final OnDateClickListener calendarCallback) {
         getAdapter().setOnDateClickListener(calendarCallback);
+    }
+
+    // make sure to style with
+    // scrollcalendar:addCurrentMonth="false"
+    public void setDateRange(@Nullable Calendar firstDate, @Nullable Calendar lastDate, boolean truncateFirstAndLastMonth) {
+        getAdapter().setDateRange(firstDate, lastDate, truncateFirstAndLastMonth);
     }
 
     @SuppressWarnings("unused")
@@ -209,12 +218,12 @@ public class ScrollCalendar extends LinearLayoutCompat implements ResProvider, C
 
         switch (defaultAdapter) {
             case 1:
-                return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider, this);
+                return new DefaultDateScrollCalendarAdapter(monthResProvider, dayResProvider, this, addCurrentMonth);
             case 2:
-                return new DefaultRangeScrollCalendarAdapter(monthResProvider, dayResProvider, this);
+                return new DefaultRangeScrollCalendarAdapter(monthResProvider, dayResProvider, this, addCurrentMonth);
             case 0:
             default:
-                return new ScrollCalendarAdapter(monthResProvider, dayResProvider, this);
+                return new ScrollCalendarAdapter(monthResProvider, dayResProvider, this, addCurrentMonth);
         }
     }
 

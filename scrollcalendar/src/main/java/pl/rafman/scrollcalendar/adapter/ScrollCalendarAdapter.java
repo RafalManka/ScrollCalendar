@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import pl.rafman.scrollcalendar.CalendarProvider;
@@ -42,11 +43,25 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     protected DayResProvider dayResProvider;
     protected CalendarProvider calendarProvider;
 
+    @Nullable
+    private Calendar firstDate;
+    @Nullable
+    private Calendar lastDate;
+
     public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider) {
         this.monthResProvider = monthResProvider;
         this.dayResProvider = dayResProvider;
         this.calendarProvider = calendarProvider;
         months.add(CalendarMonth.now(calendarProvider));
+    }
+
+    public ScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider, boolean addCurrentMonth) {
+        this.monthResProvider = monthResProvider;
+        this.dayResProvider = dayResProvider;
+        this.calendarProvider = calendarProvider;
+        if (addCurrentMonth) {
+            months.add(CalendarMonth.now(calendarProvider));
+        }
     }
 
     @Override
@@ -95,6 +110,11 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     protected boolean isAllowedToAddPreviousMonth() {
+        if (firstDate != null) {
+            CalendarMonth item = getFirstItem();
+            return item.getYear() > firstDate.get(Calendar.YEAR)
+                    || (item.getYear() == firstDate.get(Calendar.YEAR) && item.getMonth() > firstDate.get(Calendar.MONTH));
+        }
         if (monthScrollListener == null) {
             return false;
         }
@@ -107,6 +127,11 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
     }
 
     protected boolean isAllowedToAddNextMonth() {
+        if (lastDate != null) {
+            CalendarMonth item = getLastItem();
+            return item.getYear() < lastDate.get(Calendar.YEAR)
+                    || (item.getYear() == lastDate.get(Calendar.YEAR) && item.getMonth() < lastDate.get(Calendar.MONTH));
+        }
         if (monthScrollListener == null) {
             return true;
         }
@@ -184,6 +209,20 @@ public class ScrollCalendarAdapter extends RecyclerView.Adapter<MonthViewHolder>
 
     public void setDateWatcher(@Nullable DateWatcher dateWatcher) {
         this.dateWatcher = dateWatcher;
+    }
+
+    public void setDateRange(@Nullable Calendar firstDate, @Nullable Calendar lastDate, boolean truncateFirstAndLastMonth) {
+        this.firstDate = firstDate;
+        this.lastDate = lastDate;
+        if (truncateFirstAndLastMonth) {
+            CalendarMonth.setDateRange(firstDate, lastDate);
+        }
+        if (months.size() != 0) { // should already be empty - scrollcalendar:addCurrentMonth="false"
+            months.clear();
+            notifyDataSetChanged();
+        }
+        months.add(new CalendarMonth(calendarProvider, firstDate.get(Calendar.YEAR), firstDate.get(Calendar.MONTH)));
+        notifyItemInserted(0);
     }
 
     @Override
