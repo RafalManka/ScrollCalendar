@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Calendar;
+
 import pl.rafman.scrollcalendar.R;
 import pl.rafman.scrollcalendar.contract.ClickCallback;
 import pl.rafman.scrollcalendar.data.CalendarDay;
@@ -54,14 +56,23 @@ public class WeekHolder {
         for (int i = 0; i < days.length; i++) {
             days[i].display(
                     month,
-                    dayOrNull(i, week, daysOfWeek),
-                    dayOrNull(i - 1, week, daysOfWeek),
-                    dayOrNull(i + 1, week, daysOfWeek)
+                    dayOrNull(i, month, week, daysOfWeek),
+                    dayOrNull(i - 1, month, week, daysOfWeek),
+                    dayOrNull(i + 1, month, week, daysOfWeek)
             );
         }
     }
 
-    private CalendarDay dayOrNull(int position, int week, CalendarDay[] calendarDays) {
+    private CalendarDay dayOrNull(int position, CalendarMonth month, int week, CalendarDay[] calendarDays) {
+        // special case: week of startDate
+        Calendar firstDate = CalendarMonth.getFirstDate();
+        if (firstDate != null
+                && month.getYear() == firstDate.get(Calendar.YEAR) && month.getMonth() == firstDate.get(Calendar.MONTH)
+                && week == firstDate.get(Calendar.WEEK_OF_MONTH)) {
+            // force right aligned
+            return takeRightAligned(position, calendarDays);
+        }
+
         if (isRightAligned(week)) {
             return takeRightAligned(position, calendarDays);
         } else {

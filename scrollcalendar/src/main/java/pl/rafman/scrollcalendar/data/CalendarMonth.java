@@ -1,6 +1,7 @@
 package pl.rafman.scrollcalendar.data;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.Serializable;
 import java.text.DateFormatSymbols;
@@ -20,6 +21,11 @@ public class CalendarMonth implements Serializable {
     @NonNull
     private final CalendarDay[] days;
     private final CalendarProvider calendarProvider;
+
+    @Nullable
+    private static Calendar firstDate;
+    @Nullable
+    private static Calendar lastDate;
 
     public CalendarMonth(CalendarProvider calendarProvider, int year, int month) {
         this(calendarProvider, year, month, makeDays(calendarProvider, year, month));
@@ -43,11 +49,21 @@ public class CalendarMonth implements Serializable {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        int maxDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        CalendarDay[] calendarDays = new CalendarDay[maxDays];
+        int firstDay = 1;
+        if (firstDate != null && year == firstDate.get(Calendar.YEAR) && month == firstDate.get(Calendar.MONTH)) {
+            firstDay = firstDate.get(Calendar.DAY_OF_MONTH);
+        }
 
-        for (int i = 1; i <= maxDays; i++) {
-            calendarDays[i - 1] = new CalendarDay(i);
+        int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        if (lastDate != null && year == lastDate.get(Calendar.YEAR) && month == lastDate.get(Calendar.MONTH)) {
+            lastDay = lastDate.get(Calendar.DAY_OF_MONTH);
+        }
+
+        int days = lastDay - firstDay + 1;
+        CalendarDay[] calendarDays = new CalendarDay[days];
+
+        for (int day = 0; day < days; day++) {
+            calendarDays[day] = new CalendarDay(day + firstDay);
         }
 
         return calendarDays;
@@ -121,4 +137,16 @@ public class CalendarMonth implements Serializable {
     public String getMonthNameWithYear() {
         return getMonthForInt(getMonth()) + " " + year;
     }
+
+
+
+    public static void setDateRange(Calendar firstDate, Calendar lastDate) {
+        CalendarMonth.firstDate = firstDate;
+        CalendarMonth.lastDate = lastDate;
+    }
+
+    public static Calendar getFirstDate() { return firstDate; }
+
+    public static Calendar getLastDate() { return lastDate; }
+
 }

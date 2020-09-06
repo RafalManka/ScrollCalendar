@@ -26,6 +26,11 @@ public class DefaultRangeScrollCalendarAdapter extends ScrollCalendarAdapter {
         this.calendarProvider = calendarProvider;
     }
 
+    public DefaultRangeScrollCalendarAdapter(@NonNull MonthResProvider monthResProvider, @NonNull DayResProvider dayResProvider, CalendarProvider calendarProvider, boolean addCurrentMonth) {
+        super(monthResProvider, dayResProvider, calendarProvider, addCurrentMonth);
+        this.calendarProvider = calendarProvider;
+    }
+
     @Override
     protected void onCalendarDayClicked(int year, int month, int day) {
         if (isInThePast(year, month, day)) {
